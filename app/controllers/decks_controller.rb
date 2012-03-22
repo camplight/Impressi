@@ -19,10 +19,10 @@ class DecksController < ApplicationController
     @new_deck.name = params[:deck][:name]
     @new_deck.template = false
     if @new_deck.save
-      flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
+      # flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
       redirect_to(edit_deck_path(@new_deck.id))
     else
-      flash[:error] = 'Looks like that presentation already exists!'
+      flash[:error] = 'Don\'t forget to name your presentation!'
       redirect_to(new_deck_path)
     end
   end
