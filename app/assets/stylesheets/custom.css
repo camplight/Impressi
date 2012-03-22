@@ -156,7 +156,9 @@
 /*----------------------TEMPLATE SELECTOR------------------*/
 	
 	.temp_selector {
-		background-color: #343;
+		background-color: #5178AD;
+		border-radius: 4px;
+		border: 1px solid;
 		width: 220px;
 		height: 40px;
 		margin-left: 80%;
