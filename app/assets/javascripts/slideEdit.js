@@ -20,7 +20,7 @@ $(function() {
 			inlineEditor = $(textarea);
 	inlineEditor.attr('rows', '3');
 	inlineEditor.attr('id', 'inline-editor');
-	inlineEditor.attr('placeholder', 'put your awesome presentation awesomeness here!')
+	inlineEditor.attr('placeholder', 'Click here to edit text.')
 	
 	$(".editable").click(function(e) {
 
