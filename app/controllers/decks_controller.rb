@@ -62,8 +62,11 @@ class DecksController < ApplicationController
     end
   end
 
-  def delete
-    
+  def destroy
+    deck_name = Deck.find(params[:id]).name
+    Deck.find(params[:id]).destroy
+    flash[:success] = "Deck #{deck_name} deleted"
+    redirect_to user_path(current_user)
   end
 
   def show
