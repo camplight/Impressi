@@ -21,7 +21,7 @@ var grabDeckData = function () {
 	// each div under <div id ="impress">
 	//   put the content into an array
 
-	var user_input = {};
+	var user_input = [];
 	var number_of_steps = $('#impress .step').length;
 	
 
@@ -57,5 +57,8 @@ var sendViaAjax = function () {
 
 setInterval(sendViaAjax, 1000000);
 
-$('#impress-button').click(sendViaAjax);
+$('#impress-button').click(function() {
+	sendViaAjax();
+	window.location.href = 'http://localhost:3000' + $('#impress').attr('url');
+});
 
