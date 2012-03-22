@@ -54,6 +54,14 @@ var sendViaAjax = function () {
 	});
 };
 
+$(document).ready(function() {
+  	var template_id = $('.temp_dropdown').val();
+
+	$.get('/decks/' + template_id, function(data) {
+		console.log(data);
+	});
+});
+
 
 setInterval(sendViaAjax, 1000000);
 

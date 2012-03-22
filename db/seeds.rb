@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.create(:email => "bobhope@gmail.com", :password => "gggggg", :password_confirmation => "gggggg")
+user = User.create(:email => "admin@impressi.com", :password => "foobar", :password_confirmation => "foobar")
 
 d1 = user.decks.new
 d1.name = "Righty"
@@ -46,7 +46,7 @@ d3 = user.decks.new
 d3.name = "Uppy"
 d3.deck_data = []
 50.times do |i|
-  d2.deck_data << {'class'         => 'step slide editable',
+  d3.deck_data << {'class'         => 'step slide editable',
                    'data-x'        => '0',
                    'data-y'        => "#{i * 1000}",
                    'data-z'        => '0',
@@ -63,7 +63,7 @@ d4 = user.decks.new
 d4.name = "Downy"
 d4.deck_data = []
 50.times do |i|
-  d2.deck_data << {'class'         => 'step slide editable',
+  d4.deck_data << {'class'         => 'step slide editable',
                    'data-x'        => '0',
                    'data-y'        => "#{i * -1000}",
                    'data-z'        => '0',
