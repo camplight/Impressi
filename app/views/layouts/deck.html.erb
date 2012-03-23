@@ -8,15 +8,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-
 	<%= render :partial => 'shared/authentication' %>
 
 	<%= yield %>
 	
-	<%= javascript_include_tag "impress" %>
-	<script>impress();</script>
+	<%#= javascript_include_tag "impress" %>
+	<%= javascript_include_tag "slideEdit" %>
+	<!-- <script>impress();</script> -->
 
 </body>
 </html>

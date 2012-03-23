@@ -9,10 +9,8 @@
 </head>
 <body>
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-
 	<%= render :partial => 'shared/authentication' %>
-  <div class='container'>
-		<%= yield %>
-	</div>
+	
+	<%= yield %>
 </body>
 </html>
