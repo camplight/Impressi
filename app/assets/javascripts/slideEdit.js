@@ -20,7 +20,7 @@ document.addEventListener("keyup", function ( event ) {
 $(function() {
 	var markdown_to_html = function(controlChars, string) {
 		var output = ''
-		var isBold = false
+		var isBold = falseer
 		var isItalic = false
 		for(var i = 0; i < controlChars.length; i++) {
 			var controlChar = controlChars[i];

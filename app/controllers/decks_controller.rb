@@ -17,6 +17,7 @@ class DecksController < ApplicationController
     @template = Deck.find_by_name(params[:deck][:template])
     @new_deck = @template.dup
     @new_deck.name = params[:deck][:name]
+    @new_deck.user = current_or_guest_user
     @new_deck.template = false
     if @new_deck.save
       # flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
