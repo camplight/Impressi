@@ -78,5 +78,10 @@ class DecksController < ApplicationController
   def show
     deck_id = Deck.alphadecimal_to_id(params[:id])
     @deck = Deck.find(deck_id)
+    
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render :json => @deck }
+    # end
   end
 end

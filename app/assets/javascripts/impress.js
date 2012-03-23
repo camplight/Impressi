@@ -1,3 +1,14 @@
+var __impress_getElementFromUrl = function () {
+    // get id from url # by removing `#` or `#/` from the beginning,
+    // so both `#slide-id` and "legacy" `#/slide-id` will work
+    return __impress_byId( window.location.hash.replace(/^#\/?/,"") );
+};
+
+var __impress_byId = function ( id ) {
+    return document.getElementById(id);
+};
+
+
 (function ( document, window ) {
     'use strict';
 
@@ -51,10 +62,6 @@
         return isNaN(numeric) ? (fallback || 0) : Number(numeric);
     };
 
-    var byId = function ( id ) {
-        return document.getElementById(id);
-    };
-
     var $ = function ( selector, context ) {
         context = context || document;
         return context.querySelector(selector);
@@ -83,12 +90,6 @@
 
     var perspective = function ( p ) {
         return " perspective(" + p + "px) ";
-    };
-
-    var getElementFromUrl = function () {
-        // get id from url # by removing `#` or `#/` from the beginning,
-        // so both `#slide-id` and "legacy" `#/slide-id` will work
-        return byId( window.location.hash.replace(/^#\/?/,"") );
     };
 
     // CHECK SUPPORT
@@ -136,7 +137,7 @@
 
         // DOM ELEMENTS
 
-        var root = byId( rootId );
+        var root = __impress_byId( rootId );
 
         // viewport updates for iPad
         var meta = $("meta[name='viewport']") || document.createElement("meta");
@@ -362,22 +363,20 @@
             return stepTo(next);
         };
 
-        window.addEventListener("hashchange", function () {
-            stepTo( getElementFromUrl() );
-        }, false);
-
-        window.addEventListener("orientationchange", function () {
-            window.scrollTo(0, 0);
-        }, false);
+	var reset = function() {
+	    roots = {};
+	    stepData = {};
+	}
 
         // START 
         // by selecting step defined in url or first step of the presentation
-        stepTo(getElementFromUrl() || steps[0]);
+        stepTo(__impress_getElementFromUrl() || steps[0]);
 
         return (roots[ "impress-root-" + rootId ] = {
             stepTo: stepTo,
             next: next,
-            prev: prev
+            prev: prev,
+	    reset: reset
         });
 
     };
@@ -505,4 +504,22 @@
         // force going to active step again, to trigger rescaling
         impress().stepTo( document.querySelector(".active"), true );
     }, 250), false);
+
+
+/*    // If we somehow change the anchor after the hash, reset 
+    window.addEventListener("hashchange", function () {
+	function closure() {
+	    impress.stepTo( __impress_getElementFromUrl() );
+	}
+	setTimeout("closure()", 100);
+    }, false);
+    */
+
+
+    // If the ipad flips, reset to the top
+    window.addEventListener("orientationchange", function () {
+	window.scrollTo(0, 0);
+    }, false);
+
+
 })(document, window);
