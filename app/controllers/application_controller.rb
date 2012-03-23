@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  helper_method :current_or_guest_user
+  
   def current_or_guest_user
      if current_user
        if session[:guest_user_id]
@@ -19,28 +21,19 @@ class ApplicationController < ActionController::Base
    end
    
    def logging_in
+     p session
+     deck = Deck.find_by_user_id(session[:guest_user_id])
+     deck.update_attribute(:user_id, current_user.id)
+     deck.save
    end
 
    private
 
    def create_guest_user
-     u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@email_address.com")
-     u.save(false)
+     u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@email_address.com",
+                     :password => Devise.friendly_token[0,20])
+     u.save()
      u
    end
-  
-  
-  
-  
-  # before_filter :register_guest_user
-  # 
-  # private
-  # 
-  # def register_guest_user
-  #   if current_user
-  #     session[:guest_id] = current_user.id
-  #   else
-  #     session[:guest_id] ||= rand(9999999)
-  #   end
-  # end
+
 end

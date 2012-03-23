@@ -1,3 +1,4 @@
+$(function() {
 	var impressSlider;
 	
 	//generate anchor nodes to jump easily between slides
@@ -71,3 +72,4 @@
 		impress();
 		//impressSlider.reloadShow();
 	};
+}())

@@ -1,3 +1,4 @@
+$(function() {
 var current_slide = null,
  		mode = 'prezi';
 
@@ -13,14 +14,9 @@ document.addEventListener("keyup", function ( event ) {
 	}
 });
 
-
-
-
-
-$(function() {
 	var markdown_to_html = function(controlChars, string) {
 		var output = ''
-		var isBold = falseer
+		var isBold = false
 		var isItalic = false
 		for(var i = 0; i < controlChars.length; i++) {
 			var controlChar = controlChars[i];
@@ -46,6 +42,7 @@ $(function() {
 	
 	var html_to_markdown = function(string) {
 		output = string.replace(/<\/{0,1}b>/g,"*") // replace <b> and </b> with *
+		output = string.replace(/<\/{0,1}em>/g,"_") // replace <b> and </b> with _
 		output = output.replace(/<\s*\w.*?>/g,"") // remove all open tags
 		output = output.replace(/<\s*\/\s*\w\s*.*?>|<\s*br\s*>/g,"") // remove all close tags
 		return output
@@ -72,7 +69,6 @@ $(function() {
 		if(activeInput == false) {
 			activeInput = true;
 			mode = 'edit';
-			console.log(mode);
 			$(this).html(inlineEditor);
 			inlineEditor.focus();
 		} else {
@@ -111,4 +107,4 @@ $(function() {
 		return false;
 	});
 	
-});
+}());

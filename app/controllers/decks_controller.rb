@@ -4,13 +4,9 @@ class DecksController < ApplicationController
   #before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
-    # random_number = rand(99999999999)
-    #  user = User.create!(:email => "user#{random_number}@gmail.com", :password => "foobar", :password_confirmation => "foobar")
-    #  sign_in(user)
-    #  # session[:guest_user] = user.id
     @templates = Deck.find_all_by_template(true)
     @template_names = @templates.map { |template| template.name }
-    @deck = Deck.new
+    @deck = current_or_guest_user.decks.build
   end
 
   def create
@@ -29,12 +25,7 @@ class DecksController < ApplicationController
   end
   
   def edit
-    deck_id = if params[:edit]
-      Deck.alphadecimal_to_id(params[:id])
-    else
-      params[:id]
-    end
-    
+    deck_id = params[:edit] ? Deck.alphadecimal_to_id(params[:id]) : params[:id]  
     @deck = Deck.find(deck_id)
   end
 
