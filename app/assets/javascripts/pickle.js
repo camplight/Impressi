@@ -41,7 +41,7 @@ var grabDeckData = function() {
 	return user_input;
 };
 
-var sendViaAjax = function() {
+var sendViaAjax = function(redirect_url) {
 	
 	var deck_id = $('#impress').attr('deck_id');
     var contents = grabDeckData();
@@ -53,7 +53,8 @@ var sendViaAjax = function() {
 		   },
 			 url:  "http://localhost:3000/decks/" + deck_id,
 			 success: function() {
-					console.log(contents);
+				 if (redirect_url) { window.location.href = redirect_url }
+				 console.log(contents);
 			 },
 			 failure: function() {
 				 	console.log(err); 
@@ -194,8 +195,8 @@ $(document).ready(function() {
 // setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
-	sendViaAjax();
-	window.location.href = 'http://localhost:3000/decks/' + $('#impress').attr('deck_id');
+	var redirect_url = "http://localhost:3000/decks/" + $('#impress').attr('deck_id');
+	sendViaAjax(redirect_url);
 });
 
 $('.temp_dropdown').change(function() {
