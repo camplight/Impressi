@@ -8,6 +8,7 @@ var __impress_byId = function ( id ) {
     return document.getElementById(id);
 };
 
+var mode = 'prezi';
 
 (function ( document, window ) {
     'use strict';
@@ -40,6 +41,7 @@ var __impress_byId = function ( id ) {
         };
 
     })();
+
 
     var arrayify = function ( a ) {
         return [].slice.call( a );
@@ -414,30 +416,34 @@ var __impress_byId = function ( id ) {
 
     // prevent default keydown action when one of supported key is pressed
     document.addEventListener("keydown", function ( event ) {
-        if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
-            event.preventDefault();
-        }
+		if (mode !== 'edit') {
+	        if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
+	            event.preventDefault();
+	        }
+		}
     }, false);
 
     // trigger impress action on keyup
     document.addEventListener("keyup", function ( event ) {
-        if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
-            switch( event.keyCode ) {
-                case 33: // pg up
-                case 37: // left
-                case 38: // up
-                         impress().prev();
-                         break;
-                case 9:  // tab
-                case 32: // space
-                case 34: // pg down
-                case 39: // right
-                case 40: // down
-                         impress().next();
-                         break;
-            }
+		if (mode !== 'edit') {
+        	if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
+	            switch( event.keyCode ) {
+	                case 33: // pg up
+	                case 37: // left
+	                case 38: // up
+	                         impress().prev();
+	                         break;
+	                case 9:  // tab
+	                case 32: // space
+	                case 34: // pg down
+	                case 39: // right
+	                case 40: // down
+	                         impress().next();
+	                         break;
+	            }
 
-            event.preventDefault();
+	            event.preventDefault();
+			}
         }
     }, false);
 

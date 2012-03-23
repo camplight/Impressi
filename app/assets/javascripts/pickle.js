@@ -85,17 +85,17 @@ $(document).ready(function() {
 			buildTree(data);
 			reset();
 			
-			var current_slide = null,
-			 		mode = 'prezi';
+			var current_slide = null;
 
 			document.addEventListener("keydown", function ( event ) {
-				if (mode == "edit"){
+				if (mode == "edit") {
+					console.log('hi there');
 					event.stopImmediatePropagation();
 				}
 			});
 
 			document.addEventListener("keyup", function ( event ) {
-				if (mode == "edit"){
+				if (mode == "edit") {
 					event.stopImmediatePropagation();
 				}
 			});
@@ -123,7 +123,6 @@ $(document).ready(function() {
 					if(activeInput == false) {
 						activeInput = true;
 						mode = 'edit';
-						console.log(mode);
 						$(this).html(inlineEditor);
 						inlineEditor.focus();
 					} else {
