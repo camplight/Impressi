@@ -195,7 +195,7 @@ $(document).ready(function() {
 
 $('#impress-button').click(function() {
 	sendViaAjax();
-	window.location.href = 'http://localhost:3000' + $('#impress').attr('url');
+	window.location.href = 'http://localhost:3000/decks/' + $('#impress').attr('deck_id');
 });
 
 $('.temp_dropdown').change(function() {

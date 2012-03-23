@@ -6,7 +6,6 @@ Impressi::Application.routes.draw do
   get "/users/:id" => 'users#show', :as => :user
   
   resources :decks
-  get "/pressi/:id/" => 'decks#show', :as => :pressi
   
   resources :templates
   post "/templates" => "templates#create", :as => :create_template

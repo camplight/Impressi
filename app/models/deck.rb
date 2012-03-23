@@ -6,10 +6,6 @@ class Deck < ActiveRecord::Base
   before_save :content?
   
   attr_accessible :name, :template, :html_template
-                  
-  def url
-    "/pressi/#{id.alphadecimal}"
-  end
   
   include HTMLConverter
   
@@ -21,10 +17,6 @@ class Deck < ActiveRecord::Base
   def html_template=(html)
     # function defined to replace the handling of the :html_template entry in the form when params[:deck] is called
     self.deck_data = html_to_deck(html)
-  end
-
-  def self.alphadecimal_to_id(pressi_ad)
-    pressi_ad.alphadecimal
   end
   
   def content?

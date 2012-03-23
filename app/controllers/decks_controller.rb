@@ -67,8 +67,7 @@
   end
 
   def show
-    deck_id = Deck.alphadecimal_to_id(params[:id])
-    @deck = Deck.find(deck_id)
+    @deck = Deck.find(params[:id])
     
     respond_to do |format|
       format.html
