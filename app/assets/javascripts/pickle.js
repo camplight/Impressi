@@ -131,7 +131,8 @@ var createInlineEditor = function() {
 			}
 
 			current_slide = $(this);
-			currentText = current_slide.text().length == 0 ? "write stuff" : current_slide.text();
+			currentText = current_slide.html().length == 0 ? "Write here." : current_slide.text();
+			console.log(currentText);
 			inlineEditor.val(currentText);
 			e.stopImmediatePropagation();
 
@@ -153,6 +154,8 @@ var createInlineEditor = function() {
 						$(this).blur();
 						activeInput = false;
 					}
+					
+
 				},
 
 				click: function(e) {
@@ -165,7 +168,8 @@ var createInlineEditor = function() {
 						current_slide.text($(this).attr('placeholder'));
 						e.stopPropagation();
 					} else {
-						current_slide.text(currentInput);
+						currentInput = currentInput.replace(/\n/g, '<br>')
+						current_slide.html(currentInput);
 						e.stopImmediatePropagation();
 						$(this).val("");
 					}

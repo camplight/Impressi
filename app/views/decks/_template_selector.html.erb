@@ -1,8 +1,11 @@
-<div class='temp_selector'>
-	Template:
-	<select class='temp_dropdown'>
-		<% template_data.each_with_index do |template, i| %>
-		  <option value='<%= template[:deck_id] %>' name='<%=template[:name] %>'<%= " selected='selected'" if i == 2 %>><%= template[:name] %></option>
-	  <% end %>
-	</select>
+<div class='navbar'>
+	<div class='temp_selector'>
+		Template:
+		<select class='temp_dropdown'>
+			<% template_data.each_with_index do |template, i| %>
+			  <option value='<%= template[:deck_id] %>' name='<%=template[:name] %>'<%= " selected='selected'" if i == 2 %>><%= template[:name] %></option>
+		  <% end %>
+		</select>
+	</div>
+	<div id='impress-button' class='button' style="pointer-events: auto">Impress!</div>
 </div>

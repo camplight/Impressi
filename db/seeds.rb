@@ -26,27 +26,10 @@ d1.template = true
 d1.save
 
 d2 = user.decks.new
-d2.name = "Lefty"
+d2.name = "Uppy"
 d2.deck_data = []
 50.times do |i|
   d2.deck_data << {'class'         => 'step slide editable',
-                   'data-x'        => "#{i * -1000}",
-                   'data-y'        => '0',
-                   'data-z'        => '0',
-                   'data-rotate-x' => '0',
-                   'data-rotate-y' => '0',
-                   'data-rotate-z' => '0',
-                   'data-scale'    => '1',
-                   'content'       => "Slide #{i}"}
-end
-d2.template = true
-d2.save
-
-d3 = user.decks.new
-d3.name = "Uppy"
-d3.deck_data = []
-50.times do |i|
-  d3.deck_data << {'class'         => 'step slide editable',
                    'data-x'        => '0',
                    'data-y'        => "#{i * 1000}",
                    'data-z'        => '0',
@@ -56,22 +39,5 @@ d3.deck_data = []
                    'data-scale'    => '1',
                    'content'       => "Slide #{i}"}
 end
-d3.template = true
-d3.save
-
-d4 = user.decks.new
-d4.name = "Downy"
-d4.deck_data = []
-50.times do |i|
-  d4.deck_data << {'class'         => 'step slide editable',
-                   'data-x'        => '0',
-                   'data-y'        => "#{i * -1000}",
-                   'data-z'        => '0',
-                   'data-rotate-x' => '0',
-                   'data-rotate-y' => '0',
-                   'data-rotate-z' => '0',
-                   'data-scale'    => '1',
-                   'content'       => "Slide #{i}"}
-end
-d4.template = true
-d4.save
+d2.template = true
+d2.save
