@@ -17,12 +17,13 @@ class DecksController < ApplicationController
     @template = Deck.find_by_name(params[:deck][:template])
     @new_deck = @template.dup
     @new_deck.name = params[:deck][:name]
+    @new_deck.user = current_or_guest_user
     @new_deck.template = false
     if @new_deck.save
-      flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
+      # flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
       redirect_to(edit_deck_path(@new_deck.id))
     else
-      flash[:error] = 'Looks like that presentation already exists!'
+      flash[:error] = 'Don\'t forget to name your presentation!'
       redirect_to(new_deck_path)
     end
   end
@@ -42,7 +43,7 @@ class DecksController < ApplicationController
 
     db_steps = deck.deck_data
     attributes = db_steps[0].keys
-    client_steps = params['content'].gsub(/\s+/, "")
+    client_steps = params['content']
     
     db_steps.each_with_index do |step, i|
       attributes.each do |attribute|
@@ -62,8 +63,11 @@ class DecksController < ApplicationController
     end
   end
 
-  def delete
-    
+  def destroy
+    deck_name = Deck.find(params[:id]).name
+    Deck.find(params[:id]).destroy
+    flash[:success] = "Deck #{deck_name} deleted"
+    redirect_to user_path(current_user)
   end
 
   def show

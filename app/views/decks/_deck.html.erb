@@ -1,3 +1,3 @@
 <li>
-<%= deck.name %>
+<%= deck.name %> <%= link_to "Show", pressi_path(deck) %> <%= link_to "Edit", edit_deck_path(deck) %> <%= link_to "Delete", deck_path(deck), :confirm => "Are you sure?", :method => :delete %>
 </li>
