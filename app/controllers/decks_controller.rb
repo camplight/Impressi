@@ -10,9 +10,9 @@
   end
 
   def create
-    @template = Deck.find_by_name(params[:deck][:template])
+    @template = Deck.find_by_template(true)
     @new_deck = @template.dup
-    @new_deck.name = params[:deck][:name]
+    # @new_deck.name = params[:deck][:name]
     @new_deck.user = current_or_guest_user
     @new_deck.template = false
     if @new_deck.save
@@ -31,8 +31,7 @@
         :name    => template.name }
     end
     
-    deck_id = params[:edit] ? Deck.alphadecimal_to_id(params[:id]) : params[:id]  
-    @deck = Deck.find(deck_id)
+    @deck = Deck.find(params[:id])
   end
 
   def update

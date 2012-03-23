@@ -21,10 +21,10 @@ class ApplicationController < ActionController::Base
    end
    
    def logging_in
-     p session
-     deck = Deck.find_by_user_id(session[:guest_user_id])
-     deck.update_attribute(:user_id, current_user.id)
-     deck.save
+     # p session
+     # deck = Deck.find_by_user_id(session[:guest_user_id])
+     # deck.update_attribute(:user_id, current_user.id)
+     # deck.save
    end
 
    private

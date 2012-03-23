@@ -9,9 +9,8 @@
 </head>
 <body>
 	<% current_or_guest_user %>
-	<%= debug(session)%>
+	
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-
 	<%= render :partial => 'shared/authentication' %>
   <div class='container'>
 		<%= yield %>

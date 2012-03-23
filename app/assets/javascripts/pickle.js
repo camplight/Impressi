@@ -27,17 +27,17 @@ var grabDeckData = function() {
 	
 	for(var i = 0; i < number_of_steps; i++) {
 	 	var attr = $($('#impress .step')[i]).getAttributes();
+	    user_input.push(attr);
 		
-		 //Syntax for accessing objects as key/value pairs, maybe we can send as JSON
-			for(key in attr) {
-				//console.log(key + '  :  ' + attr[key])
-				user_input[key] = attr[key]
-			}  
+	//Syntax for accessing objects as key/value pairs, maybe we can send as JSON
+	 			for(key in attr) {
+	 				//console.log(key + '  :  ' + attr[key])
+	 				user_input[key] = attr[key]
+	 			}  
 		
 		//user_input[key] = attr[key]
 	}
 	
-	console.log(user_input);
 	return user_input;
 };
 
@@ -46,19 +46,19 @@ var sendViaAjax = function() {
 	var deck_id = $('#impress').attr('deck_id');
     var contents = grabDeckData();
 		  
-	// $.ajax({
-	// 		 type: "PUT",
-	// 		 data:  {
-	// 	         content: contents
-	// 	   },
-	// 		 url:  "http://localhost:3000/decks/" + deck_id,
-	// 		 success: function() {
-	// 				console.log(contents);
-	// 		 },
-	// 		 failure: function() {
-	// 			 	console.log(err); 
-	// 		 }
-	// 	});
+	$.ajax({
+			 type: "PUT",
+			 data:  {
+		         content: contents
+		   },
+			 url:  "http://localhost:3000/decks/" + deck_id,
+			 success: function() {
+					console.log(contents);
+			 },
+			 failure: function() {
+				 	console.log(err); 
+			 }
+		});
 };
 
 var resetImpress = function() {
@@ -67,9 +67,26 @@ var resetImpress = function() {
     window.impress();
 };
 
-var buildTree = function(data) {
+var buildTree = function(data, contents) {
 	var template_attrs = ['class', 'data-rotate-x', 'data-rotate-y', 'data-rotate-z', 'data-scale', 'data-x', 'data-y', 'data-z'];
   	$('#impress > div').remove();
+	for(var i = 0; i < data.deck_data.length; i++) {
+		$('#impress').append('<div></div>');
+		for(var x = 0; x < template_attrs.length; x++) {
+			$('#impress > div').last().attr(template_attrs[x], data.deck_data[i][template_attrs[x]]);
+		}
+		if (contents !== 'undefined') {
+			$('#impress > .step').last().text(contents[i]['content']);
+			console.log(contents[i]['content']);
+		} else {
+			$('#impress > .step').last().text(data.deck_data[i]['content']);
+			console.log(data.deck_data[i]['content'])
+		}
+	}
+	$('#impress > .step').first().addClass('active');
+};
+
+var insertContent = function(content) {
 	for(var i = 0; i < data.deck_data.length; i++) {
 		$('#impress').append('<div></div>');
 		for(var x = 0; x < template_attrs.length; x++) {
@@ -160,23 +177,47 @@ var createInlineEditor = function() {
 }
 
 $(document).ready(function() {
-    var template_id = $('.temp_dropdown').val();
+    var deck_id = $('#impress').attr('deck_id');
 	establishEventListeners();
-
 	$.ajax({
-		url:  "http://localhost:3000/decks/" + template_id,
+		url:  "http://localhost:3000/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
-			buildTree(data);
+			var contents = 'undefined';
+			buildTree(data, contents);
 			resetImpress();
 			createInlineEditor();
 		}
 	});
 });
 
-setInterval(sendViaAjax, 10000);
+// setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
 	sendViaAjax();
 	window.location.href = 'http://localhost:3000' + $('#impress').attr('url');
 });
+
+$('.temp_dropdown').change(function() {
+	var template_id = $(this).val();
+	
+	$.ajax({
+		url:  "http://localhost:3000/decks/" + template_id,
+		dataType: 'json',
+		success: function(data) {
+			var contents = grabDeckData();
+			buildTree(data, contents);
+			resetImpress();
+			createInlineEditor();
+		}
+	});
+})
+
+
+
+
+
+
+
+
+

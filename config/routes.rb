@@ -1,6 +1,6 @@
 Impressi::Application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'decks#new'
 
   devise_for :users
   get "/users/:id" => 'users#show', :as => :user

@@ -6,9 +6,6 @@ class Deck < ActiveRecord::Base
   before_save :content?
   
   attr_accessible :name, :template, :html_template
-  
-  validates :name, presence: true
-                   # uniqueness: true
                   
   def url
     "/pressi/#{id.alphadecimal}"

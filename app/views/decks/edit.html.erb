@@ -2,9 +2,6 @@
 <%= render :partial => "decks/template_selector", :locals => {:template_data => @template_data} %>
 
 <div id='container-custom'>
-	<form style='pointer-events:auto;'>
-		<textarea></textarea>
-	</form>
 	<div id='impress' deck_id="<%= @deck.id %>" url='<%= @deck.url %>' class='seven columns' style='z-index:-1'>
 		<%# @deck.deck_data.each_with_index do |step, index| %>
 			<%#= render :partial => 'step', :locals => {:step => step, :index => index} %>
@@ -14,5 +11,5 @@
 
 <%= javascript_include_tag "bx_slide" %>
 <%= javascript_include_tag "sideSlideBar" %>
-<%= javascript_include_tag "slideEdit" %>
+
 <%= javascript_include_tag "pickle.js" %>
