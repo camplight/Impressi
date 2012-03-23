@@ -1,17 +1,18 @@
 (function($) {
-    $.fn.getAttributes = function() {
-        var attributes = {}; 
+	$.fn.getAttributes = function() {
+  	var attributes = {}; 
+		
+		if(!this.length) return this;
 
-        if(!this.length)
-            return this;
-
-        $.each(this[0].attributes, function(index, attr) {
-            attributes[attr.name] = attr.value;
-        });
+    $.each(this[0].attributes, function(index, attr) {
+    	attributes[attr.name] = attr.value;
+    });
 		attributes['content'] = $.trim(this.text());
+		
 		delete attributes['style']; 
-        return attributes;
-    }
+    
+		return attributes;
+ }
 })(jQuery);
 
 
@@ -24,10 +25,16 @@ var grabDeckData = function () {
 	var user_input = {};
 	var number_of_steps = $('#impress .step').length;
 	
-
 	for(var i = 0; i < number_of_steps; i++) {
-		var step_tag = $('#impress .step')[i];
-	    user_input.push($(step_tag).getAttributes());
+	 	var attr = $($('#impress .step')[i]).getAttributes();
+		
+		 //Syntax for accessing objects as key/value pairs, maybe we can send as JSON
+			for(key in attr) {
+				//console.log(key + '  :  ' + attr[key])
+				user_input[key] = attr[key]
+			}  
+		
+		//user_input[key] = attr[key]
 	}
 	
 	console.log(user_input);
@@ -39,23 +46,23 @@ var sendViaAjax = function () {
 	var deck_id = $('#impress').attr('deck_id');
     var contents = grabDeckData();
 		  
-	$.ajax({
-		 type: "PUT",
-		 data:  {
-	         content: contents
-	   },
-		 url:  "http://localhost:3000/decks/" + deck_id,
-		 success: function() {
-				console.log(contents);
-		 },
-		 failure: function() {
-			 	console.log("Fail."); 
-		 }
-	});
+	// $.ajax({
+	// 		 type: "PUT",
+	// 		 data:  {
+	// 	         content: contents
+	// 	   },
+	// 		 url:  "http://localhost:3000/decks/" + deck_id,
+	// 		 success: function() {
+	// 				console.log(contents);
+	// 		 },
+	// 		 failure: function() {
+	// 			 	console.log(err); 
+	// 		 }
+	// 	});
 };
 
 
-setInterval(sendViaAjax, 1000000);
+setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(sendViaAjax);
 
