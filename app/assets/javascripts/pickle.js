@@ -188,6 +188,7 @@ $(document).ready(function() {
 		url:  "http://localhost:3000/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
+			var data_structure = data
 			var contents = 'undefined';
 			buildTree(data, contents);
 			resetImpress();

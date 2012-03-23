@@ -152,9 +152,20 @@
 	}
 	
 	.editable {
+		font-family:Arial,Helvetica,sans-serif !important;
 		font-size: 50px !important;
-		padding: 40px !important;
-		margin-top: 40px;
+		padding: 50px !important;
+		line-height: 1em !important;
+	}
+	
+	textarea {
+		font-family:Arial,Helvetica,sans-serif !important;
+		letter-spacing: -1px !important;
+		margin-top: -8px !important;
+		margin-left: -8px !important;
+		width: 800px !important;
+		height: 500px !important;
+		font-size: 50px !important;
 	}
 	
 /*----------------------NAV BAR------------------*/
