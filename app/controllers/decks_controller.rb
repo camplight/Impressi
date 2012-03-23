@@ -28,6 +28,12 @@ class DecksController < ApplicationController
   end
   
   def edit
+    @templates = Deck.find_all_by_template(true)
+    @template_data = @templates.map do |template|
+      { :deck_id => template.id,
+        :name    => template.name }
+    end
+    
     deck_id = if params[:edit]
       Deck.alphadecimal_to_id(params[:id])
     else

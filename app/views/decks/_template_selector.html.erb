@@ -1,8 +1,8 @@
 <div class='temp_selector'>
 	Template:
 	<select class='temp_dropdown'>
-		<option value="Template 1">Template 1</option>
-		<option value="Awesomeness" selected='selected'>Awesomeness</option>
-		<option value="Template 3">Template 3</option>
+		<% template_data.each_with_index do |template, i| %>
+		  <option value='<%= template[:deck_id] %>' name='<%=template[:name] %>'<%= " selected='selected'" if i == 2 %>><%= template[:name] %></option>
+	  <% end %>
 	</select>
 </div>
