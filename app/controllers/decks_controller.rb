@@ -1,22 +1,19 @@
-class DecksController < ApplicationController
+  class DecksController < ApplicationController
   layout "deck", :except => :new
   
   #before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
-    # random_number = rand(99999999999)
-    #  user = User.create!(:email => "user#{random_number}@gmail.com", :password => "foobar", :password_confirmation => "foobar")
-    #  sign_in(user)
-    #  # session[:guest_user] = user.id
     @templates = Deck.find_all_by_template(true)
     @template_names = @templates.map { |template| template.name }
-    @deck = Deck.new
+    @deck = current_or_guest_user.decks.build
   end
 
   def create
     @template = Deck.find_by_name(params[:deck][:template])
     @new_deck = @template.dup
     @new_deck.name = params[:deck][:name]
+    @new_deck.user = current_or_guest_user
     @new_deck.template = false
     if @new_deck.save
       # flash[:notice] = "Presentation created. You can view it anytime at: #{@new_deck.url}!"
@@ -34,12 +31,7 @@ class DecksController < ApplicationController
         :name    => template.name }
     end
     
-    deck_id = if params[:edit]
-      Deck.alphadecimal_to_id(params[:id])
-    else
-      params[:id]
-    end
-    
+    deck_id = params[:edit] ? Deck.alphadecimal_to_id(params[:id]) : params[:id]  
     @deck = Deck.find(deck_id)
   end
 
@@ -60,7 +52,7 @@ class DecksController < ApplicationController
         
     respond_to do |format|
       if deck.save
-        flash.now[:success] = params[:commit] ? "Presentation saved" : "autosave complete"
+        flash.now[:success] = params[:commit] ? "Presentation saved" : "autosaved"
         format.js 
       else
         render :text => 'Failed Ajax call.'
