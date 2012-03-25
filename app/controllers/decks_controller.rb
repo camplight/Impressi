@@ -9,14 +9,14 @@
 
   def create
     deck = current_or_guest_user.decks.create(:template_id => 1)
-    render :nothing => true
+    redirect_to edit_deck_path(deck)
   end
   
   def edit
-    @templates = Deck.find_all_by_template(true)
+    @templates = Template.all
     @template_data = @templates.map do |template|
-      { :deck_id => template.id,
-        :name    => template.name }
+      { :template_id => template.id,
+        :name        => template.name }
     end
     
     @deck = Deck.find(params[:id])
