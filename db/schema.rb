@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120325214712) do
 
   create_table "templates", :force => true do |t|
     t.string   "name"
+    t.string   "klass"
     t.integer  "data-x"
     t.integer  "data-y"
     t.integer  "data-z"

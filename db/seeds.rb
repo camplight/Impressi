@@ -8,36 +8,22 @@
 
 user = User.create(:email => "admin@impressi.com", :password => "foobar", :password_confirmation => "foobar")
 
-d1 = user.decks.new
-d1.name = "Righty"
-d1.deck_data = []
-50.times do |i|
-  d1.deck_data << {'class'         => 'step slide editable',
-                   'data-x'        => "#{i * 1000}",
-                   'data-y'        => '0',
-                   'data-z'        => '0',
-                   'data-rotate-x' => '0',
-                   'data-rotate-y' => '0',
-                   'data-rotate-z' => '0',
-                   'data-scale'    => '1',
-                   'content'       => "Slide #{i}"}
-end
-d1.template = true
-d1.save
+t1 = Template.new('name'          => 'Righty',
+                  'klass'         => 'step slide editable',
+                  'data-x'        => 1000,
+                  'data-y'        => 0,
+                  'data-z'        => 0,
+                  'data-rotate-x' => 0,
+                  'data-rotate-y' => 0,
+                  'data-rotate-z' => 0,
+                  'data-scale'    => 1)
 
-d2 = user.decks.new
-d2.name = "Uppy"
-d2.deck_data = []
-50.times do |i|
-  d2.deck_data << {'class'         => 'step slide editable',
-                   'data-x'        => '0',
-                   'data-y'        => "#{i * 1000}",
-                   'data-z'        => '0',
-                   'data-rotate-x' => '0',
-                   'data-rotate-y' => '0',
-                   'data-rotate-z' => '0',
-                   'data-scale'    => '1',
-                   'content'       => "Slide #{i}"}
-end
-d2.template = true
-d2.save
+t1 = Template.new('name'          => 'Uppy',
+                  'klass'         => 'step slide editable',
+                  'data-x'        => 0,
+                  'data-y'        => -1000,
+                  'data-z'        => 0,
+                  'data-rotate-x' => 0,
+                  'data-rotate-y' => 0,
+                  'data-rotate-z' => 0,
+                  'data-scale'    => 1)
