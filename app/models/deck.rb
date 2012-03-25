@@ -2,12 +2,12 @@ require "#{Rails.root}/lib/templates/html_converter.rb"
 
 class Deck < ActiveRecord::Base
   belongs_to :user
-  serialize :deck_data
-  before_save :content?
+  belongs_to :template
+  serialize :content
+  # before_save :content?
   
-  attr_accessible :name, :template, :html_template
+  attr_accessible :name, :template_id, :content
   
-  include HTMLConverter
   
   def html_template
     # return empty string so that html form is blank
@@ -19,11 +19,11 @@ class Deck < ActiveRecord::Base
     self.deck_data = html_to_deck(html)
   end
   
-  def content?
-    return false unless deck_data.kind_of?(Array)
-    return false if deck_data.empty?
-    message = true
-    deck_data.each { |step| return message = false unless step['content'] }
-    message
-  end
+  # def content?
+  #   return false unless deck_data.kind_of?(Array)
+  #   return false if deck_data.empty?
+  #   message = true
+  #   deck_data.each { |step| return message = false unless step['content'] }
+  #   message
+  # end
 end

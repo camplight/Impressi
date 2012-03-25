@@ -11,15 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314230258) do
+ActiveRecord::Schema.define(:version => 20120325214712) do
 
   create_table "decks", :force => true do |t|
     t.string   "name"
+    t.text     "content"
+    t.integer  "template_id"
     t.integer  "user_id"
-    t.text     "deck_data"
-    t.boolean  "template",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.integer  "data-x"
+    t.integer  "data-y"
+    t.integer  "data-z"
+    t.integer  "data-rotate-x"
+    t.integer  "data-rotate-y"
+    t.integer  "data-rotate-z"
+    t.integer  "data-scale"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
