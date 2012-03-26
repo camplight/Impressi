@@ -208,7 +208,14 @@
 	.temp_dropdown {
 		pointer-events: auto;
 	}
-	
+
+  .ux_button {
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 15px;
+    float: left;
+  }
+
 	#authentication {
 		border: 1px solid;
 		float: left;

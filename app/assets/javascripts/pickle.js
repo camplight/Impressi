@@ -154,13 +154,21 @@ var sendViaAjax = function(redirect_url) {
 		},
 		failure: function() { console.log(err); }
 	});
-};
+}
 
 // setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
 	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
 	sendViaAjax(redirect_url);
+});
+
+$('.prev_slide').click(function() {
+  impress().prev();
+});
+
+$('.next_slide').click(function() {
+  impress().next();
 });
 
 // methods for left and right arrow buttons (to advance slides)
