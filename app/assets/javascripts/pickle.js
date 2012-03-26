@@ -14,7 +14,7 @@ $(document).ready(function() {
 	$.ajax({
 		url:  "http://localhost:3000/templates",
 		dataType: 'json',
-			success: function(data) {
+		success: function(data) {
 			database.templateData = data;
 			if (dataLoaded()) { constructTree() }
 		}
@@ -23,9 +23,8 @@ $(document).ready(function() {
 
 var database = {};
 
-var resetImpress = function() {
-    i = window.impress();
-    i.reset();
+resetImpress = function() {
+    window.impress().reset();
     window.impress();
 };
 
@@ -57,9 +56,9 @@ var createInlineEditor = function() {
 
 			if (!$(this).hasClass('active')) { return false; }
 
-			currentSlide = $(this);
-			slideIndexNumber = parseInt(currentSlide.attr('id').slice(5)) - 1;
-			currentText = database.deckData.content[slideIndexNumber]
+			var currentSlide = $(this),
+				slideIndexNumber = parseInt(currentSlide.attr('id').slice(5)) - 1,
+				currentText = database.deckData.content[slideIndexNumber];
 			inlineEditor.val(currentText);
 			e.stopImmediatePropagation();
 
@@ -101,9 +100,9 @@ var createInlineEditor = function() {
 
 var buildTree = function() {
 	
-	deck        = database.deckData;
-	deck_length = deck.content.length;
-	template    = database.templateData[deck.template_id - 1];
+	var deck        = database.deckData,
+		deck_length = deck.content.length,
+		template    = database.templateData[deck.template_id - 1];
 
 	for(var i = 0; i < deck_length; i++) {
 		$('#impress').append('<div></div>');
@@ -117,7 +116,7 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-scale', template['data-scale']);
 		$('#impress > div').last().html(deck.content[i].replace(/\n/g, '<br>'));
 	}
-	$('#impress > .step').first().addClass('active');
+	$('#impress > div').first().addClass('active');
 }
 
 var constructTree = function() {
@@ -137,22 +136,20 @@ var destroyTree = function() {
 
 
 var sendViaAjax = function(redirect_url) {
-	var deck_id = $('#impress').attr('deck_id');
-		  
 	$.ajax({
 		type: "PUT",
-		data:  { deck: database.deckData },
-		url:  "http://localhost:3000/decks/" + deck_id,
-		success: function() { if (redirect_url) { window.location.href = redirect_url } 
+		data:  { deck: database.deckData; },
+		url:  "http://localhost:3000/decks/" + database.deckData.id,
+		success: function() { if (redirect_url) { window.location.href = redirect_url; } 
 		},
 		failure: function() { console.log(err); }
 	});
 };
 
-// setInterval(sendViaAjax, 10000);
+setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
-	var redirect_url = "http://localhost:3000/decks/" + $('#impress').attr('deck_id');
+	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
 	sendViaAjax(redirect_url);
 });
 
@@ -160,12 +157,3 @@ $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
-
-
-
-
-
-
-
-
-
