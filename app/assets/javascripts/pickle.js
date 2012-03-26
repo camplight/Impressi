@@ -215,9 +215,9 @@ $('.add_slide').click(function() {
 
 $('.delete_slide').click(function() {
   var currentSlide = $('.active');
-  console.log(currentSlide);
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
-  database.deckData.content.splice(slideIndexNumber, 1);
+  impress().prev();
+  database.deckData.content.splice(slideIndexNumber + 1, 1);
   constructTree();
 });
 
