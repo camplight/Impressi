@@ -2,7 +2,7 @@
 <%= render :partial => "decks/template_selector", :locals => {:template_data => @template_data} %>
 
 <div id='container-custom'>
-	<div id='impress' deck_id="<%= @deck.id %>" class='seven columns' style='z-index:-1'>
+	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'>
 	</div>
 </div>
 

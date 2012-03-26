@@ -19,22 +19,14 @@
 
   def update
     deck = Deck.find(params[:id])
-
-    db_steps = deck.deck_data
-    attributes = db_steps[0].keys
-    client_steps = params['content']
-    
-    db_steps.each_with_index do |step, i|
-      attributes.each do |attribute|
-        step[attribute] = client_steps[i.to_s][attribute]
-      end
-    end
+    deck.template_id = params[:deck][:template_id]
+    deck.content     = params[:deck][:content]
     
     deck.user_id = current_user.id if user_signed_in?
         
     respond_to do |format|
       if deck.save
-        flash.now[:success] = params[:commit] ? "Presentation saved" : "autosaved"
+        flash.now[:success] = params[:commit] ? "Presentation saved." : "Autosaved."
         format.js 
       else
         render :text => 'Failed Ajax call.'

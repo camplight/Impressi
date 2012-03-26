@@ -31,6 +31,6 @@ class Deck < ActiveRecord::Base
   private
     
   def seed_content
-    self.content = ['Click here to edit', 'Click here to edit']
+    self.content = ['', '']
   end
 end
