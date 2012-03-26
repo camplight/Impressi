@@ -138,7 +138,7 @@ var destroyTree = function() {
 var sendViaAjax = function(redirect_url) {
 	$.ajax({
 		type: "PUT",
-		data:  { deck: database.deckData; },
+		data:  { deck: database.deckData },
 		url:  "http://localhost:3000/decks/" + database.deckData.id,
 		success: function() { if (redirect_url) { window.location.href = redirect_url; } 
 		},
