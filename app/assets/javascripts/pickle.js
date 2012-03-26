@@ -68,25 +68,6 @@ var resetImpress = function() {
     window.impress();
 };
 
-var buildTree = function(data, contents) {
-	var template_attrs = ['class', 'data-rotate-x', 'data-rotate-y', 'data-rotate-z', 'data-scale', 'data-x', 'data-y', 'data-z'];
-  	$('#impress > div').remove();
-	for(var i = 0; i < data.deck_data.length; i++) {
-		$('#impress').append('<div></div>');
-		for(var x = 0; x < template_attrs.length; x++) {
-			$('#impress > div').last().attr(template_attrs[x], data.deck_data[i][template_attrs[x]]);
-		}
-		if (contents !== 'undefined') {
-			$('#impress > .step').last().text(contents[i]['content']);
-			console.log(contents[i]['content']);
-		} else {
-			$('#impress > .step').last().text(data.deck_data[i]['content']);
-			console.log(data.deck_data[i]['content'])
-		}
-	}
-	$('#impress > .step').first().addClass('active');
-};
-
 var insertContent = function(content) {
 	for(var i = 0; i < data.deck_data.length; i++) {
 		$('#impress').append('<div></div>');
@@ -186,6 +167,53 @@ var createInlineEditor = function() {
 
 var database = {};
 
+var buildTree = function() {
+	
+	deck        = database.deckData;
+	deck_length = deck.content.length;
+	template    = database.templateData[deck.template_id - 1];
+
+	for(var i = 0; i < deck_length; i++) {
+		$('#impress').append('<div></div>');
+		$('#impress > div').last().attr('class', template['klass']);
+		$('#impress > div').last().attr('data-x', template['data-x'] * i);
+		$('#impress > div').last().attr('data-y', template['data-y'] * i);
+		$('#impress > div').last().attr('data-z', template['data-z'] * i);
+		$('#impress > div').last().attr('data-rotate-x', template['data-rotate-x'] * i);
+		$('#impress > div').last().attr('data-rotate-y', template['data-rotate-y'] * i);
+		$('#impress > div').last().attr('data-rotate-z', template['data-rotate-z'] * i);
+		$('#impress > div').last().attr('data-scale', template['data-scale']);
+		$('#impress > div').last().text(deck.content[i]);
+	}
+	$('#impress > .step').first().addClass('active');
+}
+
+var constructTreeOnLoad = function() {
+	if (Boolean(database.templateData && database.deckData)) {
+		buildTree();
+		resetImpress();
+		createInlineEditor(); 
+	}
+}
+	
+// 	var template_attrs = ['class', 'data-rotate-x', 'data-rotate-y', 'data-rotate-z', 'data-scale', 'data-x', 'data-y', 'data-z'];
+//   	// $('#impress > div').remove();
+// 	for(var i = 0; i < data.deck_data.length; i++) {
+// 		$('#impress').append('<div></div>');
+// 		for(var x = 0; x < template_attrs.length; x++) {
+// 			$('#impress > div').last().attr(template_attrs[x], data.deck_data[i][template_attrs[x]]);
+// 		}
+// 		if (contents !== 'undefined') {
+// 			$('#impress > .step').last().text(contents[i]['content']);
+// 			console.log(contents[i]['content']);
+// 		} else {
+// 			$('#impress > .step').last().text(data.deck_data[i]['content']);
+// 			console.log(data.deck_data[i]['content'])
+// 		}
+// 	}
+// 	$('#impress > .step').first().addClass('active');
+// }
+
 $(document).ready(function() {
     var deck_id = $('#impress').attr('deck_id');
 	establishEventListeners();
@@ -195,32 +223,18 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(data) {
 		    database.deckData = data;
-			console.log(database.deckData);
-			// populate deck_data_structure
-			// execute_when_both_data_structures_filled
-			// var data_structure = data
-			// var contents = 'undefined';
-			// buildTree(data, contents);
-			// resetImpress();
-			// createInlineEditor();
+			constructTreeOnLoad();
 		}
 	});
 	
 	$.ajax({
 		url:  "http://localhost:3000/templates",
 		dataType: 'json',
-		success: function(data) {
+			success: function(data) {
 			database.templateData = data;
-			console.log(database.templateData);
-			// var data_structure = data
-			// var contents = 'undefined';
-			// buildTree(data, contents);
-			// resetImpress();
-			// createInlineEditor();
+			constructTreeOnLoad();
 		}
 	});
-	
-	
 });
 
 // setInterval(sendViaAjax, 10000);
