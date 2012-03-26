@@ -177,7 +177,6 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-scale', template['data-scale']);
 		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>')));
 	}
-	// $('#impress > div').first().addClass('active');
 }
 
 var constructTree = function() {
@@ -235,15 +234,11 @@ $('.add_slide').click(function() {
 
 $('.delete_slide').click(function() {
   var currentSlide = $('.active');
-  console.log(currentSlide);
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
-  database.deckData.content.splice(slideIndexNumber, 1);
+  impress().prev();
+  database.deckData.content.splice(slideIndexNumber + 1, 1);
   constructTree();
-  // impress().prev();
 });
-
-// methods for left and right arrow buttons (to advance slides)
-// methods for add and delete buttons
 
 $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
