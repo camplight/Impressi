@@ -13,12 +13,7 @@
   end
   
   def edit
-    @templates = Template.all
-    @template_data = @templates.map do |template|
-      { :template_id => template.id,
-        :name        => template.name }
-    end
-
+    @template_data = Template.dropdown_data
     @deck = Deck.find(params[:id])
   end
 
