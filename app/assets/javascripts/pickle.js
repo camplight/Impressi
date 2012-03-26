@@ -74,6 +74,10 @@ var	markdown_to_html = function(string) {
 		
 }
 
+var grabStepContent = function(step) {
+	return database.deckData.content[getSlideIndexNumber(step)];
+}
+
 var createInlineEditor = function() {
 	$(function() {
 		var currentSlide = null,
@@ -82,13 +86,28 @@ var createInlineEditor = function() {
 			inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
-		inlineEditor.attr('placeholder', 'Enter text here.')
+		inlineEditor.attr('placeholder', 'Start typing...');
+
+		var divbox = document.createElement('div'),
+            hoverbox = $(divbox);
+        
+        hoverbox.text('Click to add text')
+        hoverbox.attr('id', 'hoverbox');
+        hoverbox.attr('class', 'editor');
+
+
 
 		$(".editable").on({
             mouseenter: function(e) {
-                console.log('hi');
-                // give hint that slide is editable
+				if (mode === 'prezi' && grabStepContent($(this))  == '') {
+            		$('.active').append(hoverbox);
+            	}
             },
+
+            mouseleave: function(e) {
+            	$('#hoverbox').remove();
+            },
+
             click: function(e) {
 
                 if (!$(this).hasClass('active')) { return false; }
