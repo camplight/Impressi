@@ -18,7 +18,7 @@
       { :template_id => template.id,
         :name        => template.name }
     end
-    
+
     @deck = Deck.find(params[:id])
   end
 

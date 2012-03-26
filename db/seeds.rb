@@ -17,11 +17,11 @@ t1 = Template.create('name'          => 'Righty',
                      'data-scale'    => 1)
 
 t1 = Template.create('name'          => 'Uppy',
-                    'klass'         => 'step slide editable',
-                    'data-x'        => 0,
-                    'data-y'        => -1000,
-                    'data-z'        => 0,
-                    'data-rotate-x' => 0,
-                    'data-rotate-y' => 0,
-                    'data-rotate-z' => 0,
-                    'data-scale'    => 1)
+                     'klass'         => 'step slide editable',
+                     'data-x'        => 0,
+                     'data-y'        => -1000,
+                     'data-z'        => 0,
+                     'data-rotate-x' => 0,
+                     'data-rotate-y' => 0,
+                     'data-rotate-z' => 0,
+                     'data-scale'    => 1)
