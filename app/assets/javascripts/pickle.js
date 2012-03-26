@@ -62,7 +62,7 @@ var createInlineEditor = function() {
                 if (!$(this).hasClass('active')) { return false; }
 
                 var currentSlide = $(this),
-                    slideIndexNumber = parseInt(currentSlide.attr('id').slice(5)) - 1,
+                    slideIndexNumber = getSlideIndexNumber(currentSlide);
                     currentText = database.deckData.content[slideIndexNumber];
                 inlineEditor.val(currentText);
                 e.stopImmediatePropagation();
@@ -126,7 +126,7 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-scale', template['data-scale']);
 		$('#impress > div').last().html(deck.content[i].replace(/\n/g, '<br>'));
 	}
-	$('#impress > div').first().addClass('active');
+	// $('#impress > div').first().addClass('active');
 }
 
 var constructTree = function() {
@@ -144,6 +144,9 @@ var destroyTree = function() {
 	$('#impress > div').remove();
 }
 
+var getSlideIndexNumber = function(slide) {
+  return parseInt(slide.attr('id').slice(5)) - 1;
+}
 
 var sendViaAjax = function(redirect_url) {
 	$.ajax({
@@ -169,6 +172,23 @@ $('.prev_slide').click(function() {
 
 $('.next_slide').click(function() {
   impress().next();
+});
+
+$('.add_slide').click(function() {
+  var currentSlide = $('.active');
+  var slideIndexNumber = getSlideIndexNumber(currentSlide);
+  database.deckData.content.splice(slideIndexNumber + 1, 0, '');
+  constructTree();
+  impress().next();
+});
+
+$('.delete_slide').click(function() {
+  var currentSlide = $('.active');
+  console.log(currentSlide);
+  var slideIndexNumber = getSlideIndexNumber(currentSlide);
+  database.deckData.content.splice(slideIndexNumber, 1);
+  constructTree();
+  // impress().prev();
 });
 
 // methods for left and right arrow buttons (to advance slides)
