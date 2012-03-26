@@ -113,6 +113,9 @@ var establishEventListeners = function() {
 	});
 }
 
+
+
+
 var createInlineEditor = function() {
 	$(function() {
 		var current_slide = null,
@@ -181,20 +184,43 @@ var createInlineEditor = function() {
 	});
 }
 
+var database = {};
+
 $(document).ready(function() {
     var deck_id = $('#impress').attr('deck_id');
 	establishEventListeners();
+	
 	$.ajax({
 		url:  "http://localhost:3000/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
-			var data_structure = data
-			var contents = 'undefined';
-			buildTree(data, contents);
-			resetImpress();
-			createInlineEditor();
+		    database.deckData = data;
+			console.log(database.deckData);
+			// populate deck_data_structure
+			// execute_when_both_data_structures_filled
+			// var data_structure = data
+			// var contents = 'undefined';
+			// buildTree(data, contents);
+			// resetImpress();
+			// createInlineEditor();
 		}
 	});
+	
+	$.ajax({
+		url:  "http://localhost:3000/templates",
+		dataType: 'json',
+		success: function(data) {
+			database.templateData = data;
+			console.log(database.templateData);
+			// var data_structure = data
+			// var contents = 'undefined';
+			// buildTree(data, contents);
+			// resetImpress();
+			// createInlineEditor();
+		}
+	});
+	
+	
 });
 
 // setInterval(sendViaAjax, 10000);

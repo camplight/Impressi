@@ -4,7 +4,8 @@ class Deck < ActiveRecord::Base
   belongs_to :user
   belongs_to :template
   serialize :content
-  # before_save :content?
+  before_create :seed_content
+
   
   attr_accessible :name, :template_id, :content
   
@@ -26,4 +27,10 @@ class Deck < ActiveRecord::Base
   #   deck_data.each { |step| return message = false unless step['content'] }
   #   message
   # end
+  
+  private
+    
+  def seed_content
+    self.content = ['Click here to edit', 'Click here to edit']
+  end
 end
