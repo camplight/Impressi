@@ -52,50 +52,60 @@ var createInlineEditor = function() {
 		inlineEditor.attr('id', 'inline-editor');
 		inlineEditor.attr('placeholder', 'Enter text here.')
 
-		$(".editable").click(function(e) {
+		$(".editable").on({
+            mouseenter: function(e) {
+                console.log('hi');
+                // give hint that slide is editable
+            },
+            click: function(e) {
 
-			if (!$(this).hasClass('active')) { return false; }
+                if (!$(this).hasClass('active')) { return false; }
 
-			var currentSlide = $(this),
-				slideIndexNumber = parseInt(currentSlide.attr('id').slice(5)) - 1,
-				currentText = database.deckData.content[slideIndexNumber];
-			inlineEditor.val(currentText);
-			e.stopImmediatePropagation();
+                var currentSlide = $(this),
+                    slideIndexNumber = parseInt(currentSlide.attr('id').slice(5)) - 1,
+                    currentText = database.deckData.content[slideIndexNumber];
+                inlineEditor.val(currentText);
+                e.stopImmediatePropagation();
 
-			if (activeInput == false) {
-				activeInput = true;
-				mode = 'edit';
-				currentSlide.html(inlineEditor);
-				inlineEditor.focus();
-			} else {
-				activeInput = false;
-				mode = 'prezi';
-				inlineEditor.blur();
-				e.stopImmediatePropagation();
-			}
+                if (activeInput == false) {
+                    activeInput = true;
+                    mode = 'edit';
+                    currentSlide.html(inlineEditor);
+                    inlineEditor.focus();
+                    // show save text button
+                    // show cancel edit button
+                } else {
+                    activeInput = false;
+                    mode = 'prezi';
+                    inlineEditor.blur();
+                    e.stopImmediatePropagation();
+                }
 
-			inlineEditor.on({	
-				keyup: function(e) {
-					if (e.keyCode == 27) {
-						$(this).blur();
-						activeInput = false;
-					}
-				},
-				click: function(e) {
-					e.stopPropagation();
-				},
-				blur: function(e) {
-					currentInput = $(this).val();
-					database.deckData.content[slideIndexNumber] = currentInput;
-					currentSlide.html(currentInput.replace(/\n/g, '<br>'));
-					e.stopImmediatePropagation();
-					$(this).val('');
-					mode = 'prezi';
-				}
-			});
-			return false;
+                inlineEditor.on({    
+                    keyup: function(e) {
+                        if (e.keyCode == 27) {
+                            $(this).blur();
+                            activeInput = false;
+                        }
+                    },
+                    click: function(e) {
+                        e.stopPropagation();
+                    },
+                    blur: function(e) {
+                        currentInput = $(this).val();
+                        database.deckData.content[slideIndexNumber] = currentInput;
+                        currentSlide.html(currentInput.replace(/\n/g, '<br>'));
+                        e.stopImmediatePropagation();
+                        $(this).val('');
+                        mode = 'prezi';
+                        // hide save text button
+                        // hide cancel edit button
+                    }
+                });
+		    }    
 		});
-	});
+		return false;
+    });
 }
 
 var buildTree = function() {
@@ -146,12 +156,15 @@ var sendViaAjax = function(redirect_url) {
 	});
 };
 
-setInterval(sendViaAjax, 10000);
+// setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
 	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
 	sendViaAjax(redirect_url);
 });
+
+// methods for left and right arrow buttons (to advance slides)
+// methods for add and delete buttons
 
 $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
