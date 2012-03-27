@@ -1,7 +1,7 @@
 <div id='container-custom'>
 	<% user = current_user || guest_user %>
 	<% if user.id == @deck.user_id %>
-		<%= link_to "Edit", edit_deck_path(@deck.id), :class => 'button edit-button' %>
+		<%= link_to "Edit", edit_deck_path(@deck), :class => 'button edit-button' %>
 	<% end %>
 	<div id='impress' deck_id="<%= @deck.id %>" data-mode='prezi' class='seven columns' style='z-index:-1'>
 	</div>
