@@ -29,6 +29,17 @@ resetImpress = function() {
 };
 
 var establishEventListeners = function() {
+	document.addEventListener("click", function ( event ) {
+    console.log('click');
+		if (mode == "prezi") {
+			event.stopImmediatePropagation();
+      console.log(mode);
+      console.log(!(event.srcElement.tagName.match(/HTML/)))
+        $('.editable.active').click();
+        $('.editable.active').click();
+		}
+	});
+
 	document.addEventListener("keydown", function ( event ) {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
@@ -38,7 +49,11 @@ var establishEventListeners = function() {
 	document.addEventListener("keyup", function ( event ) {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
-		}
+		} else if (event.keyCode == 13) { 
+      event.stopImmediatePropagation();
+      $('.editable.active').click();
+      $('.editable.active').click();
+    }
 	});
 }
 
@@ -86,8 +101,9 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
             mouseenter: function(e) {
-                console.log('hi');
-                // give hint that slide is editable
+                //if (mode == 'prezi') {
+                //  $(this).click();
+                //}
             },
             click: function(e) {
 
