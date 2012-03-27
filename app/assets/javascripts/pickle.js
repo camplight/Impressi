@@ -3,7 +3,7 @@ $(document).ready(function() {
 	establishEventListeners();
 	
 	$.ajax({
-		url:  "http://localhost:3000/decks/" + deck_id,
+		url:  window.location.origin+"/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-		url:  "http://localhost:3000/templates",
+		url:  window.location.origin+"/templates",
 		dataType: 'json',
 		success: function(data) {
 			database.templateData = data;
@@ -90,9 +90,9 @@ var grabStepContent = function(step) {
 var createInlineEditor = function() {
 	$(function() {
 		var currentSlide = null,
-			activeInput  = false,
-			textarea     = document.createElement('textarea'),
-			inlineEditor = $(textarea);
+				activeInput  = false,
+				textarea     = document.createElement('textarea'),
+				inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
 		inlineEditor.attr('placeholder', 'Start typing...');
@@ -105,14 +105,14 @@ var createInlineEditor = function() {
         hoverbox.attr('class', 'editor');
 
 		$(".editable").on({
-            mouseenter: function(e) {
+    	mouseenter: function(e) {
 				if (mode === 'prezi' && grabStepContent($('.active'))  == '') {
-            		$('.active').append(hoverbox.fadeIn(350));
-            	}
-            },
+        	$('.active').append(hoverbox.fadeIn(300));
+        }
+      },
 
             mouseleave: function(e) {
-            	$('#hoverbox').fadeOut(350);
+            	$('#hoverbox').fadeOut(150);
             },
 
             click: function(e) {
@@ -126,7 +126,6 @@ var createInlineEditor = function() {
                 activeInput = false;
 
                 inlineEditor.val(currentText);
-								//currentText === "" ? inlineEditor.on();
                 e.stopImmediatePropagation();
 
                 if (activeInput == false) {
@@ -134,6 +133,7 @@ var createInlineEditor = function() {
                     mode = 'edit';
                     currentSlide.html(inlineEditor);
                     inlineEditor.focus();
+										inlineEditor.prop('enabled', 'true');
                     // show save text button
                     // show cancel edit button
                 } else {
@@ -217,7 +217,7 @@ var sendViaAjax = function(redirect_url) {
 	$.ajax({
 		type: "PUT",
 		data:  { deck: database.deckData },
-		url:  "http://localhost:3000/decks/" + database.deckData.id,
+		url:  window.location.origin+"/decks/" + database.deckData.id,
 		success: function() { if (redirect_url) { window.location.href = redirect_url; } 
 		},
 		failure: function() { console.log(err); }
@@ -227,7 +227,7 @@ var sendViaAjax = function(redirect_url) {
 // setInterval(sendViaAjax, 10000);
 
 $('#impress-button').click(function() {
-	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
+	var redirect_url = window.location.origin+"/decks/" + database.deckData.id;
 	sendViaAjax(redirect_url);
 });
 
