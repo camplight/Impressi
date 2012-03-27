@@ -106,13 +106,16 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
     	mouseenter: function(e) {
-				if (mode === 'prezi' && grabStepContent($('.active'))  == '') {
-        	$('.active').append(hoverbox.fadeIn(300));
+	console.log(database)
+
+				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
+        	$(this).append(hoverbox);
         }
       },
 
             mouseleave: function(e) {
-            	$('#hoverbox').fadeOut(150);
+            	$('#hoverbox').remove();//fadeOut(150);
+							// $('#hoverbox').remove();
             },
 
             click: function(e) {
@@ -133,7 +136,6 @@ var createInlineEditor = function() {
                     mode = 'edit';
                     currentSlide.html(inlineEditor);
                     inlineEditor.focus();
-										inlineEditor.prop('enabled', 'true');
                     // show save text button
                     // show cancel edit button
                 } else {
@@ -224,7 +226,7 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-// setInterval(sendViaAjax, 10000);
+//setInterval(sendViaAjax, 80000);
 
 $('#impress-button').click(function() {
 	var redirect_url = window.location.origin+"/decks/" + database.deckData.id;

@@ -378,7 +378,7 @@ var mode = 'prezi';
             stepTo: stepTo,
             next: next,
             prev: prev,
-	    reset: reset
+	    			reset: reset
         });
 
     };

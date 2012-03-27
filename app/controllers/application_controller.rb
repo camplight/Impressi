@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def current_or_guest_user
      if current_user
        if session[:guest_user_id]
-         move_decks_from_guest_user
+         #move_decks_from_guest_user
          guest_user.destroy
          session[:guest_user_id] = nil
        end
