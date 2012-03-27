@@ -54,40 +54,37 @@ var establishEventListeners = function() {
 	});
 }
 
-
 var	markdown_to_html = function(string) {
 		var controlCharTags = {0:{symbol:'*', open_tag:'<b>', close_tag:'</b>'}, 1:{symbol:'_', open_tag:'<em>', close_tag:'</em>'}}
 		
 		var controlChars = ['*', '_']
 		for(var i = 0; i < controlChars.length; i++) {
-			var controlChar = controlChars[i];
-			var controlTag = controlCharTags[i];
-			var count = 0
-			var output = ''
-			for(var x = 0; x < string.length; x++) {
-				if(string[x] !== controlChar) {
-					output = output + string[x]
-				} else {
-					count++
-
-					if((string.split(controlChar).length - 1) % 2 === 0) {
-						if(count == 1) {
-							output = output + controlTag.open_tag
-						} else if(count == 2) {
-								output = output + controlTag.close_tag
-								count = 0
-						}
-					}
-				}
-			}
-			var string = output;
+  			var controlChar = controlChars[i];
+  			var controlTag = controlCharTags[i];
+  			var count = 0
+  			var output = ''
+  			for(var x = 0; x < string.length; x++) {
+    				if(string[x] !== controlChar) {
+      					output = output + string[x]
+    				} else {
+      					count++
+      					if((string.split(controlChar).length - 1) % 2 === 0) {
+        						if(count == 1) {
+          							output = output + controlTag.open_tag
+        						} else if(count == 2) {
+        								output = output + controlTag.close_tag
+        								count = 0
+        						}
+      					}
+    				}
+   			}
+  			var string = output;
 		}
 		return output
-		
 }
 
 var grabStepContent = function(step) {
-	return database.deckData.content[getSlideIndexNumber(step)];
+  	return database.deckData.content[getSlideIndexNumber(step)];
 }
 
 var createInlineEditor = function() {
@@ -158,7 +155,7 @@ var createInlineEditor = function() {
                     blur: function(e) {
                         currentInput = $(this).val();
                         database.deckData.content[slideIndexNumber] = currentInput;
-                        currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>')));
+                        currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
                         e.stopImmediatePropagation();
                         $(this).val('');
                         mode = 'prezi';
@@ -166,8 +163,8 @@ var createInlineEditor = function() {
                         // hide cancel edit button
                     }
                 });
-		    }    
-		});
+		        }    
+		    });
 		return false;
     });
 }
@@ -187,8 +184,12 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-rotate-x', template['data-rotate-x'] * i);
 		$('#impress > div').last().attr('data-rotate-y', template['data-rotate-y'] * i);
 		$('#impress > div').last().attr('data-rotate-z', template['data-rotate-z'] * i);
-		$('#impress > div').last().attr('data-scale', template['data-scale']);
-		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>')));
+		if (template['data-scale'] == 0) {
+        $('#impress > div').last().attr('data-scale', 1);
+    } else {
+        $('#impress > div').last().attr('data-scale', template['data-scale'] * i);
+    }
+		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
 }
 
