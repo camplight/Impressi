@@ -29,6 +29,17 @@ resetImpress = function() {
 };
 
 var establishEventListeners = function() {
+	document.addEventListener("click", function ( event ) {
+    console.log('click');
+		if (mode == "prezi") {
+			event.stopImmediatePropagation();
+      console.log(mode);
+      console.log(!(event.srcElement.tagName.match(/HTML/)))
+        //$('.editable.active').click();
+        //$('.editable.active').click();
+		}
+	});
+
 	document.addEventListener("keydown", function ( event ) {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
@@ -38,7 +49,11 @@ var establishEventListeners = function() {
 	document.addEventListener("keyup", function ( event ) {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
-		}
+		} else if (event.keyCode == 13) { 
+      event.stopImmediatePropagation();
+      $('.editable.active').click();
+      $('.editable.active').click();
+    }
 	});
 }
 
@@ -235,9 +250,9 @@ $('.add_slide').click(function() {
 $('.delete_slide').click(function() {
   var currentSlide = $('.active');
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
-  impress().prev();
-  database.deckData.content.splice(slideIndexNumber + 1, 1);
+  database.deckData.content.splice(slideIndexNumber, 1);
   constructTree();
+  if (slideIndexNumber == database.deckData.content.length) { impress().prev(); }
 });
 
 $('.temp_dropdown').change(function() {
