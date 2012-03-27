@@ -48,9 +48,8 @@ var establishEventListeners = function() {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
 		} else if (event.keyCode == 13) { 
-      event.stopImmediatePropagation();
-      $('.editable.active').click();
-      $('.editable.active').click();
+            event.stopImmediatePropagation();
+            $('.editable.active').click();
     }
 	});
 }
@@ -108,8 +107,6 @@ var createInlineEditor = function() {
         hoverbox.attr('id', 'hoverbox');
         hoverbox.attr('class', 'editor');
 
-
-
 		$(".editable").on({
             mouseenter: function(e) {
 				if (mode === 'prezi' && grabStepContent($('.active'))  == '') {
@@ -128,6 +125,9 @@ var createInlineEditor = function() {
                 var currentSlide = $(this),
                     slideIndexNumber = getSlideIndexNumber(currentSlide);
                     currentText = database.deckData.content[slideIndexNumber];
+
+                activeInput = false;
+
                 inlineEditor.val(currentText);
                 e.stopImmediatePropagation();
 
