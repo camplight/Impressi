@@ -184,10 +184,10 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-rotate-x', template['data-rotate-x'] * i);
 		$('#impress > div').last().attr('data-rotate-y', template['data-rotate-y'] * i);
 		$('#impress > div').last().attr('data-rotate-z', template['data-rotate-z'] * i);
-		if (template['data-scale'] == 0) {
+		if (template['data-scale'] == false) {
         $('#impress > div').last().attr('data-scale', 1);
     } else {
-        $('#impress > div').last().attr('data-scale', template['data-scale'] * i);
+        $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
 		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
