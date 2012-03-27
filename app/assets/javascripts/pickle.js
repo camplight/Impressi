@@ -30,10 +30,8 @@ resetImpress = function() {
 
 var establishEventListeners = function() {
 	document.addEventListener("click", function ( event ) {
-    console.log('click');
 		if (mode == "prezi") {
 			event.stopImmediatePropagation();
-      console.log(mode);
       console.log(!(event.srcElement.tagName.match(/HTML/)))
         //$('.editable.active').click();
         //$('.editable.active').click();
@@ -248,11 +246,20 @@ $('.add_slide').click(function() {
 });
 
 $('.delete_slide').click(function() {
+
+  var deckContent = database.deckData.content
   var currentSlide = $('.active');
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
-  database.deckData.content.splice(slideIndexNumber, 1);
+
+  if (deckContent.length == 1) { 
+    deckContent.push(''); 
+    deckContent.splice(0, 1);
+  } else {
+    deckContent.splice(slideIndexNumber, 1);
+  }
+
   constructTree();
-  if (slideIndexNumber == database.deckData.content.length) { impress().prev(); }
+  if (slideIndexNumber == deckContent.length) { impress().prev(); }
 });
 
 $('.temp_dropdown').change(function() {
