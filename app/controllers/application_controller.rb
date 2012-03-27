@@ -20,11 +20,15 @@ class ApplicationController < ActionController::Base
      session[:guest_user_id] ||= create_guest_user.id
      User.find(session[:guest_user_id])
    end
+
+   def guest_user?
+     !session[:guest_user_id].nil?
+   end
    
    def move_decks_from_guest_user
-     deck = Deck.find_by_user_id(session[:guest_user_id])
-     deck.update_attribute(:user_id, current_user.id)
-     deck.save
+     decks = Deck.find_by_user_id(session[:guest_user_id])
+     decks.update_attribute(:user_id, current_user.id)
+     decks.save
    end
 
    private
