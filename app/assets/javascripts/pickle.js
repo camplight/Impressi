@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    var deck_id = $('#impress').attr('deck_id');
+  var deck_id = $('#impress').attr('deck_id');
 	establishEventListeners();
 	
 	$.ajax({
 		url:  "http://localhost:3000/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
-		    database.deckData = data;
+		   database.deckData = data;
 			if (dataLoaded()) { constructTree() }
 		}
 	});
@@ -107,12 +107,12 @@ var createInlineEditor = function() {
 		$(".editable").on({
             mouseenter: function(e) {
 				if (mode === 'prezi' && grabStepContent($('.active'))  == '') {
-            		$('.active').append(hoverbox);
+            		$('.active').append(hoverbox.fadeIn(350));
             	}
             },
 
             mouseleave: function(e) {
-            	$('#hoverbox').remove();
+            	$('#hoverbox').fadeOut(350);
             },
 
             click: function(e) {
@@ -126,6 +126,7 @@ var createInlineEditor = function() {
                 activeInput = false;
 
                 inlineEditor.val(currentText);
+								//currentText === "" ? inlineEditor.on();
                 e.stopImmediatePropagation();
 
                 if (activeInput == false) {
