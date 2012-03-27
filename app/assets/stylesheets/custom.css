@@ -99,22 +99,6 @@
 	
 	
 /*----------------------SLIDE EDITOR------------------*/		
-	/*#inline-editor {
-		width:600px;
-		-webkit-border-radius:4px 4px;
-		-webkit-box-shadow:inset 0px 0px 15px #888;
-		font-family: 'PT Serif', georgia, serif;
-	  font-size: 32px;
-	  line-height: 1.0;
-		border:2px solid #888;
-		resize:none;
-		outline:none;
-		opacity:1;
-		background-color:#fff;
-		z-index:10000;
-		padding: 11px;
-	}*/
-
 	#inline-editor {
 		outline: none;
 		border: none;
@@ -259,7 +243,8 @@
 		border-radius: 4px;
 		font-size: 30px;
 		padding: 15px;
-		margin-left: 100% !important;
-		position: absolute !important;
+		float:right;
+		margin-right:150px;
+		bottom:5px;
 		pointer-events: auto;
 	}

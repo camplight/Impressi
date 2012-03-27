@@ -48,8 +48,8 @@ var establishEventListeners = function() {
 		if (mode == "edit") {
 			event.stopImmediatePropagation();
 		} else if (event.keyCode == 13) { 
-            event.stopImmediatePropagation();
-            $('.editable.active').click();
+      	event.stopImmediatePropagation();
+        $('.editable.active').click();
     }
 	});
 }
@@ -175,10 +175,9 @@ var createInlineEditor = function() {
 }
 
 var buildTree = function() {
-	
 	var deck        = database.deckData,
-		deck_length = deck.content.length,
-		template    = database.templateData[deck.template_id - 1];
+			deck_length = deck.content.length,
+			template    = database.templateData[deck.template_id - 1];
 
 	for(var i = 0; i < deck_length; i++) {
 		$('#impress').append('<div></div>');
