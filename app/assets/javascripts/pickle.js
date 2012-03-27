@@ -109,12 +109,12 @@ var createInlineEditor = function() {
 	console.log(database)
 
 				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
-        	$(this).append(hoverbox);
+        	$(this).html(hoverbox.fadeIn(350));
         }
       },
 
             mouseleave: function(e) {
-            	$('#hoverbox').remove();//fadeOut(150);
+            	$('#hoverbox').fadeOut(150)
 							// $('#hoverbox').remove();
             },
 
@@ -147,6 +147,8 @@ var createInlineEditor = function() {
 
                 inlineEditor.on({    
                     keyup: function(e) {
+												$(this).blur();
+												$('.editable').click();
                         if (e.keyCode == 27) {
                             $(this).blur();
                             activeInput = false;
