@@ -119,7 +119,7 @@
 		outline: none;
 		border: none;
 		padding-left: 8px;
-		padding-top: 4px;
+		padding-top: 8px;
 	}
 
 /*----------------------IMPRESS OVERRIDES------------------*/	
@@ -173,6 +173,7 @@
 		width: 800px !important;
 		height: 500px !important;
 		font-size: 50px !important;
+		line-height: 1em !important;
 	}
 	
 /*----------------------NAV BAR------------------*/
@@ -252,3 +253,13 @@
 		font-size: 50px !important;
 		color: #6584C7 !important;
 	}*/
+
+	.edit-button {
+		border: 1px solid;
+		border-radius: 4px;
+		font-size: 30px;
+		padding: 15px;
+		margin-left: 100% !important;
+		position: absolute !important;
+		pointer-events: auto;
+	}

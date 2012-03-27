@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  helper_method :current_or_guest_user
+  helper_method :current_or_guest_user, :guest_user
   
   def current_or_guest_user
      if current_user

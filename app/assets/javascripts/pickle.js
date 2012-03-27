@@ -114,7 +114,7 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
             mouseenter: function(e) {
-				if (mode === 'prezi' && grabStepContent($(this))  == '') {
+				if (mode === 'prezi' && grabStepContent($('.active'))  == '') {
             		$('.active').append(hoverbox);
             	}
             },
