@@ -252,3 +252,13 @@
 		font-size: 50px !important;
 		color: #6584C7 !important;
 	}*/
+
+	.edit-button {
+		border: 1px solid;
+		border-radius: 4px;
+		font-size: 30px;
+		padding: 15px;
+		margin-left: 100% !important;
+		position: absolute !important;
+		pointer-events: auto;
+	}
