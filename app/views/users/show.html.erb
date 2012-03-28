@@ -1,7 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Your Decks</h1>
 
 <ul class="decks">
-  <%= render @decks %>
+  <%= render :partial => 'decks/deck', :collection => @decks %>
 </ul>
 

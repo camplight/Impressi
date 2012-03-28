@@ -259,7 +259,7 @@
     -webkit-box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
     -webkit-padding-end: 5px;
     -webkit-padding-start: 0px;
-    -webkit-linear-gradient(#E1E1E1, #FFF 30%, #FFF);
+    -webkit-linear-gradient:(#E1E1E1, #FFF 30%, #FFF);
   	-webkit-appearance: menulist;
 		box-sizing: border-box;
 		-webkit-box-align: center;
