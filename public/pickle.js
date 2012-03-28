@@ -15,7 +15,6 @@ $(document).ready(function() {
 		url:  window.location.origin + "/templates",
 		dataType: 'json',
 		success: function(data) {
-			console.log(data);
 			database.templateData = data;
 			if (dataLoaded()) { constructTree() }
 		}

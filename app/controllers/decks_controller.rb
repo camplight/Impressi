@@ -32,8 +32,7 @@ class DecksController < ApplicationController
 
     deck             = Deck.find(params[:id])
     deck.template_id = params[:deck][:template_id]
-    deck.steps       = params[:deck][:steps]
-    deck.save
+    deck.steps       = params[:deck][:steps].inject([]) { |array, step| array << step[1] }
       
     if user_signed_in?
       deck.user_id = current_user.id
