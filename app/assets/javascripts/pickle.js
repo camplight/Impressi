@@ -65,7 +65,7 @@ var	markdown_to_html = function(string) {
   			var output = ''
   			for(var x = 0; x < string.length; x++) {
     				if(string[x] !== controlChar) {
-      					output = output + string[x]
+      				output = output + string[x]
     				} else {
       					count++
       					if((string.split(controlChar).length - 1) % 2 === 0) {
@@ -115,7 +115,6 @@ var createInlineEditor = function() {
 
             mouseleave: function(e) {
             	$('#hoverbox').fadeOut(150)
-							// $('#hoverbox').remove();
             },
 
             click: function(e) {
@@ -251,7 +250,7 @@ $('.add_slide').click(function() {
 });
 
 $('.delete_slide').click(function() {
-
+	
   var deckContent = database.deckData.content
   var currentSlide = $('.active');
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
