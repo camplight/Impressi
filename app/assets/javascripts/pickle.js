@@ -32,9 +32,6 @@ var establishEventListeners = function() {
 	document.addEventListener("click", function ( event ) {
 		if (mode == "prezi") {
 			event.stopImmediatePropagation();
-      console.log(!(event.srcElement.tagName.match(/HTML/)))
-        //$('.editable.active').click();
-        //$('.editable.active').click();
 		}
 	});
 
@@ -106,7 +103,6 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
     	mouseenter: function(e) {
-	console.log(database)
 
 				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
         	$(this).html(hoverbox.fadeIn(350));
@@ -115,7 +111,6 @@ var createInlineEditor = function() {
 
             mouseleave: function(e) {
             	$('#hoverbox').fadeOut(150)
-							// $('#hoverbox').remove();
             },
 
             click: function(e) {
@@ -220,19 +215,16 @@ var sendViaAjax = function(redirect_url) {
 	$.ajax({
 		type: "PUT",
 		data:  { deck: database.deckData },
-		url:  "http://localhost:3000/decks/" + database.deckData.id,
-		success: function() { if (redirect_url) { //if redirect_url isn't blank ...
-				if ( $('#impress-button').attr('data-logged-in') == 'true') { 
-					console.log("sees user as logged in")
-					console.log(redirect_url);
-					window.location.href = redirect_url; 
-				} else {
-					console.log("doesn't see user as logged in")
-					login_url = "http://localhost:3000" + $('#impress-button').attr('data-sign-up-url')
-					console.log(login_url)
-					window.location.href = login_url;
-				}
-			}
+		url:  window.location.origin + '/decks/' + database.deckData.id,
+		success: function() { 
+        if (redirect_url) { //if redirect_url isn't blank ...
+            if ($('#impress-button').attr('data-logged-in') == 'true') { 
+              window.location.href = redirect_url; 
+            } else {
+              login_url = window.location.origin + '/users/sign_in'; 
+              window.location.href = login_url;
+            }
+        }
 		},
 		failure: function() { console.log(err); }
 	});
@@ -241,8 +233,7 @@ var sendViaAjax = function(redirect_url) {
 // setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#impress-button').click(function() {
-	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
-	console.log(redirect_url);
+	var redirect_url = window.location.origin + database.deckData.id;
 	sendViaAjax(redirect_url);
 });
 

@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Template.create('name'          => 'Righty',
                 'klass'         => 'step slide editable',
@@ -74,7 +69,7 @@ Template.create('name'          => 'Beyond Infinity',
                 'data-rotate-x' => 0,
                 'data-rotate-y' => 0,
                 'data-rotate-z' => 0,
-                'data-scale'    => 5)
+                'data-scale'    => 2)
 
 Template.create('name'          => 'Spiral',
                 'klass'         => 'step slide editable',
@@ -84,6 +79,46 @@ Template.create('name'          => 'Spiral',
                 'data-rotate-x' => 45,
                 'data-rotate-y' => 45,
                 'data-rotate-z' => 45,
+                'data-scale'    => 0)
+
+Template.create('name'          => 'Super Spiral',
+                'klass'         => 'step slide editable',
+                'data-x'        => 5000,
+                'data-y'        => 5000,
+                'data-z'        => 5000,
+                'data-rotate-x' => 45,
+                'data-rotate-y' => 45,
+                'data-rotate-z' => 45,
+                'data-scale'    => 1)
+
+Template.create('name'          => 'Flipflop',
+                'klass'         => 'step slide editable',
+                'data-x'        => 750,
+                'data-y'        => 0,
+                'data-z'        => 0,
+                'data-rotate-x' => 0,
+                'data-rotate-y' => 0,
+                'data-rotate-z' => 90,
+                'data-scale'    => 0)
+
+Template.create('name'          => 'Fallback',
+                'klass'         => 'step slide editable',
+                'data-x'        => -2000,
+                'data-y'        => 0,
+                'data-z'        => -2000,
+                'data-rotate-x' => 35,
+                'data-rotate-y' => 0,
+                'data-rotate-z' => 0,
+                'data-scale'    => 0)
+
+Template.create('name'          => 'Fallthrough',
+                'klass'         => 'step slide editable',
+                'data-x'        => 2000,
+                'data-y'        => 0,
+                'data-z'        => 2000,
+                'data-rotate-x' => -35,
+                'data-rotate-y' => 0,
+                'data-rotate-z' => 0,
                 'data-scale'    => 0)
 
 Template.create('name'          => 'Psychedelic',
