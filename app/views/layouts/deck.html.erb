@@ -4,19 +4,20 @@
   <title>Impressi - HTML5 </title>
 	<%= stylesheet_link_tag "application", :media => "all" %>
   <%= stylesheet_link_tag "impress", :media => "all" %>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<%= javascript_include_tag "application"  %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<% current_or_guest_user %>
-	
+	<div class='hint'>hi</div>
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
 	<%#= render :partial => 'shared/authentication' %>
 
 	<%= yield %>
-	
+
 	<%= javascript_include_tag "impress" %>
-	<script>impress();</script>
+	<script>impress().init();</script>
 
 </body>
 </html>

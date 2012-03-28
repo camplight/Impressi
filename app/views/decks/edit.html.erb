@@ -1,4 +1,7 @@
-<%= render :partial => 'decks/template_selector', :locals => { :template_data => @template_data, :deck => @deck } %>
+
+<%#= render :partial => "shared/side_bar" %>
+<%= render :partial => "decks/template_selector", :locals => {:template_data => @template_data, :deck => @deck} %>
+<%= render :partial => "decks/edit_nav" %>
 
 <div id='container-custom'>
 	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'>

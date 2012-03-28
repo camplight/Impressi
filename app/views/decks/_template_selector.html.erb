@@ -1,23 +1,20 @@
 <div class='navbar'>
-  <div class='ux_button button add_slide' style="pointer-events: auto">
-    +
-  </div>
-  <div class='ux_button button delete_slide' style="pointer-events: auto">
-    -
-  </div>
-  <div class='ux_button button prev_slide' style="pointer-events: auto">
-    <
-  </div>
-  <div class='ux_button button next_slide' style="pointer-events: auto">
-    >
-  </div>
+  <a class='ux_button button add_slide alter' style="pointer-events: auto;">
+    Add step
+  </a>
+
+  <a class='ux_button button delete_slide alter' style="pointer-events: auto">
+    Remove step
+  </a>
+
+ 		<div id='impress-button' class='button' style="pointer-events: auto" data-logged-in="<%= user_signed_in? %>">Impress!</div>
+	
 	<div class='temp_selector'>
-		Template:
 		<select class='temp_dropdown'>
       <% template_data.each_with_index do |template, i| %>
 			  <option value='<%= template[:template_id] %>' name='<%= template[:name] %>'<%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
 		  <% end %>
 		</select>
 	</div>
-	<div id='impress-button' class='button' style="pointer-events: auto" data-logged-in="<%= user_signed_in? %>">Impress!</div>
+	<span id='saved'>presentation saved</span>
 </div>
