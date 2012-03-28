@@ -92,7 +92,8 @@ var createInlineEditor = function() {
 				inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
-		inlineEditor.attr('placeholder', 'Start typing...');
+		inlineEditor.attr('placeholder', 'Start typing...')
+		inlineEditor.css({wordWrap: 'break-word'});
 
 		var divbox = document.createElement('div'),
             hoverbox = $(divbox);
@@ -188,6 +189,7 @@ var buildTree = function() {
     } else {
         $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
+console.log(deck.content[i]);
 		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
 }
