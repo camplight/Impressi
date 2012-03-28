@@ -7,12 +7,12 @@
     Remove step
   </a>
 
- 	<div id='impress-button' class='button alter' style="pointer-events: auto">Impress!</div>
+ 		<div id='impress-button' class='button' style="pointer-events: auto" data-logged-in="<%= user_signed_in? %>">Impress!</div>
 	
 	<div class='temp_selector'>
 		<select class='temp_dropdown'>
       <% template_data.each_with_index do |template, i| %>
-			  <option value='<%= template[:template_id] %>' name='<%=template[:name] %>'<%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
+			  <option value='<%= template[:template_id] %>' name='<%= template[:name] %>'<%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
 		  <% end %>
 		</select>
 	</div>

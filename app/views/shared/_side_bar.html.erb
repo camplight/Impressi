@@ -6,6 +6,6 @@
 	<ul id='slideDeckButtons' class='five columns'>
 		<li><button class='button image-add'><span id='decorate-button'>add image<span></button></li>
 		<li><button class='button'>add video</button></li>
-		<li><div id='impress-button' class='button' style="pointer-events: auto">impress!</div></li>
+		<li><div id='impress-button' class='button' style="pointer-events: auto" data-logged-in="<%= user_signed_in?.to_s %>"  data-sign-up-url="<%= new_user_registration %>">impress!</div></li>
 	</ul>
 </div>	

@@ -3,7 +3,7 @@ $(document).ready(function() {
 	establishEventListeners();
 	
 	$.ajax({
-		url:  window.location.origin+"/decks/" + deck_id,
+		url:  window.location.origin + "/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-		url:  window.location.origin+"/templates",
+		url:  window.location.origin + "/templates",
 		dataType: 'json',
 		success: function(data) {
 			database.templateData = data;
@@ -32,9 +32,6 @@ var establishEventListeners = function() {
 	document.addEventListener("click", function ( event ) {
 		if (mode == "prezi") {
 			event.stopImmediatePropagation();
-      console.log(!(event.srcElement.tagName.match(/HTML/)))
-        //$('.editable.active').click();
-        //$('.editable.active').click();
 		}
 	});
 
@@ -106,7 +103,6 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
     	mouseenter: function(e) {
-	console.log(database)
 
 				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
         	$(this).html(hoverbox.fadeIn(350));
@@ -219,18 +215,17 @@ var sendViaAjax = function(redirect_url) {
 	$.ajax({
 		type: "PUT",
 		data:  { deck: database.deckData },
-		url:  window.location.origin+"/decks/" + database.deckData.id,
-		success: function() { if (redirect_url) { window.location.href = redirect_url; } 
-		},
+		url:  window.location.origin + '/decks/' + database.deckData.id,
+		success: function() { if (redirect_url) { window.location.href = redirect_url; } },
 		failure: function() { console.log(err); }
 	});
 }
 
-//setInterval(sendViaAjax, 80000);
+// setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#impress-button').click(function() {
-	var redirect_url = window.location.origin+"/decks/" + database.deckData.id;
-	sendViaAjax(redirect_url);
+	var deck_url = window.location.origin + '/decks/' + database.deckData.id;
+	sendViaAjax(deck_url);
 });
 
 $('.prev_slide').click(function() {
@@ -250,10 +245,10 @@ $('.add_slide').click(function() {
 });
 
 $('.delete_slide').click(function() {
-	
-  var deckContent = database.deckData.content
-  var currentSlide = $('.active');
-  var slideIndexNumber = getSlideIndexNumber(currentSlide);
+	var deckContent = database.deckData.content
+	var currentSlide = $('.active');
+	var slideIndexNumber = getSlideIndexNumber(currentSlide);
+
 
   if (deckContent.length == 1) { 
     deckContent.push(''); 
