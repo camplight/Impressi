@@ -13,17 +13,20 @@
       <% template_data.each_with_index do |template, i| %>
 			  <option value='<%= template[:template_id] %>' name='<%= template[:name] %>'<%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
 		  <% end %>
-	
 		</select>
 	</div>
 	
-	<div style="float:right;">
-		<div id='preview-button' class='button alter' style="pointer-events: auto;" data-logged-in="<%= user_signed_in? %>">Preview</div>
+	<div id='menu-right'>
+		
+		<a id='preview-button' class='button alter' style="pointer-events: auto;" data-logged-in="<%= user_signed_in? %>">Preview</a>
+		<a id='help' href='#' class='button alter' style='pointer-events:auto'>help</a>
 	</div>
 </div>
 
 <div id='preview-mode'>
-		<%= link_to "Impress!", user_path(current_or_guest_user), :class => 'button alter', :id => 'impress-button', :style => "pointer-events: auto;" %>
-		<%= link_to "Edit", '#', :class => 'button edit-button alter' %>
+	<%= link_to "Impress!", impress_button_link_path, :class => 'button alter', 
+																										:id => 'impress-button' %>
+																										
+	<%= link_to "Edit", '#', :class => 'button edit-button alter' %>
 </div>
 	
