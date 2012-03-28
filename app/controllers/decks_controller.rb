@@ -4,12 +4,14 @@ class DecksController < ApplicationController
   # before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
-    if session[:pre_signin_deck]
-      target_deck = session[:pre_signin_deck]
-      session[:pre_signin_deck] = nil
+    if session[:guest_deck] && move_decks_from_guest_user
+      target_deck = Deck.find(session[:guest_deck])
+      session[:guest_deck] = nil
+      guest_user.destroy
       redirect_to deck_path(target_deck)
+    else 
+      @deck = current_or_guest_user.decks.build
     end
-    @deck = current_or_guest_user.decks.build
   end
 
   def create
@@ -20,25 +22,23 @@ class DecksController < ApplicationController
   def edit
     @template_data = Template.dropdown_data
     @deck = Deck.find(params[:id])
+    if @deck.user_id != current_or_guest_user.id
+      redirect_to :root
+      flash[:notice] = 'You are not authorized to edit that deck.'
+    end
   end
 
   def update
-    deck = Deck.find(params[:id])
+
+    deck             = Deck.find(params[:id])
     deck.template_id = params[:deck][:template_id]
     deck.content     = params[:deck][:content]
-    # if !user_signed_in? && params[:autosave] == "false"
-    #   session[:pre_signin_actions] = {:deck => params[:deck], :user => current_user, :attempted_creation_as_anon => true}
-    #   logger.info("~"*30)
-    #   logger.info session[:pre_signin_actions]
-    #   logger.info("~"*30)
-    #   flash[:notice] = "You must be signed in to share your awesome presentations!"
-    #   redirect_to new_user_registration_path
-    # else
+    deck.save
       
     if user_signed_in?
       deck.user_id = current_user.id
     else
-      session[:pre_signin_deck] = deck
+      session[:guest_deck] = deck.id
     end
         
     respond_to do |format|
@@ -49,8 +49,6 @@ class DecksController < ApplicationController
         render :text => 'Failed Ajax call.'
       end
     end
-      
-    # end
   end
 
   def destroy
@@ -62,10 +60,22 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find(params[:id])
+
     
     respond_to do |format|
-      format.html
+      format.html {
+        if deck_belongs_to_guest_user?(@deck)
+          session[:guest_deck] = @deck.id 
+          puts session[:guest_deck]
+          redirect_to new_user_registration_path
+        end }
       format.json { render :json => @deck }
     end
+  end
+
+  private
+
+  def deck_belongs_to_guest_user?(deck)
+    Deck.find_all_by_user_id(session[:guest_user_id]).include?(deck)
   end
 end

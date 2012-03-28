@@ -3,7 +3,7 @@ $(document).ready(function() {
 	establishEventListeners();
 	
 	$.ajax({
-		url:  window.location.origin+"/decks/" + deck_id,
+		url:  window.location.origin + "/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-		url:  window.location.origin+"/templates",
+		url:  window.location.origin + "/templates",
 		dataType: 'json',
 		success: function(data) {
 			database.templateData = data;
@@ -216,16 +216,7 @@ var sendViaAjax = function(redirect_url) {
 		type: "PUT",
 		data:  { deck: database.deckData },
 		url:  window.location.origin + '/decks/' + database.deckData.id,
-		success: function() { 
-        if (redirect_url) { //if redirect_url isn't blank ...
-            if ($('#impress-button').attr('data-logged-in') == 'true') { 
-              window.location.href = redirect_url; 
-            } else {
-              login_url = window.location.origin + '/users/sign_in'; 
-              window.location.href = login_url;
-            }
-        }
-		},
+		success: function() { if (redirect_url) { window.location.href = redirect_url; } },
 		failure: function() { console.log(err); }
 	});
 }
@@ -233,8 +224,8 @@ var sendViaAjax = function(redirect_url) {
 // setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#impress-button').click(function() {
-	var redirect_url = window.location.origin + database.deckData.id;
-	sendViaAjax(redirect_url);
+	var deck_url = window.location.origin + '/decks/' + database.deckData.id;
+	sendViaAjax(deck_url);
 });
 
 $('.prev_slide').click(function() {
