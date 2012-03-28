@@ -188,6 +188,7 @@ var buildTree = function() {
     } else {
         $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
+		console.log
 		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
 }
