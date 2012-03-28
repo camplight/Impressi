@@ -92,7 +92,8 @@ var createInlineEditor = function() {
 				inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
-		inlineEditor.attr('placeholder', 'Start typing...');
+		inlineEditor.attr('placeholder', 'Start typing...')
+		inlineEditor.css({wordWrap: 'break-word'});
 
 		var divbox = document.createElement('div'),
             hoverbox = $(divbox);

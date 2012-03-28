@@ -148,6 +148,7 @@
 		font-size: 50px !important;
 		padding: 50px !important;
 		line-height: 1em !important;
+		word-wrap:break-word;
 	}
 	
 	textarea {
