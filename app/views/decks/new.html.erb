@@ -1,7 +1,5 @@
 <h1>New Deck</h1>
 
-<div style='pointer-events:auto;'>
-	<%= form_for @deck do |f| %>
-	  <%= f.submit "Create a deck!" %>
-	<% end %>
-</div>
+<%= render :partial => 'create_deck', :locals => { :deck => @deck } %>
+
+
