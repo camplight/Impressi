@@ -71,7 +71,7 @@
 
 	
 	#decorate-button {
-		padding-bottom:5px;
+		padding-bottom:2px;
 		padding-left:5px;
 	}
 		
@@ -166,21 +166,39 @@
 	.navbar {
 		border-radius: 2px;
 		float:left;
-		padding-top:5px;
+		padding-top:15px;
 		padding-bottom:5px;
-		bottom:10px;
+		bottom:12px;
 		padding-left:10px;
 		background: rgb(235,235,235);
 		width:100%;
-		
+		position:relative;
 	}
 	
 	
-	#impress-button {
+	#preview-button {
 		border: 1px solid black;
 		border-radius: 2px;
 		font-size: 17px;
-		float: left;
+		right:30%;
+	}
+	
+ #impress-button {
+		border: 1px solid;
+		border-radius: 2px;
+		font-size: 30px;
+		padding: 12px;
+		padding-left: 18px;
+		padding-right: 18px;
+		float: right;
+		margin-right: 1%;
+		bottom: 10px;
+		pointer-events: auto;
+		margin-left: 0;
+	}
+	
+	#preview-mode {
+		display:none;
 	}
 	
 	.temp_selector {
@@ -253,6 +271,14 @@
 		float: left;
 	}
 	
+	#saved {
+		bottom:0;
+		top:55%;
+		right:6%;
+		font-weight:900;
+		font-size:20px;
+	}
+	
 	select {
     -webkit-appearance: button;
     -webkit-border-radius: 2px;
@@ -265,7 +291,7 @@
 		-webkit-box-align: center;
     font-size: 90%;
     margin: 5px;
-		margin-top:10px;
+		margin-top:15px;
     overflow: hidden;
     padding-top: 10px;
     padding-bottom: 2px;
@@ -277,31 +303,6 @@
 	 	border:1px solid black;
 	 }
 
-/*	#hoverbox {
-		width:600px;
-		-webkit-border-radius:4px 4px;
-		-webkit-box-shadow:inset 0px 0px 15px #6584C7;
-		font-family: 'PT Serif', georgia, serif;
-	  font-size: 32px;
-	  line-height: 1.0;
-		resize:none;
-		opacity:1;
-		background-color:#fff;
-		z-index:10000;
-		padding: 13px;
-	}
-
-	.editor {
-		font-family:Arial,Helvetica,sans-serif !important;
-		letter-spacing: -1px !important;
-		margin-top: -50px !important;
-		margin-left: -50px !important;
-		width: 900px !important;
-		height: 600px !important;
-		font-size: 50px !important;
-		color: #6584C7 !important;
-	}*/
-
 	.edit-button {
 		border: 1px solid;
 		border-radius: 2px;
@@ -310,7 +311,7 @@
 		padding-left:18px;
 		padding-right:18px;
 		float: right;
-		margin-right: 12%;
+		margin-right: 1%;
 		bottom: 10px;
 		pointer-events: auto;
 	}

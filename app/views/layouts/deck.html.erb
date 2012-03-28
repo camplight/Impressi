@@ -9,14 +9,13 @@
 </head>
 <body>
 	<% current_or_guest_user %>
-	<div class='hint'>hi</div>
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
 	<%#= render :partial => 'shared/authentication' %>
 
 	<%= yield %>
 
 	<script src="/impress.js"></script>
-	<script>impress().init();</script>
+	<script>impress();</script>
 
 </body>
 </html>
