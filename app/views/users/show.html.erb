@@ -1,6 +1,10 @@
 <h1>Your Decks</h1>
+<div class="decks">
+	<% if @decks.nil? %>
+	  You don't have any decks.
+  <% else %>
+		<table><%= render :partial => 'decks/deck', :collection => @decks %></table>	 
+  <% end %>
+</div>
 
-<ul class="decks">
-  <%= render :partial => 'decks/deck', :collection => @decks %>
-</ul>
-
+<%= render :partial => 'decks/create_deck', :locals => { :deck => @deck } %>
