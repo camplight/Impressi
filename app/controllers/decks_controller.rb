@@ -42,7 +42,6 @@ class DecksController < ApplicationController
         
     respond_to do |format|
       if deck.save
-        flash.now[:success] = params[:commit] ? "Presentation saved." : "Autosaved."
         format.js 
       else
         render :text => 'Failed Ajax call.'

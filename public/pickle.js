@@ -226,8 +226,12 @@ var sendViaAjax = function(redirect_url) {
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
 	$('#preview-mode').fadeIn('fast');
-	//var deck_url = window.location.origin + '/decks/' + database.deckData.id;
-	//sendViaAjax(deck_url);
+	sendViaAjax();
+});
+
+$('#impress-button').click(function() {
+	var deck_url = window.location.origin + '/decks/' + database.deckData.id;
+	sendViaAjax(deck_url);
 });
 
 $('a.edit-button').click(function(e) {
