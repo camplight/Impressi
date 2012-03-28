@@ -19,5 +19,5 @@
 		  <% end %>
 		</select>
 	</div>
-	<div id='impress-button' class='button' style="pointer-events: auto">Impress!</div>
+	<div id='impress-button' class='button' style="pointer-events: auto" data-logged-in="<%= user_signed_in?.to_s %>"  data-sign-up-url="<%= new_user_registration_path %>">impress!</div>
 </div>

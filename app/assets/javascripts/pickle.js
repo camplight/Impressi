@@ -217,16 +217,28 @@ var sendViaAjax = function(redirect_url) {
 		type: "PUT",
 		data:  { deck: database.deckData },
 		url:  "http://localhost:3000/decks/" + database.deckData.id,
-		success: function() { if (redirect_url) { window.location.href = redirect_url; } 
+		success: function() { if (redirect_url) { //if redirect_url isn't blank ...
+				if ( $('#impress-button').attr('data-logged-in') == 'true') { 
+					console.log("sees user as logged in")
+					console.log(redirect_url);
+					window.location.href = redirect_url; 
+				} else {
+					console.log("doesn't see user as logged in")
+					login_url = "http://localhost:3000" + $('#impress-button').attr('data-sign-up-url')
+					console.log(login_url)
+					window.location.href = login_url;
+				}
+			}
 		},
 		failure: function() { console.log(err); }
 	});
 }
 
-// setInterval(sendViaAjax, 10000);
+// setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#impress-button').click(function() {
 	var redirect_url = "http://localhost:3000/decks/" + database.deckData.id;
+	console.log(redirect_url);
 	sendViaAjax(redirect_url);
 });
 
@@ -248,9 +260,9 @@ $('.add_slide').click(function() {
 
 $('.delete_slide').click(function() {
 
-  var deckContent = database.deckData.content
-  var currentSlide = $('.active');
-  var slideIndexNumber = getSlideIndexNumber(currentSlide);
+  	var deckContent = database.deckData.content
+	  var currentSlide = $('.active');
+	  var slideIndexNumber = getSlideIndexNumber(currentSlide);
 
   if (deckContent.length == 1) { 
     deckContent.push(''); 
