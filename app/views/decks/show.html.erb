@@ -1,4 +1,5 @@
 <% user = current_user || guest_user %>
+
 <% if user.id == @deck.user_id %>
 	<%= link_to "Edit", edit_deck_path(@deck), :class => 'button edit-button alter' %>
 <% end %>

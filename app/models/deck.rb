@@ -4,7 +4,7 @@ class Deck < ActiveRecord::Base
   belongs_to :user
   belongs_to :template
   serialize :content
-  before_create :seed_content
+  after_create :seed_deck
 
   
   attr_accessible :name, :template_id, :content
@@ -30,7 +30,9 @@ class Deck < ActiveRecord::Base
   
   private
     
-  def seed_content
+  def seed_deck
     self.content = ['', '']
+    self.name    = "Deck #{self.id}"
+    self.save
   end
 end

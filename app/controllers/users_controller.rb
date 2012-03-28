@@ -6,7 +6,9 @@ class UsersController < ApplicationController
     logger.info(current_user.inspect)
     logger.info("~"*30)
     redirect_to :root unless current_user == User.find(params[:id])
-    @decks = current_user.decks
+    @decks = current_user.decks.sort
+    @deck = current_user.decks.build
+
   end
   
 end
