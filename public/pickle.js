@@ -223,9 +223,16 @@ var sendViaAjax = function(redirect_url) {
 
 // setInterval(function() { sendViaAjax(); } , 10000);
 
-$('#impress-button').click(function() {
-	var deck_url = window.location.origin + '/decks/' + database.deckData.id;
-	sendViaAjax(deck_url);
+$('#preview-button').click(function() {
+	$('.navbar').slideUp('fast');
+	$('#preview-mode').fadeIn('fast');
+	//var deck_url = window.location.origin + '/decks/' + database.deckData.id;
+	//sendViaAjax(deck_url);
+});
+
+$('a.edit-button').click(function(e) {
+	$('#preview-mode').fadeOut('fast');
+	$('.navbar').delay(100).show('fast');
 });
 
 $('.prev_slide').click(function() {
