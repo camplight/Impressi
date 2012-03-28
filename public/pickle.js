@@ -226,14 +226,28 @@ var sendViaAjax = function(redirect_url) {
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
 	$('#preview-mode').fadeIn('fast');
-	//var deck_url = window.location.origin + '/decks/' + database.deckData.id;
-	//sendViaAjax(deck_url);
+	$('#impress').css({pointerEvents: 'none'});
 });
 
 $('a.edit-button').click(function(e) {
+	$('.navbar').slideDown('fast').delay(50).css({display: 'block'});
 	$('#preview-mode').fadeOut('fast');
-	$('.navbar').delay(100).show('fast');
+	$('#impress').css({pointerEvents: ''});
 });
+
+$('#impress-button').click(function() {
+	sendViaAjax(window.location.origin + '/decks/' + database.deckData.id);
+});
+
+// $('a#help').hover(
+// 	function() {
+// 		$(this).css({background: 'blue'});
+// 	},
+// 	
+// 	function() {
+// 		console.log('out');
+// 	}
+// );
 
 $('.prev_slide').click(function() {
   impress().prev();
