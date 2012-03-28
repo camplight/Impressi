@@ -15,6 +15,7 @@ $(document).ready(function() {
 		url:  window.location.origin + "/templates",
 		dataType: 'json',
 		success: function(data) {
+			console.log(data);
 			database.templateData = data;
 			if (dataLoaded()) { constructTree() }
 		}
@@ -81,7 +82,7 @@ var	markdown_to_html = function(string) {
 }
 
 var grabStepContent = function(step) {
-  	return database.deckData.content[getSlideIndexNumber(step)];
+  	return database.deckData.steps[getSlideIndexNumber(step)].content;
 }
 
 var createInlineEditor = function() {
@@ -119,7 +120,7 @@ var createInlineEditor = function() {
 
                 var currentSlide = $(this),
                     slideIndexNumber = getSlideIndexNumber(currentSlide);
-                    currentText = database.deckData.content[slideIndexNumber];
+                    currentText = database.deckData.steps[slideIndexNumber].content;
 
                 activeInput = false;
 
@@ -154,7 +155,7 @@ var createInlineEditor = function() {
                     },
                     blur: function(e) {
                         currentInput = $(this).val();
-                        database.deckData.content[slideIndexNumber] = currentInput;
+                        database.deckData.steps[slideIndexNumber].content = currentInput;
                         currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
                         e.stopImmediatePropagation();
                         $(this).val('');
@@ -171,8 +172,8 @@ var createInlineEditor = function() {
 
 var buildTree = function() {
 	var deck        = database.deckData,
-			deck_length = deck.content.length,
-			template    = database.templateData[deck.template_id - 1];
+		deck_length = deck.steps.length,
+		template    = database.templateData[deck.template_id - 1];
 
 	for(var i = 0; i < deck_length; i++) {
 		$('#impress').append('<div></div>');
@@ -188,7 +189,7 @@ var buildTree = function() {
     } else {
         $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
-		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
+		$('#impress > div').last().html(markdown_to_html(deck.steps[i].content.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
 }
 
@@ -239,19 +240,19 @@ $('.next_slide').click(function() {
 $('.add_slide').click(function() {
   var currentSlide = $('.active');
   var slideIndexNumber = getSlideIndexNumber(currentSlide);
-  database.deckData.content.splice(slideIndexNumber + 1, 0, '');
+  database.deckData.steps.splice(slideIndexNumber + 1, 0, { content: '', 'font-size': 16, 'text-align': 'left' });
   constructTree();
   impress().next();
 });
 
 $('.delete_slide').click(function() {
-	var deckContent = database.deckData.content
+	var deckContent = database.deckData.steps
 	var currentSlide = $('.active');
 	var slideIndexNumber = getSlideIndexNumber(currentSlide);
 
 
   if (deckContent.length == 1) { 
-    deckContent.push(''); 
+    deckContent.push({ content: '', 'font-size': 16, 'text-align': 'left' }); 
     deckContent.splice(0, 1);
   } else {
     deckContent.splice(slideIndexNumber, 1);

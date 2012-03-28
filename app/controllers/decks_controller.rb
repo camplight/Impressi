@@ -32,7 +32,7 @@ class DecksController < ApplicationController
 
     deck             = Deck.find(params[:id])
     deck.template_id = params[:deck][:template_id]
-    deck.content     = params[:deck][:content]
+    deck.steps       = params[:deck][:steps]
     deck.save
       
     if user_signed_in?
