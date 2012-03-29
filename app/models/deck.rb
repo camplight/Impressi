@@ -12,7 +12,7 @@ class Deck < ActiveRecord::Base
   private
     
   def seed_deck
-    self.steps = [{ :content => '', :'font-size' => 100, :'text-align' => 'left' }, { :content => '', :'font-size' => 100, :'text-align' => 'left' }]
+    self.steps = [{ :content => '', :'font-size' => 50, :'text-align' => 'left' }, { :content => '', :'font-size' => 50, :'text-align' => 'left' }]
     self.name  = "Deck #{self.id}"
     self.save
   end
