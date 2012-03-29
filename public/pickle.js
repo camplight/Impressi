@@ -1,13 +1,23 @@
 $(document).ready(function() {
   var deck_id = $('#impress').attr('deck_id');
-	establishEventListeners();
+	var hints = true;
+
+	if(hints == true) {
+		showHints();
+		hints = false;
+	}
 	
+	establishEventListeners();
+
 	$.ajax({
 		url:  window.location.origin + "/decks/" + deck_id,
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
-			if (dataLoaded()) { constructTree() }
+			if (dataLoaded()) { 
+				constructTree();
+			
+			 }
 		}
 	});
 	
@@ -23,7 +33,19 @@ $(document).ready(function() {
 
 var database = {};
 
-resetImpress = function() {
+var showHints = function() {
+	$('.hint').on({
+		click: function() {
+			$(this).fadeOut('fast');
+		},
+		
+		blur: function() {
+			$(this).fadeOut('fast');
+		}
+	});
+}
+
+var resetImpress = function() {
     window.impress().reset();
     window.impress();
 };
@@ -92,8 +114,8 @@ var createInlineEditor = function() {
 				inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
-		inlineEditor.attr('placeholder', 'Start typing...')
-		inlineEditor.css({wordWrap: 'break-word'});
+		inlineEditor.attr('placeholder', 'Start typing...');
+		inlineEditor.prop('wrap', 'HARD');
 
 		var divbox = document.createElement('div'),
             hoverbox = $(divbox);
@@ -104,10 +126,13 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
     	mouseenter: function(e) {
-
 				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
         	$(this).html(hoverbox.fadeIn(350));
         }
+      },
+			
+			mouseleave: function(e) {
+      	$('#hoverbox').fadeOut(150);
       },
 
             mouseleave: function(e) {
@@ -117,6 +142,7 @@ var createInlineEditor = function() {
             click: function(e) {
 
                 if (!$(this).hasClass('active')) { return false; }
+								if($('div.hint').css('opacity') == 1) {$('.hint').fadeOut('fast');}
 
                 var currentSlide = $(this),
                     slideIndexNumber = getSlideIndexNumber(currentSlide);
@@ -168,6 +194,7 @@ var createInlineEditor = function() {
 		    });
 		return false;
     });
+
 }
 
 var buildTree = function() {
@@ -222,7 +249,7 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-// setInterval(function() { sendViaAjax(); } , 10000);
+setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
@@ -245,16 +272,6 @@ $('a.edit-button').click(function(e) {
 $('#impress-button').click(function() {
 	sendViaAjax(window.location.origin + '/decks/' + database.deckData.id);
 });
-
-// $('a#help').hover(
-// 	function() {
-// 		$(this).css({background: 'blue'});
-// 	},
-// 	
-// 	function() {
-// 		console.log('out');
-// 	}
-// );
 
 $('.prev_slide').click(function() {
   impress().prev();
