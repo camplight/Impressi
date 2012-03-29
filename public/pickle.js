@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var deck_id = $('#impress').attr('deck_id');
 	establishEventListeners();
-	
+
 	$.ajax({
 		url:  window.location.origin + "/decks/" + deck_id,
 		dataType: 'json',
@@ -23,7 +23,19 @@ $(document).ready(function() {
 
 var database = {};
 
-resetImpress = function() {
+var showHints = function() {
+	$('.hint').on({
+		click: function() {
+			$(this).fadeOut('fast');
+		},
+		
+		blur: function() {
+			$(this).fadeOut('fast');
+		}
+	});
+}
+
+var resetImpress = function() {
     window.impress().reset();
     window.impress();
 };
@@ -92,8 +104,8 @@ var createInlineEditor = function() {
 				inlineEditor = $(textarea);
 			
 		inlineEditor.attr('id', 'inline-editor');
-		inlineEditor.attr('placeholder', 'Start typing...')
-		inlineEditor.css({wordWrap: 'break-word'});
+		inlineEditor.attr('placeholder', 'Start typing...');
+		inlineEditor.prop('wrap', 'HARD');
 
 		var divbox = document.createElement('div'),
             hoverbox = $(divbox);
@@ -104,70 +116,73 @@ var createInlineEditor = function() {
 
 		$(".editable").on({
     	mouseenter: function(e) {
-
 				if (mode === 'prezi' && grabStepContent($(this))  == '' && $(this).hasClass('active')) {
         	$(this).html(hoverbox.fadeIn(350));
         }
       },
+			
+			mouseleave: function(e) {
+      	$('#hoverbox').fadeOut(150);
+      },
 
-            mouseleave: function(e) {
-            	$('#hoverbox').fadeOut(150)
-            },
+      click: function(e) {
 
-            click: function(e) {
+        if(!$(this).hasClass('active')) { return false; }
+				if($('div.hint').css('opacity') == 1) {$('.hint').fadeOut('fast');}
+				
+        var currentSlide = $(this),
+            slideIndexNumber = getSlideIndexNumber(currentSlide);
+            currentText = database.deckData.content[slideIndexNumber];
 
-                if (!$(this).hasClass('active')) { return false; }
+        activeInput = false;
 
-                var currentSlide = $(this),
-                    slideIndexNumber = getSlideIndexNumber(currentSlide);
-                    currentText = database.deckData.content[slideIndexNumber];
+        inlineEditor.val(currentText);
+        e.stopImmediatePropagation();
 
-                activeInput = false;
+        if (activeInput == false) {
+            activeInput = true;
+            mode = 'edit';
+            currentSlide.html(inlineEditor);
+            inlineEditor.focus();
+            // show save text button
+            // show cancel edit button
+        } else {
+            activeInput = false;
+            mode = 'prezi';
+            inlineEditor.blur();
+            e.stopImmediatePropagation();
+        }
 
-                inlineEditor.val(currentText);
-                e.stopImmediatePropagation();
+        inlineEditor.on({    
+        	keyup: function(e) {
+						$(this).blur();
+						$('.editable').click();
+            if (e.keyCode == 27) {
+             	$(this).blur();
+            	activeInput = false;
+            }
+          },
+            
+					click: function(e) {
+          	e.stopPropagation();
+          },
+            
+					blur: function(e) {
+          	currentInput = $(this).val();
+            database.deckData.content[slideIndexNumber] = currentInput;
+            currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
+            e.stopImmediatePropagation();
+            $(this).val('');
+            mode = 'prezi';
+            // hide save text button
+            // hide cancel edit button
+          }
+        });
 
-                if (activeInput == false) {
-                    activeInput = true;
-                    mode = 'edit';
-                    currentSlide.html(inlineEditor);
-                    inlineEditor.focus();
-                    // show save text button
-                    // show cancel edit button
-                } else {
-                    activeInput = false;
-                    mode = 'prezi';
-                    inlineEditor.blur();
-                    e.stopImmediatePropagation();
-                }
-
-                inlineEditor.on({    
-                    keyup: function(e) {
-												$(this).blur();
-												$('.editable').click();
-                        if (e.keyCode == 27) {
-                            $(this).blur();
-                            activeInput = false;
-                        }
-                    },
-                    click: function(e) {
-                        e.stopPropagation();
-                    },
-                    blur: function(e) {
-                        currentInput = $(this).val();
-                        database.deckData.content[slideIndexNumber] = currentInput;
-                        currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
-                        e.stopImmediatePropagation();
-                        $(this).val('');
-                        mode = 'prezi';
-                        // hide save text button
-                        // hide cancel edit button
-                    }
-                });
-		        }    
-		    });
-		return false;
-    });
+		  }    
+		});
+	return false;
+ });
 }
 
 var buildTree = function() {
@@ -192,6 +207,7 @@ var buildTree = function() {
 		console.log
 		$('#impress > div').last().html(markdown_to_html(deck.content[i].replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
+	showHints();
 }
 
 var constructTree = function() {
@@ -223,7 +239,7 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-// setInterval(function() { sendViaAjax(); } , 10000);
+setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
@@ -240,16 +256,6 @@ $('a.edit-button').click(function(e) {
 $('#impress-button').click(function() {
 	sendViaAjax(window.location.origin + '/decks/' + database.deckData.id);
 });
-
-// $('a#help').hover(
-// 	function() {
-// 		$(this).css({background: 'blue'});
-// 	},
-// 	
-// 	function() {
-// 		console.log('out');
-// 	}
-// );
 
 $('.prev_slide').click(function() {
   impress().prev();
