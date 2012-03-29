@@ -1,10 +1,10 @@
-<h1 id ="user-decks">Your Decks</h1>
+<h1 class="navbar">Your Decks</h1>
 
 <div class="decks">
 	<% if @decks.nil? %>
 	  You don't have any decks.
   <% else %>
-		<table id="user-decks"><%= render :partial => 'decks/deck', :collection => @decks %></table>	 
+		<table id="user-decks" class="navbar"><%= render :partial => 'decks/deck', :collection => @decks %></table>	 
   <% end %>
 </div>
 
