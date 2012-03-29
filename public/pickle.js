@@ -14,10 +14,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
-			if (dataLoaded()) { 
-				constructTree();
-			
-			 }
+			if (dataLoaded()) { constructTree() }
 		}
 	});
 	
@@ -41,6 +38,12 @@ var showHints = function() {
 		
 		blur: function() {
 			$(this).fadeOut('fast');
+		},
+		
+		keyup: function(e) {
+			if(e.keyCode == 13 || e.keyCode == 27 || e.keyCode == 8) {
+				$(this).fadeOut('fast');
+			}
 		}
 	});
 }
