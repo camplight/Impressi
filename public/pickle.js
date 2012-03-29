@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   var deck_id = $('#impress').attr('deck_id');
 	var hints = true;
 
@@ -15,10 +14,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
-			if (dataLoaded()) { 
-				constructTree();
-			
-			 }
+			if (dataLoaded()) { constructTree() }
 		}
 	});
 	
@@ -30,8 +26,6 @@ $(document).ready(function() {
 			if (dataLoaded()) { constructTree() }
 		}
 	});
-	
-	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
 });
 
 var database = {};
@@ -165,10 +159,7 @@ var createInlineEditor = function() {
                 if (activeInput == false) {
                     activeInput = true;
                     mode = 'edit';
-					$('.ux-helper').html("Press <span class='keyboard'>ESC</span> to stop editing.");
                     currentSlide.html(inlineEditor);
-					console.log(database.deckData.steps[slideIndexNumber]['font-size']);
-					inlineEditor.css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
                     inlineEditor.focus();
                     // show save text button
                     // show cancel edit button
@@ -198,7 +189,6 @@ var createInlineEditor = function() {
                         e.stopImmediatePropagation();
                         $(this).val('');
                         mode = 'prezi';
-						$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
                         // hide save text button
                         // hide cancel edit button
                     }
@@ -212,8 +202,8 @@ var createInlineEditor = function() {
 
 var buildTree = function() {
 	var deck        = database.deckData,
-		deck_length 	= deck.steps.length,
-		template   		= database.templateData[deck.template_id - 1];
+		deck_length = deck.steps.length,
+		template    = database.templateData[deck.template_id - 1];
 
 	for(var i = 0; i < deck_length; i++) {
 		$('#impress').append('<div></div>');
@@ -224,13 +214,13 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-rotate-x', template['data-rotate-x'] * i);
 		$('#impress > div').last().attr('data-rotate-y', template['data-rotate-y'] * i);
 		$('#impress > div').last().attr('data-rotate-z', template['data-rotate-z'] * i);
-		$('#impress > div').last().css('font-size', deck.steps[i]['font-size']);
 		if (template['data-scale'] == false) {
         $('#impress > div').last().attr('data-scale', 1);
     } else {
         $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
 		$('#impress > div').last().html(markdown_to_html(deck.steps[i].content.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
+		$('#impress > div').last().css('font-size', deck.steps[i]['font-size']);
 	}
 }
 
@@ -258,16 +248,12 @@ var sendViaAjax = function(redirect_url) {
 		type: "PUT",
 		data:  { deck: database.deckData },
 		url:  window.location.origin + '/decks/' + database.deckData.id,
-		success: function() { 
-			if (redirect_url) { 
-				window.location.href = redirect_url; 
-			}
-	  },
+		success: function() { if (redirect_url) { window.location.href = redirect_url; } },
 		failure: function() { console.log(err); }
 	});
 }
 
-setInterval(function() { sendViaAjax(); } , 2000);
+setInterval(function() { sendViaAjax(); } , 10000);
 
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
@@ -292,23 +278,19 @@ $('#impress-button').click(function() {
 });
 
 $('.prev_slide').click(function() {
-    impress().prev();
+  impress().prev();
 });
 
 $('.next_slide').click(function() {
-    impress().next();
+  impress().next();
 });
 
 $('.add_slide').click(function() {
-	var currentSlide     = $('.active'),
-		slideIndexNumber = getSlideIndexNumber(currentSlide),
-		deck             = database.deckData;
-
-	database.deckData.steps.splice(slideIndexNumber + 1, 0, { content: '', 
-	    'font-size': database.templateData[deck.template_id - 1].default_font_size,
-		'text-align': database.templateData[deck.template_id - 1].default_alignment });
-	constructTree();
-	impress().next();
+  var currentSlide = $('.active');
+  var slideIndexNumber = getSlideIndexNumber(currentSlide);
+  database.deckData.steps.splice(slideIndexNumber + 1, 0, { content: '', 'font-size': 16, 'text-align': 'left' });
+  constructTree();
+  impress().next();
 });
 
 $('.delete_slide').click(function() {
@@ -317,30 +299,18 @@ $('.delete_slide').click(function() {
 	var slideIndexNumber = getSlideIndexNumber(currentSlide);
 
 
-    if (deckContent.length == 1) { 
-        deckContent.push({ content: '', 'font-size': 16, 'text-align': 'left' }); 
-        deckContent.splice(0, 1);
-    } else {
-        deckContent.splice(slideIndexNumber, 1);
-    }
+  if (deckContent.length == 1) { 
+    deckContent.push({ content: '', 'font-size': 16, 'text-align': 'left' }); 
+    deckContent.splice(0, 1);
+  } else {
+    deckContent.splice(slideIndexNumber, 1);
+  }
 
-    constructTree();
-    if (slideIndexNumber == deckContent.length) { impress().prev(); }
+  constructTree();
+  if (slideIndexNumber == deckContent.length) { impress().prev(); }
 });
 
 $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
-
-// $('.size_dropdown').change(function() {
-// 	var deckContent = database.deckData.steps
-// 	var currentSlide = $('.active');
-// 	var slideIndexNumber = getSlideIndexNumber(currentSlide);
-// 	
-// 	console.log($('#inline-editor'));
-// 	deckContent[slideIndexNumber]['font-size'] = parseInt($(this).val());
-// 	$('#inline-editor').css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
-// 	$(currentSlide).css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
-// });
-
