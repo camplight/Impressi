@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var deck_id = $('#impress').attr('deck_id');
+`	var hints = true;`
 	establishEventListeners();
 
 	$.ajax({
@@ -125,65 +126,66 @@ var createInlineEditor = function() {
       	$('#hoverbox').fadeOut(150);
       },
 
-<<<<<<< HEAD
-      click: function(e) {
+            mouseleave: function(e) {
+            	$('#hoverbox').fadeOut(150)
+            },
 
-        if(!$(this).hasClass('active')) { return false; }
-				if($('div.hint').css('opacity') == 1) {$('.hint').fadeOut('fast');}
-				
-        var currentSlide = $(this),
-            slideIndexNumber = getSlideIndexNumber(currentSlide);
-            currentText = database.deckData.content[slideIndexNumber];
+            click: function(e) {
 
-        activeInput = false;
+                if (!$(this).hasClass('active')) { return false; }
+								if($('div.hint').css('opacity') == 1) {$('.hint').fadeOut('fast');}
 
-        inlineEditor.val(currentText);
-        e.stopImmediatePropagation();
+                var currentSlide = $(this),
+                    slideIndexNumber = getSlideIndexNumber(currentSlide);
+                    currentText = database.deckData.steps[slideIndexNumber].content;
 
-        if (activeInput == false) {
-            activeInput = true;
-            mode = 'edit';
-            currentSlide.html(inlineEditor);
-            inlineEditor.focus();
-            // show save text button
-            // show cancel edit button
-        } else {
-            activeInput = false;
-            mode = 'prezi';
-            inlineEditor.blur();
-            e.stopImmediatePropagation();
-        }
+                activeInput = false;
 
-        inlineEditor.on({    
-        	keyup: function(e) {
-						$(this).blur();
-						$('.editable').click();
-            if (e.keyCode == 27) {
-             	$(this).blur();
-            	activeInput = false;
-            }
-          },
-            
-					click: function(e) {
-          	e.stopPropagation();
-          },
-            
-					blur: function(e) {
-          	currentInput = $(this).val();
-            database.deckData.content[slideIndexNumber] = currentInput;
-            currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
-            e.stopImmediatePropagation();
-            $(this).val('');
-            mode = 'prezi';
-            // hide save text button
-            // hide cancel edit button
-          }
-        });
+                inlineEditor.val(currentText);
+                e.stopImmediatePropagation();
 
-		  }    
-		});
-	return false;
- });
+                if (activeInput == false) {
+                    activeInput = true;
+                    mode = 'edit';
+                    currentSlide.html(inlineEditor);
+                    inlineEditor.focus();
+                    // show save text button
+                    // show cancel edit button
+                } else {
+                    activeInput = false;
+                    mode = 'prezi';
+                    inlineEditor.blur();
+                    e.stopImmediatePropagation();
+                }
+
+                inlineEditor.on({    
+                    keyup: function(e) {
+												$(this).blur();
+												$('.editable').click();
+                        if (e.keyCode == 27) {
+                            $(this).blur();
+                            activeInput = false;
+                        }
+                    },
+                    click: function(e) {
+                        e.stopPropagation();
+                    },
+                    blur: function(e) {
+                        currentInput = $(this).val();
+                        database.deckData.steps[slideIndexNumber].content = currentInput;
+                        currentSlide.html(markdown_to_html(currentInput.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
+                        e.stopImmediatePropagation();
+                        $(this).val('');
+                        mode = 'prezi';
+                        // hide save text button
+                        // hide cancel edit button
+                    }
+                });
+		        }    
+		    });
+		return false;
+    });
+
 }
 
 var buildTree = function() {
@@ -207,7 +209,11 @@ var buildTree = function() {
     }
 		$('#impress > div').last().html(markdown_to_html(deck.steps[i].content.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
-	showHints();
+	
+	if(hints == true) {
+		showHints();
+		hints = false;
+	}
 }
 
 var constructTree = function() {
