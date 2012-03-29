@@ -30,6 +30,8 @@ $(document).ready(function() {
 			if (dataLoaded()) { constructTree() }
 		}
 	});
+	
+	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
 });
 
 var database = {};
@@ -163,7 +165,9 @@ var createInlineEditor = function() {
                 if (activeInput == false) {
                     activeInput = true;
                     mode = 'edit';
+					$('.ux-helper').html("Press <span class='keyboard'>ESC</span> to stop editing.");
                     currentSlide.html(inlineEditor);
+					console.log(database.deckData.steps[slideIndexNumber]['font-size']);
 					inlineEditor.css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
                     inlineEditor.focus();
                     // show save text button
@@ -194,6 +198,7 @@ var createInlineEditor = function() {
                         e.stopImmediatePropagation();
                         $(this).val('');
                         mode = 'prezi';
+						$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
                         // hide save text button
                         // hide cancel edit button
                     }
@@ -327,4 +332,15 @@ $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
+
+// $('.size_dropdown').change(function() {
+// 	var deckContent = database.deckData.steps
+// 	var currentSlide = $('.active');
+// 	var slideIndexNumber = getSlideIndexNumber(currentSlide);
+// 	
+// 	console.log($('#inline-editor'));
+// 	deckContent[slideIndexNumber]['font-size'] = parseInt($(this).val());
+// 	$('#inline-editor').css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
+// 	$(currentSlide).css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
+// });
 

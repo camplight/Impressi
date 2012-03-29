@@ -1,21 +1,24 @@
 <div class='navbar'>
+	<h2 class='edit-title'>impressi</h2>
   <a class='ux_button button add_slide alter' style="pointer-events: auto;">
-    Add step
+    Add slide
   </a>
 
   <a class='ux_button button delete_slide alter' style="pointer-events: auto">
-    Remove step
+    Remove slide
   </a>
 
 	<div class='selectors'>
-		Template:
-		<select class='temp_dropdown' name='temp_dropdown'>
-      <% template_data.each_with_index do |template, i| %>
-			  <option value='<%= template[:template_id] %>' <%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
-		  <% end %>
-		</select>
+		<div class='template'>
+			Template:
+			<select class='temp_dropdown' name='temp_dropdown'>
+	      <% template_data.each_with_index do |template, i| %>
+				  <option value='<%= template[:template_id] %>' <%= " selected='selected'" if deck.template_id == (i + 1) %>><%= template[:name] %></option>
+			  <% end %>
+			</select>
+		</div>
 	
-		Font size:
+		<!-- Font size:
 		<select class='size_dropdown' name='size_dropdown'>
 			<option value='32' name=<%= " selected='selected'" if deck.template.default_font_size == 24 %>>24</option>
 			<option value='32' name=<%= " selected='selected'" if deck.template.default_font_size == 32 %>>32</option>
@@ -23,7 +26,10 @@
 			<option value='64' name=<%= " selected='selected'" if deck.template.default_font_size == 64 %>>64</option>
 			<option value='80' name=<%= " selected='selected'" if deck.template.default_font_size == 80 %>>80</option>
 			<option value='100' name=<%= " selected='selected'" if deck.template.default_font_size == 100 %>>100</option>
-		</select>
+		</select> -->
+	</div>
+	
+	<div class='ux-helper'>
 	</div>
 	
 	<div id='menu-right'>
