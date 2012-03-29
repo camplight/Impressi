@@ -4,7 +4,17 @@
 	<% if @decks.nil? %>
 	  You don't have any decks.
   <% else %>
-		<table id="user-decks" class="navbar"><%= render :partial => 'decks/deck', :collection => @decks %></table>	 
+    <table id="user-decks" class="navbar">
+      <thead>
+        <th>Name</th>
+        <th>Preview</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </thead>
+      <tbody>
+        <%= render :partial => 'decks/deck', :collection => @decks %></table>	 
+      </tbody>
   <% end %>
 </div>
 
