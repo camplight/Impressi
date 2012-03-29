@@ -1,7 +1,7 @@
 	<tr class="impress-button">
-    <td><span class='deck-name'><%= "#{deck.name}" %></span></td>
+    <td><span class='deck-name'><%= link_to deck.name, deck_path(deck.id) %></span></td>
     <td><span class='deck-preview'><%= "#{deck_preview(deck, 30)}" %></span></td>
-    <td><%= link_to "show", deck_path(deck.id) %><br/>
+    <td>
       <%= link_to "edit", edit_deck_path(deck.id) %><br/>
       <%= link_to "delete", deck_path(deck.id), :confirm => "Are you sure?", :method => :delete %>
     </td> 
