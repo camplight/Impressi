@@ -333,6 +333,8 @@ $('.temp_dropdown').change(function() {
 	constructTree();
 });
 
+$('a#formatting').on('hover', function() { $('.format-helper').fadeIn() },function() {$('.formatting').hide();});
+
 // $('.size_dropdown').change(function() {
 // 	var deckContent = database.deckData.steps
 // 	var currentSlide = $('.active');
