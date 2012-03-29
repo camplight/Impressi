@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
       deck.user_id = current_user.id if user_signed_in?
       deck.save
     end
+    session[:guest_deck] = nil if user_signed_in?
   end
 
   private
