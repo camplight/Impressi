@@ -256,7 +256,7 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-//setInterval(function() { sendViaAjax(); } , 1000);
+setInterval(function() { sendViaAjax(); } , 2000);
 
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
@@ -318,6 +318,3 @@ $('.temp_dropdown').change(function() {
 	constructTree();
 });
 
-var startDemo = function() {
-	
-};
