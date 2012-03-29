@@ -2,8 +2,7 @@
 	a {
 		text-decoration:none;
 		color:black;
-	}
-	
+	}	
 	
 /*----------------------SITE WIDE------------------*/	
 	#authentication {
@@ -217,6 +216,7 @@
 	#help:hover {
 		border:none;
 		background:#08C;
+	
 	}
 	
 	.temp_selector {
@@ -285,7 +285,6 @@
 	}
 
 	#authentication {
-		border: 1px solid;
 		float: left;
 	}
 	
@@ -333,7 +332,7 @@
 		bottom: 10px;
 		pointer-events: auto;
 	}
-<<<<<<< HEAD
+
 	
 /*----------------------TABLE FORMATTING ------------------*/
 
@@ -397,50 +396,46 @@ h1 {
 }
 
 .hint {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 200px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 200px;
+  background: rgba(0,0,0,0.5);
+  color: #EEE;
+  text-align: center;
+  font-size: 25px;
+  padding: 20px;
+  z-index: 200;
+pointer-events:auto;
+  opacity: 0;
 
-    background: rgba(0,0,0,0.5);
-    color: #EEE;
-    text-align: center;
+  -webkit-transform: translateY(400px);
+  -moz-transform:    translateY(400px);
+  -ms-transform:     translateY(400px);
+  -o-transform:      translateY(400px);
+  transform:         translateY(400px);
 
-    font-size: 25px;
-    padding: 20px;
-
-    z-index: 200;
-		pointer-events:auto;
-
-    opacity: 0;
-
-    -webkit-transform: translateY(400px);
-    -moz-transform:    translateY(400px);
-    -ms-transform:     translateY(400px);
-    -o-transform:      translateY(400px);
-    transform:         translateY(400px);
-
-    -webkit-transition: opacity 1s, -webkit-transform 0.5s 1s;
-    -moz-transition:    opacity 1s,    -moz-transform 0.5s 1s;
-    -ms-transition:     opacity 1s,     -ms-transform 0.5s 1s;
-    -o-transition:      opacity 1s,      -o-transform 0.5s 1s;
-    transition:         opacity 1s,         transform 0.5s 1s;
+  -webkit-transition: opacity 1s, -webkit-transform 0.5s 1s;
+  -moz-transition:    opacity 1s,    -moz-transform 0.5s 1s;
+  -ms-transition:     opacity 1s,     -ms-transform 0.5s 1s;
+  -o-transition:      opacity 1s,      -o-transform 0.5s 1s;
+  transition:         opacity 1s,         transform 0.5s 1s;
 }
 
 .impress-on-step-1 .hint {
-    opacity: 1;
+  opacity: 1;
 
-    -webkit-transition: opacity 1s 5s, -webkit-transform 0.5s;
-    -moz-transition:    opacity 1s 5s,    -moz-transform 0.5s;
-    -ms-transition:     opacity 1s 5s,     -ms-transform 0.5s;
-    -o-transition:      opacity 1s 5s,      -o-transform 0.5s;
-    transition:         opacity 1s 5s,         transform 0.5s;
+  -webkit-transition: opacity 1s 1s, -webkit-transform 0.5s;
+  -moz-transition:    opacity 1s 1s,    -moz-transform 0.5s;
+  -ms-transition:     opacity 1s 1s,     -ms-transform 0.5s;
+  -o-transition:      opacity 1s 1s,      -o-transform 0.5s;
+  transition:         opacity 1s 1s,         transform 0.5s;
 
-    -webkit-transform: translateY(0px);
-    -moz-transform:    translateY(0px);
-    -ms-transform:     translateY(0px);
-    -o-transform:      translateY(0px);
-    transform:         translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform:    translateY(0px);
+  -ms-transform:     translateY(0px);
+  -o-transform:      translateY(0px);
+  transform:         translateY(0px);
 }
 
 .button-message {
@@ -448,7 +443,7 @@ h1 {
 	text-align: center;
 	color: #444;
 	text-decoration: none;
-	line-height: 1.2;
+	line-height: 2;
 	font-family: Tahoma, Geneva, sans-serif;
 	outline: none;
 	margin: 0;
@@ -456,4 +451,76 @@ h1 {
 	font-size: 35px;
 	padding: 5px;
 }
+
+.circle {
+	z-index:100;
+	background-color:rgba(0, 150, 220, 0.6);
+	height: 450px;
+	-moz-border-radius: 75px;
+	-webkit-border-radius: 225px;
+	width: 450px;
+	position: relative;
+	left: 60%;
+	margin-top: 100px;
+}
+
+#separator {
+	border-top:1px solid white;
+	width:260px;
+	height:85px;
+	margin-left:100px;
+	margin-top:200px;
+	position:absolute;
+}
+
+h2.title {
+	font-family: 'Satisfy', cursive;
+	font-size:98px;
+	margin-left:70px;
+	margin-top:80px;
+	position:absolute;
+	text-shadow:0px 0px 1px white;
+	color:white;
+	font-weight:bold;
+}
+
+#create {
+	text-align:center;
+	color:white;
+	margin-left:5px;
+	margin-top:20px;
+	position:absolute;
+	font-size:28px;
+	letter-spacing:1px;
+	line-height:1.2em;
+}
+
+.opaque {
+	opacity: 0.1;
+	-webkit-transition:opacity 2s linear;
+}
+
+.opaque.active {
+	opacity:1;
+}
+
+.splash-button {
+	position: absolute;
+	margin-left: 55px;
+	margin-top: 105px;
+	border-radius:4px;
+	padding:10px;
+	font-size:24px;
+	border-bottom:1px solid white;
+}
+
+#border {
+	position:absolute;
+	margin-left: 55px;
+	margin-top: 105px;
+	border-top:1px solid white;
+	width:150;
+}
+
+
 

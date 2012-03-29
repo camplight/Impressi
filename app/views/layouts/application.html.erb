@@ -3,14 +3,16 @@
 <head>
   <title>Impressi - HTML5 </title>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,800" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+	<%= javascript_include_tag "application" %>  
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style='background: -webkit-gradient(radial, 50% 50%, 250, 50% 50%, 750, from(#fff), to(#efefef));'>
 	<% current_or_guest_user %>
 
-	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-	<%= render :partial => 'shared/authentication' %>
+	<%#= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+	<%#= render :partial => 'shared/authentication' %>
   
 	<div class='container'>
 		<%= yield %>
