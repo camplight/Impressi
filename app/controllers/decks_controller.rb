@@ -5,8 +5,7 @@ class DecksController < ApplicationController
   def new
     if session[:guest_deck] && move_decks_from_guest_user
       target_deck = Deck.find(session[:guest_deck])
-      session[:guest_deck] = nil
-      redirect_to deck_path(target_deck)
+      redirect_to edit_deck_path(target_deck)
     else 
       @deck = current_or_guest_user.decks.build
     end
