@@ -359,7 +359,6 @@
 	color: #333;
 }*/
 #user-decks thead {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	padding: .2em 0 .2em .5em;
 	text-align: left;
 /*	color: #4B4B4B;
@@ -383,6 +382,18 @@
 	font-size: 14px;
 	border-bottom: 1px solid #fff;
 	border-top: 1px solid #fff;
+}
+
+.deck-header {
+  text-align: center;
+}
+
+.deck-name {
+  font-size: 32px;
+}
+
+.deck-preview {
+  font-size: 20px;
 }
 
 h1 {
