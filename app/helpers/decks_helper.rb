@@ -13,7 +13,7 @@ module DecksHelper
     if user_signed_in?
       user_path(current_user)
     else
-      new_user_session_path
+      new_user_registration_path
     end
   end
 end
