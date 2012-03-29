@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var deck_id = $('#impress').attr('deck_id');
-	var hints = true;
+	var attrs = true;
 
 	if(hints == true) {
 		showHints();
