@@ -1,18 +1,17 @@
 <%= render :partial => "template_selector", :locals => {:template_data => @template_data, :deck => @deck} %>
 <%= render :partial => "decks/edit_nav" %>	
-<div id='container-custom'>
-	
-	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'></div>
-	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
 
+<div id='container-custom'>
+	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'></div>
 </div>
 
 <% unless user_signed_in? %>
 	<div class='hint'>
-		<span><b>Welcome</b></span>
-		<p>To start editing a slide, simply press the <span class='button-message'>enter</span> key.&nbsp;
-			When you've edited a step, press the <span class='button-message'>esc</span> key.&nbsp;
-			You can use the arrows or the <span class='button-message'>spacebar</span> to move between slides.</p>
+		<span style='font-size:65px'><b>Welcome</b></span>
+		<p>To start editing, press <span class='button-message'>enter</span>.&nbsp;
+			When you're done, press <span class='button-message'>esc</span>.&nbsp;
+			You can use the arrows or <span class='button-message'>spacebar</span> to move between slides. 
+			For more shortcuts, click Help in the top right corner</p>
 	</div>
 <% end %>
 

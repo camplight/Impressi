@@ -1,5 +1,15 @@
-<h1>New Deck</h1>
+<div class='circle' style='display:inline-block;opacity:0.5'></div>
+<div class='circle eight columns'>
+	<h2 class='title'>impressi</h2>
+	<div id='separator'>
+		<p id='create'><b>create</b> <em>beautiful</em> <span>presentations<span></p>
+		<%= render :partial => 'create_deck', :locals => { :deck => @deck } %>
+	</div>
+	<!-- <div id='border'></div> -->
+</div>
 
-<%= render :partial => 'create_deck', :locals => { :deck => @deck } %>
+<%= render :partial => 'impress_demo' %>
+
+
 
 

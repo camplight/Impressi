@@ -1,6 +1,5 @@
 class DecksController < ApplicationController
   layout 'deck', :except => :new
-  
   # before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new

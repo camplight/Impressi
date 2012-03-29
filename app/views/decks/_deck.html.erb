@@ -1,3 +1,20 @@
-<tr>
-	<td><%= "#{deck.name}: " %></td> <td><%= link_to "Show", deck_path(deck.id) %></td> <td><%= link_to "Edit", edit_deck_path(deck.id) %></td> <td><%= link_to "Delete", deck_path(deck.id), :confirm => "Are you sure?", :method => :delete %></td> <td><%= "Template used: #{deck.template.name}  Preview: #{deck_preview(deck, 30)}" %></td>
-</tr>
+<thead>
+	<th>Deck Name</th>
+	<th> </th>
+	<th> </th>
+	<th> </th>
+	<th>Template Used</th>
+	<th>Preview</th>
+		
+</thead>
+
+<tbody>
+	<tr class="impress-button">
+		<td><%= "#{deck.name}: " %></td>
+		<td><%= link_to "Show", deck_path(deck.id) %></td>
+		<td><%= link_to "Edit", edit_deck_path(deck.id) %></td>
+		<td><%= link_to "Delete", deck_path(deck.id), :confirm => "Are you sure?", :method => :delete %></td> 
+		<td><%= "#{deck.template.name}"%></td>
+		<td> <%= "#{deck_preview(deck, 30)}" %></td>
+	</tr>
+</tbody>
