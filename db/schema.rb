@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20120325214712) do
   create_table "templates", :force => true do |t|
     t.string   "name"
     t.string   "klass"
+    t.integer  "default_font_size"
+    t.string   "default_alignment"
     t.integer  "data-x"
     t.integer  "data-y"
     t.integer  "data-z"
@@ -32,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120325214712) do
     t.integer  "data-rotate-y"
     t.integer  "data-rotate-z"
     t.integer  "data-scale"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "users", :force => true do |t|

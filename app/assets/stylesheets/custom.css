@@ -145,7 +145,7 @@
 	
 	.editable {
 		font-family:Arial,Helvetica,sans-serif !important;
-		font-size: 50px !important;
+		font-size: 50px;
 		padding: 50px !important;
 		line-height: 1em !important;
 		word-wrap:break-word;
@@ -158,7 +158,7 @@
 		margin-left: -8px !important;
 		width: 800px !important;
 		height: 500px !important;
-		font-size: 50px !important;
+		font-size: 50px;
 		line-height: 1em !important;
 	}
 	
@@ -218,7 +218,7 @@
 		background:#08C;
 	}
 	
-	.temp_selector {
+	.selectors {
 /*		background-color: #5178AD;*/
 /*		border-radius: 4px;*/
 /*		border: 1px solid;*/
@@ -234,6 +234,11 @@
 	}
 	
 	.temp_dropdown {
+		pointer-events: auto;
+		margin-right: 25px;
+	}
+	
+	.size_dropdown {
 		pointer-events: auto;
 	}
 

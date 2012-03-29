@@ -7,12 +7,12 @@ class Deck < ActiveRecord::Base
   after_create :seed_deck
 
   serialize :steps
-  attr_accessible :name, :template_id, :content
+  attr_accessible :name, :template_id, :steps
   
   private
     
   def seed_deck
-    self.steps = [{ :content => '', :'font-size' => 16, :'text-align' => 'left' }, { :content => '', :'font-size' => 16, :'text-align' => 'left' }]
+    self.steps = [{ :content => '', :'font-size' => 100, :'text-align' => 'left' }, { :content => '', :'font-size' => 100, :'text-align' => 'left' }]
     self.name  = "Deck #{self.id}"
     self.save
   end

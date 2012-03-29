@@ -3,6 +3,8 @@ class CreateTemplates < ActiveRecord::Migration
     create_table :templates do |t|
       t.string  :name
       t.string  :klass
+      t.integer :default_font_size
+      t.string  :default_alignment
       t.integer :'data-x'
       t.integer :'data-y'
       t.integer :'data-z'
