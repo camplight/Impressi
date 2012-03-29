@@ -1,20 +1,8 @@
-<thead>
-	<th>Deck Name</th>
-	<th> </th>
-	<th> </th>
-	<th> </th>
-	<th>Template Used</th>
-	<th>Preview</th>
-		
-</thead>
-
-<tbody>
 	<tr class="impress-button">
-		<td><%= "#{deck.name}: " %></td>
-		<td><%= link_to "Show", deck_path(deck.id) %></td>
-		<td><%= link_to "Edit", edit_deck_path(deck.id) %></td>
-		<td><%= link_to "Delete", deck_path(deck.id), :confirm => "Are you sure?", :method => :delete %></td> 
-		<td><%= "#{deck.template.name}"%></td>
-		<td> <%= "#{deck_preview(deck, 30)}" %></td>
+    <td><span class='deck-name'><%= "#{deck.name}" %></span></td>
+    <td><span class='deck-preview'><%= "#{deck_preview(deck, 30)}" %></span></td>
+    <td><%= link_to "show", deck_path(deck.id) %><br/>
+      <%= link_to "edit", edit_deck_path(deck.id) %><br/>
+      <%= link_to "delete", deck_path(deck.id), :confirm => "Are you sure?", :method => :delete %>
+    </td> 
 	</tr>
-</tbody>
