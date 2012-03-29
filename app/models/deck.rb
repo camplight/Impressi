@@ -7,7 +7,7 @@ class Deck < ActiveRecord::Base
   after_create :seed_deck
 
   serialize :steps
-  attr_accessible :name, :template_id, :content
+  attr_accessible :name, :template_id, :steps
   
   private
     
