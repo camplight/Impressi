@@ -1,8 +1,10 @@
 <aside id='authentication'>
-	<% if user_signed_in? %>
-		<%= link_to "sign out", destroy_user_session_path, :method => :delete %>
-	<% else %>
-		<%= link_to "sign up", new_user_registration_path %>
-		<%= link_to "sign in", user_session_path %>
-	<% end %>
+	<ul style='list-style:none;display:inline;'>
+		<% if user_signed_in? %>
+			<li><%= link_to "sign out", destroy_user_session_path, :method => :delete %></li>
+		<% else %>
+			<li><%= link_to "sign up", new_user_registration_path, :id => 'sign-up', :class => 'button nav-button alter' %></li>
+			<li><%= link_to "sign in", user_session_path, :class => 'button nav-button alter' %></li>
+		<% end %>
+	</ul>
 </aside>

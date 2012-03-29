@@ -202,8 +202,8 @@ var createInlineEditor = function() {
 
 var buildTree = function() {
 	var deck        = database.deckData,
-		deck_length = deck.steps.length,
-		template    = database.templateData[deck.template_id - 1];
+		deck_length 	= deck.steps.length,
+		template   		= database.templateData[deck.template_id - 1];
 
 	for(var i = 0; i < deck_length; i++) {
 		$('#impress').append('<div></div>');
@@ -247,12 +247,16 @@ var sendViaAjax = function(redirect_url) {
 		type: "PUT",
 		data:  { deck: database.deckData },
 		url:  window.location.origin + '/decks/' + database.deckData.id,
-		success: function() { if (redirect_url) { window.location.href = redirect_url; } },
+		success: function() { 
+			if (redirect_url) { 
+				window.location.href = redirect_url; 
+			}
+	  },
 		failure: function() { console.log(err); }
 	});
 }
 
-setInterval(function() { sendViaAjax(); } , 10000);
+setInterval(function() { sendViaAjax(); } , 2000);
 
 $('#preview-button').click(function() {
 	$('.navbar').slideUp('fast');
@@ -313,3 +317,4 @@ $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
+
