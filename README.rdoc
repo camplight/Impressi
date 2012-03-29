@@ -1,11 +1,11 @@
 Impressi is an interface that makes it easy for users to make presentations with {Impress.js}[http://bartaz.github.com/impress.js/].  It's now available to use at {Impress.me}[http://impress.me]  It was built as a project for {DevBootcamp}[http://devbootcamp.com] ({Github page}[https://github.com/Devbootcamp]) by the following contributors:
 
-{Craig Little}[https://github.com/craiglittle]  
-{Adam Biagianti}[https://github.com/el-mapache]  
-{Shail Patel}[https://github.com/shailpatel2]  
-{Silas Barta}[https://github.com/SilasX] (no relation to the impress.js creator)  
-{Kush Patel}[https://github.com/kushpatel72]  
-Melissa Lamoreaux
+* {Craig Little}[https://github.com/craiglittle]  
+* {Adam Biagianti}[https://github.com/el-mapache]  
+* {Shail Patel}[https://github.com/shailpatel2]  
+* {Silas Barta}[https://github.com/SilasX] (no relation to the impress.js creator)  
+* {Kush Patel}[https://github.com/kushpatel72]  
+* Melissa Lamoreaux
 
 Right now it supports selecting a template, inputting text, and adding/deleting slides.  The template object is currently set up so that each transition to the next slide uses the same transformation.
 
