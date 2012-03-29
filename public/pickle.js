@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var deck_id = $('#impress').attr('deck_id');
-`	var hints = true;`
+    var deck_id = $('#impress').attr('deck_id');
+	var hints = true;
 	establishEventListeners();
 
 	$.ajax({
@@ -212,7 +212,7 @@ var buildTree = function() {
 		$('#impress > div').last().html(markdown_to_html(deck.steps[i].content.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
 	}
 	
-	if(hints == true) {
+	if (hints) {
 		showHints();
 		hints = false;
 	}
