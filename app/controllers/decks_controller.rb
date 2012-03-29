@@ -29,7 +29,6 @@ class DecksController < ApplicationController
   end
 
   def update
-
     deck             = Deck.find(params[:id])
     deck.template_id = params[:deck][:template_id]
     deck.steps       = params[:deck][:steps].inject([]) { |array, step| array << step[1] }

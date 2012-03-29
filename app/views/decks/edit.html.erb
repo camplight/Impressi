@@ -1,9 +1,19 @@
 <%= render :partial => "template_selector", :locals => {:template_data => @template_data, :deck => @deck} %>
-<%= render :partial => "decks/edit_nav" %>
-
+<%= render :partial => "decks/edit_nav" %>	
 <div id='container-custom'>
-	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'>
-	</div>
+	
+	<div id='impress' class='seven columns' deck_id="<%= @deck.id %>" data-mode = 'edit' style='z-index:-1'></div>
+	<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+
 </div>
+
+<% unless user_signed_in? %>
+	<div class='hint'>
+		<span><b>Welcome</b></span>
+		<p>To start editing a slide, simply press the <span class='button-message'>enter</span> key.&nbsp;
+			When you've edited a step, press the <span class='button-message'>esc</span> key.&nbsp;
+			You can use the arrows or the <span class='button-message'>spacebar</span> to move between slides.</p>
+	</div>
+<% end %>
 
 <script src="/pickle.js"></script>
