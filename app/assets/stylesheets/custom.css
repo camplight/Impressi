@@ -7,6 +7,7 @@
 /*----------------------SITE WIDE------------------*/	
 	#authentication {
 		pointer-events:auto;
+		position:absolute;
 	}
 	
 	#container-custom {
@@ -20,6 +21,7 @@
 		float:right;
 	}
 	
+
 
 /*----------------------SIDE BAR SLIDE EDIT PAGE------------------*/
 	#left-nav-bar {
@@ -93,10 +95,10 @@
 		
 	}
 	
-	li.button:hover {
-		background-color:#ececec;
-	}
-	
+	/*li.button:hover {
+			background-color:#ececec;
+		}
+		*/
 	
 /*----------------------SLIDE EDITOR------------------*/		
 	#inline-editor {
@@ -273,7 +275,7 @@
 		color:white;
 		border:1px solid black;
 	}
-
+	
 	#next {
 		top:49%;
 		left:95%;
@@ -282,10 +284,6 @@
 	#prev {
 		top:49%;
 		right:95%;
-	}
-
-	#authentication {
-		float: left;
 	}
 	
 	#saved {
@@ -467,8 +465,8 @@ pointer-events:auto;
 #separator {
 	border-top:1px solid white;
 	width:260px;
-	height:85px;
-	margin-left:100px;
+	height:80px;
+	margin-left:95px;
 	margin-top:200px;
 	position:absolute;
 }
@@ -476,7 +474,7 @@ pointer-events:auto;
 h2.title {
 	font-family: 'Satisfy', cursive;
 	font-size:98px;
-	margin-left:70px;
+	margin-left:65px;
 	margin-top:80px;
 	position:absolute;
 	text-shadow:0px 0px 1px white;
@@ -487,7 +485,7 @@ h2.title {
 #create {
 	text-align:center;
 	color:white;
-	margin-left:5px;
+	margin-left:10px;
 	margin-top:20px;
 	position:absolute;
 	font-size:28px;
@@ -505,22 +503,21 @@ h2.title {
 }
 
 .splash-button {
+	text-align:center;
 	position: absolute;
-	margin-left: 55px;
+	margin-left: 25px;
 	margin-top: 105px;
 	border-radius:4px;
-	padding:10px;
+	padding:15px;
 	font-size:24px;
 	border-bottom:1px solid white;
+	width:225px;
 }
 
-#border {
-	position:absolute;
-	margin-left: 55px;
-	margin-top: 105px;
-	border-top:1px solid white;
-	width:150;
+ul li {
+	float:left;
 }
+
 
 
 

@@ -317,3 +317,7 @@ $('.temp_dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
+
+var startDemo = function() {
+	
+};
