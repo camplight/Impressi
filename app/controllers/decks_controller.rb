@@ -32,8 +32,7 @@ class DecksController < ApplicationController
 
     deck             = Deck.find(params[:id])
     deck.template_id = params[:deck][:template_id]
-    deck.content     = params[:deck][:content]
-    deck.save
+    deck.steps       = params[:deck][:steps].inject([]) { |array, step| array << step[1] }
       
     if user_signed_in?
       deck.user_id = current_user.id
@@ -43,7 +42,6 @@ class DecksController < ApplicationController
         
     respond_to do |format|
       if deck.save
-        flash[:success] = params[:commit] ? "Presentation saved." : "Autosaved."
         format.js 
       else
         render :text => 'Failed Ajax call.'
