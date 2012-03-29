@@ -6,7 +6,6 @@ class DecksController < ApplicationController
     if session[:guest_deck] && move_decks_from_guest_user
       target_deck = Deck.find(session[:guest_deck])
       session[:guest_deck] = nil
-      guest_user.destroy
       redirect_to deck_path(target_deck)
     else 
       @deck = current_or_guest_user.decks.build
@@ -56,7 +55,6 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find(params[:id])
-
     
     respond_to do |format|
       format.html {

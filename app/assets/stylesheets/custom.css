@@ -428,11 +428,11 @@ pointer-events:auto;
 .impress-on-step-1 .hint {
   opacity: 1;
 
-  -webkit-transition: opacity 1s 1s, -webkit-transform 0.5s;
-  -moz-transition:    opacity 1s 1s,    -moz-transform 0.5s;
-  -ms-transition:     opacity 1s 1s,     -ms-transform 0.5s;
-  -o-transition:      opacity 1s 1s,      -o-transform 0.5s;
-  transition:         opacity 1s 1s,         transform 0.5s;
+  -webkit-transition: opacity 1s .5s, -webkit-transform 0.5s;
+  -moz-transition:    opacity 1s .5s,    -moz-transform 0.5s;
+  -ms-transition:     opacity 1s .5s,     -ms-transform 0.5s;
+  -o-transition:      opacity 1s .5s,      -o-transform 0.5s;
+  transition:         opacity 1s .5s,         transform 0.5s;
 
   -webkit-transform: translateY(0px);
   -moz-transform:    translateY(0px);

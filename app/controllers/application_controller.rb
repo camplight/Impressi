@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
   end
   
   def move_decks_from_guest_user
+    false if session[:guest_user_id] 
     decks = Deck.find_by_user_id(session[:guest_user_id])
-    decks.update_attribute(:user_id, current_user.id)
+    decks.user_id = current_or_guest_user.id
     decks.save
   end
 
