@@ -1,6 +1,12 @@
 $(document).ready(function() {
   var deck_id = $('#impress').attr('deck_id');
-`	var hints = true;`
+	var hints = true;
+
+	if(hints == true) {
+		showHints();
+		hints = false;
+	}
+	
 	establishEventListeners();
 
 	$.ajax({
@@ -8,7 +14,10 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(data) {
 		   database.deckData = data;
-			if (dataLoaded()) { constructTree() }
+			if (dataLoaded()) { 
+				constructTree();
+			
+			 }
 		}
 	});
 	
@@ -208,11 +217,6 @@ var buildTree = function() {
         $('#impress > div').last().attr('data-scale', template['data-scale'] * (i + 1));
     }
 		$('#impress > div').last().html(markdown_to_html(deck.steps[i].content.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')));
-	}
-	
-	if(hints == true) {
-		showHints();
-		hints = false;
 	}
 }
 
