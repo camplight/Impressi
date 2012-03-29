@@ -2,7 +2,7 @@ class CreateDecks < ActiveRecord::Migration
   def change
     create_table :decks do |t|
       t.string  :name
-      t.text    :content
+      t.text    :steps
       t.integer :template_id
       t.integer :user_id
 

@@ -9,6 +9,7 @@ gem 'rails', '3.2.1'
 gem 'devise'
 gem 'nokogiri'
 gem 'alphadecimal'
+gem 'json'
 
 
 # Gems used only for assets and not required
