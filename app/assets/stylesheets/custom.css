@@ -21,85 +21,6 @@
 		float:right;
 	}
 	
-
-
-/*----------------------SIDE BAR SLIDE EDIT PAGE------------------*/
-	#left-nav-bar {
-		background-color: #20272a;
-	  background-image: -moz-linear-gradient(top, #364147, #0a0c0d);
-	  background-image: -ms-linear-gradient(top, #364147, #0a0c0d);
-	  background-image: -o-linear-gradient(top, #364147, #0a0c0d);
-	  background-image: -webkit-linear-gradient(top, #364147, #0a0c0d);
-	  background-image: linear-gradient(top, #364147, #0a0c0d);
-		height:3000px;	
-		width:250px;
-		border-right:6px solid #51C4dD;
-		border-bottom-left-radius:6px;
-		-webkit-box-shadow:-3px 1px 8px 7px #777;
-		margin-right:50px;
-	}
-		
-	#slide-interface {
-		margin-top:15px;
-		margin-left:20px;
-		z-index:101;
-		padding-bottom:10px;
-		pointer-events: auto;
-		width:200px;
-	}
-	
-	#slide-list{
-		margin:0 0 0 25px;
-		width:250px;
-		padding:0px !important;
-		pointer-events:all;
-	}
-	
-	#slide-list a{
-		cursor: pointer;
-	}
-	
-	#slideDeckButtons {
-		list-style:none;
-		display:inline;
-		margin-left:10px;
-	}
-	
-	#slideDeckButtons li {
-		float:left;
-		margin-left:25px;
-	}
-
-	
-	#decorate-button {
-		padding-bottom:2px;
-		padding-left:5px;
-	}
-		
-	.button {
-		background-color: #e9e9e9; 
-		text-align: center;
-		color: #333;
-		text-decoration: none;
-		font-weight: bold;
-		font-size: .9em;
-		line-height: 1;
-		font-family: Tahoma, Geneva, sans-serif;
-		position: relative;
-		cursor: pointer;
-		border: none;
-		outline: none;
-		margin: 0;
-		padding:10px;
-		border-radius:2px 2px;
-		
-	}
-	
-	/*li.button:hover {
-			background-color:#ececec;
-		}
-		*/
-	
 /*----------------------SLIDE EDITOR------------------*/		
 	#inline-editor {
 		outline: none;
@@ -577,13 +498,25 @@ ul li {
 
 h2.edit-title {
 	font-family: 'Satisfy', cursive;
-	font-size:30px;
-	margin-left:10px;
-	margin-top:6px;
+	font-size: 30px;
+	margin-left: 10px;
+	margin-top: 10px;
 	margin-right: 25px;
-	text-shadow:0px 0px 1px white;
-	color:rgba(0, 150, 220, 0.6);
-	font-weight:bold;
+	text-shadow: 0px 0px 1px white;
+	color: rgba(0, 150, 220, 0.6);
+	font-weight: bold;
+	float: left;
+}
+
+h2.edit-title:hover {
+	font-family: 'Satisfy', cursive;
+	font-size: 30px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 25px;
+	text-shadow: 0px 0px 1px white;
+	color: white !important;
+	font-weight: bold;
 	float: left;
 }
 
