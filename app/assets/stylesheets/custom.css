@@ -575,10 +575,20 @@ ul li {
 
 .creators-footer {
 	margin-top: 120px;
-	color: #DDD;
+	font-size: 14px;
+	color: #999;
+	font-family: Tahoma, Geneva, sans-serif;
+
 }
 
 .creators-footer a {
+	color:rgba(0, 150, 220, 0.6);
+	font-family: Tahoma, Geneva, sans-serif;
+
+}
+
+.creators-footer a:hover {
+	text-decoration: underline;
 }
 
 .create-button {
