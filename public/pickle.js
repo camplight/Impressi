@@ -286,6 +286,7 @@ var sendViaAjax = function(redirect_url) {
 setInterval(function() { sendViaAjax(); } , 2000);
 
 $('#preview-button').click(function() {
+	$('#impress').css({pointerEvents: 'none'});
 	$('.navbar').slideUp('fast');
 	$('#preview-mode').fadeIn('fast');
 	sendViaAjax();
@@ -299,7 +300,7 @@ $('#impress-button').click(function() {
 
 $('a.edit-button').click(function(e) {
 	$('.navbar').slideDown('fast').delay(50).css({display: 'block'});
-	$('#preview-mode').fadeOut('fast');
+	$('#preview-mode').fadeOut('fast');	
 	$('#impress').css({pointerEvents: ''});
 });
 
