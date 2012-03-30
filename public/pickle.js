@@ -32,8 +32,7 @@ $(document).ready(function() {
 		success: function(data) {
 		   database.deckData = data;
 			if (dataLoaded()) { 
-				constructTree();
-			
+				constructTree();	
 			 }
 		}
 	});
@@ -48,9 +47,19 @@ $(document).ready(function() {
 	});
 	
 	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
+	$('.edit-title').on('click', homePageConfirm);
 });
 
 var database = {};
+
+var homePageConfirm = function() {
+	//console.log($(this).children.attr('href'));
+	if(confirm("If you leave this page without signing up, your presentation won't be saved!")) {
+
+		window.location.href = $(this).children.attr('href');
+	}
+	return false;
+}
 
 var showHints = function() {
 	$('.hint').on({
