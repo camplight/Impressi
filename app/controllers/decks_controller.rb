@@ -8,8 +8,9 @@ class DecksController < ApplicationController
       target_deck = Deck.find(guest_deck_id)
       redirect_to edit_deck_path(target_deck)
     else
-      deck = Deck.find(guest_deck_id) 
-      deck.destroy
+      deck = nil
+      deck ||= Deck.find_by_id(guest_deck_id) 
+      deck.destroy if deck
       @deck = current_or_guest_user.decks.build
     end
   end
