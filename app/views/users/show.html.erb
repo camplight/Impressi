@@ -14,6 +14,11 @@
         <%= render :partial => 'decks/deck', :collection => @decks %></table>	 
       </tbody>
   <% end %>
+  <%= form_for @deck do |f| %>
+
+		<%= f.submit "create", :class => 'button create-button' %>
+
+	<% end %>
 </div>
 
 

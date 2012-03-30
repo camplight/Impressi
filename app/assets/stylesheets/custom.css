@@ -572,6 +572,18 @@ h2.title {
 ul li {
 	float:left;
 }
+
+.creators-footer {
+	margin-top: 120px;
+	color: #DDD;
+}
+
+.creators-footer a {
+}
+
+.create-button {
+	font-size: 24px;
+}
 	
 .button-message {
 	background-color: #E9E9E9;
