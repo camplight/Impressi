@@ -7,7 +7,9 @@
 			<% unless request.fullpath == '/users/sign_up' %>
 				<li><%= link_to "sign up", new_user_registration_path, :id => 'sign-up', :class => 'button nav-button alter' %></li>
 			<% end %>
-			<li><%= link_to "sign in", user_session_path, :class => 'button nav-button alter' %></li>
+			<% unless request.fullpath == '/users/sign_in' %>
+				<li><%= link_to "sign in", user_session_path, :class => 'button nav-button alter' %></li>
+			<% end %>
 		<% end %>
 	</ul>
 </aside>
