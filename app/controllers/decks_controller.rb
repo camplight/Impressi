@@ -3,8 +3,8 @@ class DecksController < ApplicationController
   # before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
-    target_deck = Deck.find(session[:guest_deck])
     if session[:guest_deck] && move_decks_from_guest_user
+      target_deck = Deck.find(session[:guest_deck])
       redirect_to edit_deck_path(target_deck)
     else 
       @deck = current_or_guest_user.decks.build
