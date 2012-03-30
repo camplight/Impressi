@@ -618,9 +618,12 @@ h2.edit-title {
 	float:right;
 	background: white;
 	border: 1px solid #AAA;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
 	z-index: 100;
 	color: #333;
-	width: 160px;
+	width: 180px;
 	margin-right:9px;
 	margin-top:-22px;
 	z-index:110;
@@ -634,10 +637,15 @@ table {
 }
 
 .shortcut {
-	max-width: 70px;
-	background: #EFEFEF;
+	max-width: 110px;
+	padding:8px;
+	border-bottom: 1px solid #AAA;
 }
 
 .description {
+	margin-right:50px;
 	max-width: 100px;
+	padding:10px;
+	background: #EFEFEF;
+	border-bottom: 1px solid #AAA;
 }
