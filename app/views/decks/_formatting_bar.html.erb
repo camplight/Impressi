@@ -1,5 +1,5 @@
 <div class='navbar'>
-  <h2 class='edit-title'><a href='/' style="pointer-events: auto;">impressi</a></h2>
+  <h2 class='edit-title'><a href=<%= user_signed_in? ? "/users/#{current_user.id}" : '/' %> style="pointer-events: auto;">impressi</a></h2>
   <a class='ux_button button add_slide alter' style="pointer-events: auto;">
     Add slide
   </a>
