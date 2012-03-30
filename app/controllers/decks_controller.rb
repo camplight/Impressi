@@ -3,20 +3,19 @@ class DecksController < ApplicationController
   # before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
-    guest_deck_id = session[:guest_deck]
-    if session[:guest_deck] && move_decks_from_guest_user
-      target_deck = Deck.find(guest_deck_id)
-      redirect_to edit_deck_path(target_deck)
-    else
-      deck = nil
-      deck ||= Deck.find_by_id(guest_deck_id) 
-      deck.destroy if deck
-      @deck = current_or_guest_user.decks.build
+    if session[:guest_deck]
+      guest_deck = Deck.find(session[:guest_deck]) 
+      guest_deck.destroy
+      session[:guest_deck] = nil
     end
+    
+    @deck = current_or_guest_user.decks.build
   end
 
   def create
     deck = current_or_guest_user.decks.create(:template_id => 1)
+    session[:guest_deck] = deck.id
+    puts "******** #{session[:guest_deck]}"
     redirect_to edit_deck_path(deck)
   end
   
@@ -34,11 +33,7 @@ class DecksController < ApplicationController
     deck.template_id = params[:deck][:template_id]
     deck.steps       = params[:deck][:steps].inject([]) { |array, step| array << step[1] }
       
-    if user_signed_in?
-      deck.user_id = current_user.id
-    else
-      session[:guest_deck] = deck.id
-    end
+    deck.user_id = current_user.id if user_signed_in?
         
     respond_to do |format|
       if deck.save
