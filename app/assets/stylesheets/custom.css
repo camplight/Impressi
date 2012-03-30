@@ -675,6 +675,10 @@ table {
 
 
 /*--------------USER SHOW PAGE---------------*/
+#spacer {
+	padding-top:100px;
+}
+
 .impress-table-row:hover {
 	background-color:#eeedff;
 }
