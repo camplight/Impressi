@@ -60,7 +60,6 @@ class DecksController < ApplicationController
       format.html {
         if deck_belongs_to_guest_user?(@deck)
           session[:guest_deck] = @deck.id 
-          puts session[:guest_deck]
           redirect_to new_user_registration_path
         end }
       format.json { render :json => @deck }
