@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var hover = 1;
 	var hints = true;
   var deck_id = $('#impress').attr('deck_id');
 	var attrs = true;
@@ -7,6 +8,21 @@ $(document).ready(function() {
 		showHints();
 		hints = false;
 	}
+	$('#format-button').hover( 
+		function() { 
+			$('.format-helper').fadeIn('fast'); 
+			clearTimeout();
+			hover = 1;
+		},
+		
+		function() {
+			hover = 0;
+			setTimeout(function() {
+				if(hover == 0) { 
+					$('.format-helper').fadeOut('fast'); 
+				}
+			}, 500);
+		});
 	
 	establishEventListeners();
 
@@ -32,8 +48,6 @@ $(document).ready(function() {
 	});
 	
 	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
-	
-	$('a#formatting').on('hover', function() { $('.format-helper').fadeIn() },function() {$('.format-helper').hide();});
 });
 
 var database = {};
