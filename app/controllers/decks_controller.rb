@@ -8,8 +8,9 @@ class DecksController < ApplicationController
       target_deck = Deck.find(guest_deck_id)
       redirect_to edit_deck_path(target_deck)
     else
-      deck = Deck.find(guest_deck_id) 
-      deck.destroy
+      deck = nil
+      deck ||= Deck.find_by_id(guest_deck_id) 
+      deck.destroy if deck
       @deck = current_or_guest_user.decks.build
     end
   end
@@ -62,7 +63,6 @@ class DecksController < ApplicationController
       format.html {
         if deck_belongs_to_guest_user?(@deck)
           session[:guest_deck] = @deck.id 
-          puts session[:guest_deck]
           redirect_to new_user_registration_path
         end }
       format.json { render :json => @deck }

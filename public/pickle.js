@@ -292,7 +292,7 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-setInterval(function() { sendViaAjax(); } , 2000);
+setInterval(function() { sendViaAjax(); } , 200000);
 
 $('#preview-button').click(function() {
 	$('#impress').css({pointerEvents: 'none'});
