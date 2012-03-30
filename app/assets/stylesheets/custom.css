@@ -668,8 +668,9 @@ table {
 	margin-right:50px;
 	max-width: 100px;
 	padding:10px;
-	background: #EFEFEF;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 	border-bottom: 1px solid #AAA;
+	font-size:14px;
 }
 
 
