@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	var hints = true;
   var deck_id = $('#impress').attr('deck_id');
 	var attrs = true;
 
