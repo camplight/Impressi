@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var hover = 1;
 	var hints = true;
   var deck_id = $('#impress').attr('deck_id');
 	var attrs = true;
@@ -7,6 +8,21 @@ $(document).ready(function() {
 		showHints();
 		hints = false;
 	}
+	$('#format-button').hover( 
+		function() { 
+			$('.format-helper').fadeIn('fast'); 
+			clearTimeout();
+			hover = 1;
+		},
+		
+		function() {
+			hover = 0;
+			setTimeout(function() {
+				if(hover == 0) { 
+					$('.format-helper').fadeOut('fast'); 
+				}
+			}, 500);
+		});
 	
 	establishEventListeners();
 
@@ -16,8 +32,7 @@ $(document).ready(function() {
 		success: function(data) {
 		   database.deckData = data;
 			if (dataLoaded()) { 
-				constructTree();
-			
+				constructTree();	
 			 }
 		}
 	});
@@ -32,11 +47,17 @@ $(document).ready(function() {
 	});
 	
 	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
-	
-	$('a#formatting').on('hover', function() { $('.format-helper').fadeIn() },function() {$('.format-helper').hide();});
+	$('#title-popup').on('click', homePageConfirm);
 });
 
 var database = {};
+
+var homePageConfirm = function() {
+	if(confirm("If you leave this page without signing up, your presentation won't be saved!")) {
+		window.location.href = $(this).children.attr('href');
+	}
+	return false;
+}
 
 var showHints = function() {
 	$('.hint').on({
@@ -268,9 +289,10 @@ var sendViaAjax = function(redirect_url) {
 	});
 }
 
-setInterval(function() { sendViaAjax(); } , 2000);
+setInterval(function() { sendViaAjax(); } , 200000);
 
 $('#preview-button').click(function() {
+	$('#impress').css({pointerEvents: 'none'});
 	$('.navbar').slideUp('fast');
 	$('#preview-mode').fadeIn('fast');
 	sendViaAjax();
@@ -284,7 +306,7 @@ $('#impress-button').click(function() {
 
 $('a.edit-button').click(function(e) {
 	$('.navbar').slideDown('fast').delay(50).css({display: 'block'});
-	$('#preview-mode').fadeOut('fast');
+	$('#preview-mode').fadeOut('fast');	
 	$('#impress').css({pointerEvents: ''});
 });
 

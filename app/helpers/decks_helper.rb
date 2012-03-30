@@ -2,7 +2,6 @@ module DecksHelper
 
   def deck_preview(deck, max_length)
     first_step             = deck.steps[0]
-    puts first_step
     first_step_text_length = first_step[:content].length
     preview_length         = [first_step_text_length, max_length].min
     
@@ -15,5 +14,9 @@ module DecksHelper
     else
       new_user_registration_path
     end
+  end
+  
+  def redirect_popup?
+    "id='title-popup'" unless user_signed_in? 
   end
 end

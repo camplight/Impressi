@@ -1,8 +1,9 @@
-<h1 class="navbar">Your Decks</h1>
+<div id='spacer'></div>
+<h1 class="navbar">Your Impressions</h1>
 
 <div class="decks">
 	<% if @decks.nil? %>
-	  You don't have any decks.
+	  You don't have any impressions.
   <% else %>
     <table id="user-decks" class="navbar">
       <thead>
@@ -14,6 +15,11 @@
         <%= render :partial => 'decks/deck', :collection => @decks %></table>	 
       </tbody>
   <% end %>
+  <%= form_for @deck do |f| %>
+
+		<%= f.submit "create", :class => 'button create-button alter' %>
+
+	<% end %>
 </div>
 
 

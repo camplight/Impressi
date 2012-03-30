@@ -202,7 +202,7 @@
 	
 	#menu-right {
 		float: right;
-		margin-top: 16px;
+		margin-top: 3px;
 		margin-right: 15px;
 	}
 	
@@ -210,12 +210,12 @@
 		display:none;
 	}
 	
-	#formatting {
+	#format-button {
 		background:none;
 		-webkit-transition:background-color .3s linear;
 	}
 	
-	#formatting:hover {
+	#format-button:hover {
 		border:none;
 		background:#08C;
 	
@@ -534,17 +534,86 @@ h2.title {
 .splash-button {
 	text-align:center;
 	position: absolute;
-	margin-left: 25px;
+	margin-left: 34px;
 	margin-top: 105px;
 	border-radius:4px;
+	background-color: white;
 	padding:15px;
-	font-size:24px;
+	font-size:32px;
+	color: #4A4F52;
 	border-bottom:1px solid white;
-	width:225px;
+	width:200px;
+	border:1px solid #ccc;
+	
+	/*Gradient*/
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
+  /*Shadow*/
+  -webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+
+  /*Transition*/
+  -webkit-transition: All 0.5s ease;
+  -moz-transition: All 0.5s ease;
+  -o-transition: All 0.5s ease;
+  -ms-transition: All 0.5s ease;
+  transition: All 0.5s ease;
+}
+
+.splash-button:hover {
+  background-color: #E4EFF5;
 }
 
 ul li {
 	float:left;
+}
+
+.creators-footer {
+	margin-top: 120px;
+	font-size: 14px;
+	color: #999;
+	font-family: Tahoma, Geneva, sans-serif;
+
+}
+
+.creators-footer a {
+	color:rgba(0, 150, 220, 0.6);
+	font-family: Tahoma, Geneva, sans-serif;
+
+}
+
+.creators-footer a:hover {
+	text-decoration: underline;
+}
+
+.create-button {
+	font-size: 24px;
+}
+
+#new_user > div {
+	font-size: 28px;
+	margin-bottom: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+#new_user .user-button {
+	margin-top: 30px;
+	font-size: 40px;
+	width: 200px;
+	padding: 20px;
+}
+
+#new_user input {
+	font-size: 28px;
+}
+
+.sign-up {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 48px;
 }
 	
 .button-message {
@@ -569,46 +638,72 @@ ul li {
 }
 
 .ux-helper .keyboard {
-
 	background-color: #CCC;
-
 	padding: 3px;
 	border-radius: 2px;
 }
 
 h2.edit-title {
 	font-family: 'Satisfy', cursive;
-	font-size:30px;
-	margin-left:10px;
-	margin-top:6px;
+	font-size:28px;
+	margin-left:12px;
+	margin-top:10px;
 	margin-right: 25px;
 	text-shadow:0px 0px 1px white;
-	color:rgba(0, 150, 220, 0.6);
+	color: #6E7375	;
 	font-weight:bold;
 	float: left;
 }
 
 /*--------------FORMATTING HELPER--------------*/
+.format-helper {
+	display:none;
+	float:right;
+	background: white;
+	border: 1px solid #AAA;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	z-index: 100;
+	color: #333;
+	width: 180px;
+	margin-right:9px;
+	margin-top:-22px;
+	z-index:110;
+	position:relative;
+	border:1px solid #08C;
+}
+
 table {
 	border-collapse: collapse;	
 	border-spacing: 0;
 }
 
-.format-helper {
-	display:none;
-	background: white;
-	border: 1px solid #AAA;
-	z-index: 100;
-	color: #333;
-	border-radius: 3px;
-	width: 180px;
-}
-
 .shortcut {
-	max-width: 70px;
-	background: #EFEFEF;
+	max-width: 110px;
+	padding:8px;
+	border-bottom: 1px solid #AAA;
 }
 
 .description {
+	margin-right:50px;
 	max-width: 100px;
+	padding:10px;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+	border-bottom: 1px solid #AAA;
+	font-size:14px;
+}
+
+
+/*--------------USER SHOW PAGE---------------*/
+#spacer {
+	padding-top:100px;
+}
+
+.impress-table-row:hover {
+	background-color:#eeedff;
+}
+
+.impress-table-row a:hover {
+	text-decoration:underline;
 }
