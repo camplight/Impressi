@@ -169,7 +169,6 @@ var createInlineEditor = function() {
                     mode = 'edit';
 					$('.ux-helper').html("Press <span class='keyboard'>ESC</span> to stop editing.");
                     currentSlide.html(inlineEditor);
-					console.log(database.deckData.steps[slideIndexNumber]['font-size']);
 					inlineEditor.css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
                     inlineEditor.focus();
                     // show save text button
