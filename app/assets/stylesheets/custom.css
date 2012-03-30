@@ -661,3 +661,13 @@ table {
 	background: #EFEFEF;
 	border-bottom: 1px solid #AAA;
 }
+
+
+/*--------------USER SHOW PAGE---------------*/
+.impress-table-row:hover {
+	background-color:#eeedff;
+}
+
+.impress-table-row a:hover {
+	text-decoration:underline;
+}
