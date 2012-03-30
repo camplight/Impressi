@@ -1,6 +1,7 @@
 <aside id='authentication'>
 	<ul style='list-style:none;display:inline;'>
 		<% if user_signed_in? %>
+			<li><%= link_to "impressions", user_path(current_user), :class => 'button nav-button alter' %></li>
 			<li><%= link_to "sign out", destroy_user_session_path, :class => 'button nav-button alter', :method => :delete %></li>
 		<% else %>
 			<% unless request.fullpath == '/users/sign_up' %>
