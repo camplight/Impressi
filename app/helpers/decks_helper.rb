@@ -19,4 +19,5 @@ module DecksHelper
   def redirect_popup?
     "id='title-popup'" unless user_signed_in? 
   end
+  
 end

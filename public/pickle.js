@@ -48,6 +48,7 @@ $(document).ready(function() {
 	
 	$('.ux-helper').html("Press <span class='keyboard'>ENTER</span> to edit.");
 	$('#title-popup').on('click', homePageConfirm);
+
 });
 
 var database = {};
@@ -230,7 +231,6 @@ var createInlineEditor = function() {
 		    });
 		return false;
     });
-
 }
 
 var buildTree = function() {
@@ -369,4 +369,3 @@ $('.temp_dropdown').change(function() {
 // 	$('#inline-editor').css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
 // 	$(currentSlide).css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
 // });
-
