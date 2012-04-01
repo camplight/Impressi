@@ -1,14 +1,14 @@
 <aside id='authentication'>
 	<ul style='list-style:none;display:inline;'>
 		<% if user_signed_in? %>
-			<li><%= link_to "Impressions", user_path(current_user), :class => 'button nav-button alter' %></li>
-			<li><%= link_to "Sign out", destroy_user_session_path, :class => 'button nav-button alter', :method => :delete %></li>
+			<li><%= link_to "impressions", user_path(current_user), :class => 'button nav-button alter' %></li>
+			<li><%= link_to "sign out", destroy_user_session_path, :class => 'button nav-button alter', :method => :delete %></li>
 		<% else %>
 			<% if request.fullpath == '/users/sign_in' %>
 				<li>click here to go <%= link_to 'home', root_path, :class => 'sign-in-here' %></li>
 			<% else %>
 				<li>have an account? <%= link_to 'sign in here', user_session_path, :class => 'sign-in-here' %></li>
-			<% end %>
+		  <% end %>
 		<% end %>
 	</ul>
 </aside>

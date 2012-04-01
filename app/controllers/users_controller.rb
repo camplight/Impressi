@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     session[:guest_deck] && move_decks_from_guest_user
     @decks = current_user.decks.sort
     @deck = current_user.decks.build
+
   end
   
 end
