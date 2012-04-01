@@ -611,6 +611,10 @@ ul li {
 	font-size: 24px;
 }
 
+.new_user_form {
+	margin-left:220px;
+}
+
 #new_user > div {
 	font-size: 28px;
 	margin-bottom: 20px;
