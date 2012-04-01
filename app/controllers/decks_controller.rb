@@ -1,6 +1,5 @@
 class DecksController < ApplicationController
   layout 'deck', :except => :new
-  # before_filter :authenticate_user!, :only => [:edit, :update]
   
   def new
     if session[:guest_deck]
@@ -8,14 +7,12 @@ class DecksController < ApplicationController
       guest_deck.destroy
       session[:guest_deck] = nil
     end
-    
     @deck = current_or_guest_user.decks.build
   end
 
   def create
     deck = current_or_guest_user.decks.create(:template_id => 1)
     session[:guest_deck] = deck.id
-    puts "******** #{session[:guest_deck]}"
     redirect_to edit_deck_path(deck)
   end
   
