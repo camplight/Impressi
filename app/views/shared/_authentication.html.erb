@@ -4,11 +4,10 @@
 			<li><%= link_to "Impressions", user_path(current_user), :class => 'button nav-button alter' %></li>
 			<li><%= link_to "Sign out", destroy_user_session_path, :class => 'button nav-button alter', :method => :delete %></li>
 		<% else %>
-			<% unless request.fullpath == '/users/sign_up' %>
-				<li><%= link_to "Sign up", new_user_registration_path, :id => 'sign-up', :class => 'button nav-button alter' %></li>
-			<% end %>
-			<% unless request.fullpath == '/users/sign_in' %>
-				<li><%= link_to "Sign in", user_session_path, :class => 'button nav-button alter' %></li>
+			<% if request.fullpath == '/users/sign_in' %>
+				<li>click here to go <%= link_to 'home', root_path, :class => 'sign-in-here' %></li>
+			<% else %>
+				<li>have an account? <%= link_to 'sign in here', user_session_path, :class => 'sign-in-here' %></li>
 			<% end %>
 		<% end %>
 	</ul>

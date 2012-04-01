@@ -122,19 +122,17 @@
 		outline: none;
 		margin: 0;
 		padding:10px;
-		border-radius:2px 2px;	
+		border-radius:6px;	
 	}
 		
 	#preview-button {
 		border: 1px solid black;
-		border-radius: 2px;
 		font-size: 17px;
 		right:0%;
 	}
 	
  #impress-button {
 		border: 1px solid black;
-		border-radius: 2px;
 		font-size: 30px;
 		padding: 12px;
 		padding-left: 18px;
@@ -159,6 +157,7 @@
 	#format-button {
 		background:none;
 		-webkit-transition:background-color .3s linear;
+		border-radius:0px;
 	}
 	
 	#format-button:hover {
@@ -188,7 +187,7 @@
 
   .ux_button {
     border: 1px solid;
-    border-radius: 2px;
+
     font-size: 15px;
     float: left;
   }
@@ -269,11 +268,11 @@
     height:25px; 
 	 	outline:none;
 	 	border:1px solid black;
+		border-radius:2x;
 	 }
 
 	.edit-button {
 		border: 1px solid;
-		border-radius: 2px;
 		font-size: 30px;
 		padding: 12px;
 		padding-left:18px;
@@ -590,6 +589,12 @@ input:focus {
 	font-size: 48px;
 }
 
+.sign-in-here {
+	color:rgb(0, 150, 220);
+	pointer-events:auto;
+	text-decoration:underline;
+}
+
 
 /*--------------USER SHOW PAGE---------------*/
 
@@ -649,7 +654,6 @@ input:focus {
 }
 
 .impress-table-row:hover {
-	
 	background-color:#ededff;
 }
 
