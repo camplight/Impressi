@@ -1,0 +1,45 @@
+<!doctype HTML>
+<head>
+	  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,800" rel="stylesheet" type="text/css">
+	<style>
+		.opaque {
+			opacity: 0.1;
+			-webkit-transition:opacity 2s linear;
+		}
+
+		.opaque.active {
+			opacity:1;
+		}
+	</style>
+</head>
+	<body style='background: rgba(0,0,0,0.0);'>
+		<div id="impress" class='seven columns omega demo' style='margin-top:0px;margin-left:-175px;position:inherit;'>
+			<div style="font-family: 'Open Sans', sans-serif; line-height: .8; font-size: 45px;">
+
+				<div id='overview' class='step' data-scale='2'></div>
+
+				<div class="step opaque" data-x="-400" data-y="0" data-scale='1' >
+					<span style='text-align:center;font-size:72px;'><b>WANT BEAUTIFUL PRESENTATIONS?</b></span> 
+				</div>
+
+				<div class="step opaque" data-x="-800" data-y="-200" data-rotate-y='180' data-scale='1'>
+					<span style='font-size:42px;tet-align:center'>TRY</span> 
+					<span style='font-family:"Satisfy", cursive;font-size:60px;'>impressi</span>
+				</div>
+
+				<div class="step opaque" data-x="-1000" data-y="-260" data-scale='1'>
+					<b><span style='font-size:84px;'>YOU'LL LOVE IT</span></b>
+				</div>
+
+				<div class="step opaque" data-x="-1000" data-y="-850" data-scale='1'>
+					<span style='font-size:72px'>:D</span>
+				</div>
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/impress.js"></script>
+		<script>impress();</script>
+		<script>setTimeout(impress().next, 200); setInterval(impress().next, 3000);</script>
+	</body>
+</html>

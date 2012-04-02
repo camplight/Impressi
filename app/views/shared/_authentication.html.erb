@@ -7,7 +7,7 @@
 			<% if request.fullpath == '/users/sign_in' %>
 				<li>click here to go <%= link_to 'home', root_path, :class => 'sign-in-here' %></li>
 			<% else %>
-				<li>have an account? <%= link_to 'sign in here', user_session_path, :class => 'sign-in-here' %></li>
+				<li id='top-bar'>have an account? <%= link_to 'sign in here', user_session_path, :class => 'sign-in-here' %></li>
 		  <% end %>
 		<% end %>
 	</ul>

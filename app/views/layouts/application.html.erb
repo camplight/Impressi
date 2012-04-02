@@ -10,7 +10,11 @@
 </head>
 <body style='background: -webkit-gradient(radial, 50% 50%, 250, 50% 50%, 750, from(#fff), to(#efefef));'>
 	<% current_or_guest_user %>
-
+		
+	<% if request.fullpath == '/' %>
+		<iframe id='demo-iframe' src='/impress.html' width='100%;' height='100%'></iframe>
+	<% end %>
+	
 	<%#= render :partial => 'shared/flash', :locals => {:flash => flash} %>
 	<%= render :partial => 'shared/authentication' %>
   

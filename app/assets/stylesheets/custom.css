@@ -22,6 +22,15 @@
 	}
 	
 
+/*----------------------IMPRESS DEMO------------------------------*/
+	#demo-iframe {
+		position: absolute;
+		border: none;
+		left: -4%;
+		top: -3%;
+		z-index: -1;
+	}
+
 
 /*----------------------SIDE BAR SLIDE EDIT PAGE------------------*/
 	#left-nav-bar {
@@ -595,6 +604,12 @@ ul li {
 	color: #999;
 	font-family: Tahoma, Geneva, sans-serif;
 
+}
+
+#top-bar {
+	color:#999;
+	font-family: Tahoma, Geneva, sans-serif;
+	
 }
 
 .creators-footer a {
