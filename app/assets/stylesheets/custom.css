@@ -6,6 +6,7 @@
 	
 /*----------------------SITE WIDE------------------*/	
 	#authentication {
+		margin-left:20px;
 		pointer-events:auto;
 		position:absolute;
 	}
