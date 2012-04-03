@@ -6,6 +6,7 @@
 	
 /*----------------------SITE WIDE------------------*/	
 	#authentication {
+		margin-left:20px;
 		pointer-events:auto;
 		position:absolute;
 	}
@@ -21,6 +22,15 @@
 		float:right;
 	}
 	
+
+/*----------------------IMPRESS DEMO------------------------------*/
+	#demo-iframe {
+		position: absolute;
+		border: none;
+		left: -4%;
+		top: -3%;
+		z-index: -1;
+	}
 
 
 /*----------------------SIDE BAR SLIDE EDIT PAGE------------------*/
@@ -178,17 +188,32 @@
 		position:relative;
 	}
 	
-	
+	.button {
+		background-color: #e9e9e9; 
+		text-align: center;
+		color: #333;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: .9em;
+		line-height: 1;
+		font-family: Tahoma, Geneva, sans-serif;
+		position: relative;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		margin: 0;
+		padding:10px;
+		border-radius:6px;	
+	}
+		
 	#preview-button {
 		border: 1px solid black;
-		border-radius: 2px;
 		font-size: 17px;
 		right:0%;
 	}
 	
  #impress-button {
 		border: 1px solid black;
-		border-radius: 2px;
 		font-size: 30px;
 		padding: 12px;
 		padding-left: 18px;
@@ -213,6 +238,7 @@
 	#format-button {
 		background:none;
 		-webkit-transition:background-color .3s linear;
+		border-radius:0px;
 	}
 	
 	#format-button:hover {
@@ -248,7 +274,7 @@
 
   .ux_button {
     border: 1px solid;
-    border-radius: 2px;
+
     font-size: 15px;
     float: left;
   }
@@ -329,11 +355,11 @@
     height:25px; 
 	 	outline:none;
 	 	border:1px solid black;
+		border-radius:2x;
 	 }
 
 	.edit-button {
 		border: 1px solid;
-		border-radius: 2px;
 		font-size: 30px;
 		padding: 12px;
 		padding-left:18px;
@@ -581,6 +607,12 @@ ul li {
 
 }
 
+#top-bar {
+	color:#999;
+	font-family: Tahoma, Geneva, sans-serif;
+	
+}
+
 .creators-footer a {
 	color:rgba(0, 150, 220, 0.6);
 	font-family: Tahoma, Geneva, sans-serif;
@@ -593,6 +625,10 @@ ul li {
 
 .create-button {
 	font-size: 24px;
+}
+
+.new_user_form {
+	margin-left:220px;
 }
 
 #new_user > div {
@@ -695,13 +731,55 @@ table {
 }
 
 
+/*-------------------FORMS------------------*/
+#sign-up-div {
+	margin-left:200px;
+}
+
+#new_user input {
+	border:1px solid #cdc;
+	border-radius:2px;
+	font-size: 34px;
+	background-color:;
+	padding:5px;
+	box-shadow:inset 2px 1px 20px #ededed;
+}
+
+input:focus {
+	box-shadow:1px 5px 1px black;
+}
+
+#new_user > div {
+	font-size: 28px;
+	margin-bottom: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+#new_user .user-button {
+	margin-top: 30px;
+	font-size: 40px;
+	width: 200px;
+	padding: 20px;
+}
+
+.sign-up {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 48px;
+}
+
+.sign-in-here {
+	color:rgb(0, 150, 220);
+	pointer-events:auto;
+	text-decoration:underline;
+}
+
+
 /*--------------USER SHOW PAGE---------------*/
 #spacer {
 	padding-top:100px;
 }
 
 .impress-table-row:hover {
-	background-color:#eeedff;
+	background-color:#ededff;
 }
 
 .impress-table-row a:hover {
