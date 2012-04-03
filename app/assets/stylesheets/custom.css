@@ -604,7 +604,7 @@ ul li {
 	font-size: 14px;
 	color: #999;
 	font-family: Tahoma, Geneva, sans-serif;
-
+  position: absolute;
 }
 
 #top-bar {
@@ -625,6 +625,25 @@ ul li {
 
 .create-button {
 	font-size: 24px;
+}
+
+.footer {
+	font-size: 14px;
+  color: #888;
+	font-family: Tahoma, Geneva, sans-serif;
+  float: right;
+  margin-top: 90px;
+  margin-right: 10px;
+  background: #DDD;
+  border-radius: 2px;
+  padding: 10px;
+}
+
+.footer a {
+	color:rgba(0, 150, 220, 0.6);
+}
+.footer a:hover {
+  text-decoration: underline;
 }
 
 .new_user_form {
