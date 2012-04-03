@@ -357,7 +357,7 @@ $('.temp_dropdown').change(function() {
 });
 
 
-
+// 
 // $('.size_dropdown').change(function() {
 // 	var deckContent = database.deckData.steps
 // 	var currentSlide = $('.active');

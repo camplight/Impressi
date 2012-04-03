@@ -1,4 +1,8 @@
-Impressi is an interface that makes it easy for users to make presentations with {Impress.js}[http://bartaz.github.com/impress.js/].  It's now available to use at {Impressi.me}[http://impressi.me]  It was built as a project for {DevBootcamp}[http://devbootcamp.com] ({Github page}[https://github.com/Devbootcamp]) by the following contributors:
+= Impressi
+
+Impressi is an in-browser development tool built on {impress.js}[https://github.com/bartaz/impress.js/] that makes it easy for anyone to create beautiful presentations.
+
+Originally built by:
 
 * {Craig Little}[https://github.com/craiglittle]  
 * {Adam Biagianti}[https://github.com/el-mapache]  
@@ -7,16 +11,27 @@ Impressi is an interface that makes it easy for users to make presentations with
 * {Kush Patel}[https://github.com/kushpatel72]  
 * {Melissa Lamoreaux}[https://github.com/ccontrast]
 
-Right now it supports selecting a template, inputting text, and adding/deleting slides.  The template object is currently set up so that each transition to the next slide uses the same transformation.
+== What Does It Do
+
+You can:
+
+* Input text
+* Style it with bold and itacilized text using an implementation of Markdown
+* Add and delete slides
+* Select from a number of preset templates
+
+Note: The current template implementation limits transitions to following a preset function based on the index number of the slide. We plan for future versions to support more freedom in this area.
 
 == Contributing
 
-We encourage you to contribute to Impressi! Please fork and submit a pull request.  Features we would like are:
+We encourage you to contribute to Impressi! Please fork and submit a pull request.
 
-* an interface for producing custom templates,
-* extension of the template class to allow for different kinds of transformations in the same presentation,
-* image/video-adding capability, and
-* rich text editing on the slides, especially involving the 3D capabilities of Impress.js/CSS3.
+Features we'd like to see:
+
+* An interface for producing custom templates
+* More flexibility in setting slide transformations
+* Images and video insertion
+* {Rich 3-D goodness}[http://bartaz.github.com/impress.js/#/its-in-3d]
 
 == License
 

@@ -9,6 +9,7 @@
 		margin-left:20px;
 		pointer-events:auto;
 		position:absolute;
+		z-index:101;
 	}
 	
 	#container-custom {
