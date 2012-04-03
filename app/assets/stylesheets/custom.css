@@ -600,7 +600,7 @@ ul li {
 }
 
 .creators-footer {
-	margin-top: 120px;
+	margin-top: 100px;
 	font-size: 14px;
 	color: #999;
 	font-family: Tahoma, Geneva, sans-serif;
@@ -770,6 +770,10 @@ input:focus {
 	color:rgb(0, 150, 220);
 	pointer-events:auto;
 	text-decoration:underline;
+}
+
+.twitter-share-button {
+  float:right;
 }
 
 

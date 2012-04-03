@@ -9,6 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body style='background: -webkit-gradient(radial, 50% 50%, 250, 50% 50%, 750, from(#fff), to(#efefef));display:inline;'>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Impressi to make fast, beautiful presentations" data-via="impressime">Tweet</a>
 	<% current_or_guest_user %>
 		
 	<% if request.fullpath == '/' %>
@@ -22,5 +23,6 @@
 		<%= yield %>
 	</div>
 	
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </body>
 </html>
