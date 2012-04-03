@@ -247,7 +247,7 @@ var buildTree = function() {
 		$('#impress > div').last().attr('data-rotate-x', template['data-rotate-x'] * i);
 		$('#impress > div').last().attr('data-rotate-y', template['data-rotate-y'] * i);
 		$('#impress > div').last().attr('data-rotate-z', template['data-rotate-z'] * i);
-		$('#impress > div').last().css('font-size', deck.steps[i]['font-size']);
+		$('#impress > div').last().css({'font-size' : deck.steps[i]['font-size']+'px'});
 		if (template['data-scale'] == false) {
         $('#impress > div').last().attr('data-scale', 1);
     } else {
@@ -363,12 +363,10 @@ $('.size_dropdown').change(function() {
 	var deckContent = database.deckData.steps
 	var currentSlide = $('.active');
 	var slideIndexNumber = getSlideIndexNumber(currentSlide);
-	console.log(getSlideIndexNumber(currentSlide));
-	console.log(	deckContent[slideIndexNumber]['font-size']);
+
 	deckContent[slideIndexNumber]['font-size'] = parseInt($(this).val());
 	$('#inline-editor').css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
-	$(currentSlide).css('font-size', database.deckData.steps[slideIndexNumber]['font-size']);
-	console.log(database.deckData.steps[slideIndexNumber]['font-size']);
+	$(currentSlide).css('font-size', database.deckData.steps[slideIndexNumber]['font-size']+'px');
 	database.deckData.steps[slideIndexNumber]['font-size'] = parseInt($(this).val());
 });
 
