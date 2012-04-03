@@ -352,14 +352,14 @@ $('.delete_slide').click(function() {
     if (slideIndexNumber == deckContent.length) { impress().prev(); }
 });
 
-$('.temp_dropdown').change(function() {
+$('.temp-dropdown').change(function() {
 	database.deckData.template_id = parseInt($(this).val());
 	constructTree();
 });
 
 
 
-$('.size_dropdown').change(function() {
+$('.size-dropdown').change(function() {
 	var deckContent = database.deckData.steps
 	var currentSlide = $('.active');
 	var slideIndexNumber = getSlideIndexNumber(currentSlide);

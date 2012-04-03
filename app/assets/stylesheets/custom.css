@@ -262,13 +262,17 @@
 		margin-right: 20px;
 		margin-top: -2px;
 	}
+
+  .template {
+    float: left;
+  }
 	
-	.temp_dropdown {
+	.temp-dropdown {
 		pointer-events: auto;
 		margin-right: 25px;
 	}
 	
-	.size_dropdown {
+	.size-dropdown {
 		pointer-events: auto;
 	}
 
