@@ -1,6 +1,6 @@
 = Impressi
 
-Impressi is an in-browser presentation development tool built on {impress.js}[https://github.com/bartaz/impress.js/] that makes it easy for anyone to create beautiful presentations.
+Impressi is an in-browser development tool built on {impress.js}[https://github.com/bartaz/impress.js/] that makes it easy for anyone to create beautiful presentations.
 
 Originally built by:
 
