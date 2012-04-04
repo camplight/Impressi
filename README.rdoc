@@ -33,6 +33,10 @@ Features we'd like to see:
 * Images and video insertion
 * {Rich 3-D goodness}[http://bartaz.github.com/impress.js/#/its-in-3d]
 
+== Props
+
+We'd like to express our thanks to Christian Fernandez and Marcus Phillips (@mracus) for being awesome mentors during the initial development process.
+
 == License
 
 Impressi is released under the MIT license:
