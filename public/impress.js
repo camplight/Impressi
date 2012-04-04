@@ -1,3 +1,5 @@
+var pickleLoaded;
+
 var __impress_getElementFromUrl = function () {
     // get id from url # by removing `#` or `#/` from the beginning,
     // so both `#slide-id` and "legacy" `#/slide-id` will work
@@ -347,6 +349,8 @@ var mode = 'prezi';
 
             current = target;
             active = el;
+
+            if (pickleLoaded) { setSizeDropdown(); }
 
             return el;
         };

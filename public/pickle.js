@@ -1,3 +1,5 @@
+var pickleLoaded = true;
+
 $(document).ready(function() {
 	var hover = 1;
 	var hints = true;
@@ -8,6 +10,7 @@ $(document).ready(function() {
 		showHints();
 		hints = false;
 	}
+
 	$('#format-button').hover( 
 		function() { 
 			$('.format-helper').fadeIn('fast'); 
@@ -236,9 +239,8 @@ var buildTree = function() {
 	var deck        = database.deckData,
 		deck_length 	= deck.steps.length,
 		template   		= database.templateData[deck.template_id - 1];
-		console.log(deck);
+
 	for(var i = 0; i < deck_length; i++) {
-		console.log('inside for loop ' +deck.steps[i]['font-size']);
 		$('#impress').append('<div></div>');
 		$('#impress > div').last().attr('class', template['klass']);
 		$('#impress > div').last().attr('data-x', template['data-x'] * i);
@@ -261,7 +263,18 @@ var constructTree = function() {
 	destroyTree();
 	buildTree();
 	resetImpress();
-	if ($('#impress').attr('data-mode') == 'edit') { createInlineEditor(); }
+	if ($('#impress').attr('data-mode') == 'edit') { 
+    createInlineEditor();
+    setSizeDropdown();
+  }
+}
+
+var setSizeDropdown = function() {
+	var deckContent = database.deckData.steps
+	var currentSlide = $('.active');
+	var slideIndexNumber = getSlideIndexNumber(currentSlide);
+
+  $('.size-dropdown').val(deckContent[slideIndexNumber]['font-size']);
 }
 
 var dataLoaded = function() {
