@@ -35,7 +35,7 @@ Features we'd like to see:
 
 == Props
 
-We'd like to express our thanks to Christian Fernandez and Marcus Phillips (@mracus) for being awesome mentors during the initial development process.
+We'd like to express our thanks to Christian Fernandez and {Marcus Phillips}[http://twitter.com/mracus] for being awesome mentors during the initial development process.
 
 == License
 
