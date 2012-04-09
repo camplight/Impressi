@@ -1,12 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>3.2.1'
-
 gem 'devise'
-gem 'nokogiri'
 gem 'jquery-rails'
-gem 'alphadecimal'
-
+#gem 'thin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -19,8 +15,7 @@ group :production do
 	gem 'thin'
 end
 
-group :test, :development do
-  gem 'sqlite3'
+group :test do
   gem 'rspec-rails', '~> 2.8.0'
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'ffaker'
