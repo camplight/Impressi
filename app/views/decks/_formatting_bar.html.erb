@@ -1,12 +1,8 @@
 <div class='navbar'>
   <h2 <%= "#{redirect_popup?}" %> class='edit-title'><a href=<%= user_signed_in? ? "/users/#{current_user.id}" : '/' %> style="pointer-events: auto;">impressi</a></h2>
-  <a class='ux_button button add_slide alter' style="pointer-events: auto;">
-    Add slide
-  </a>
-
-  <a class='ux_button button delete_slide alter' style="pointer-events: auto">
-    Remove slide
-  </a>
+  
+  <a class='ux_button button add_slide alter' style="pointer-events: auto;">Add slide</a>
+  <a class='ux_button button delete_slide alter' style="pointer-events: auto">Remove slide</a>
 
 	<div class='selectors'>
 		<div class='template'>
@@ -41,9 +37,7 @@
 </div>
 
 <div id='preview-mode'>
-	<%= link_to "Impress!", impress_button_link_path, :class => 'button alter', 
-																										:id => 'impress-button' %>
-																										
+	<%= link_to "Impress!", impress_button_link_path, :class => 'button alter', :id => 'impress-button' %>																				
 	<%= link_to "Edit", '#', :class => 'button edit-button alter' %>
 </div>
 	
